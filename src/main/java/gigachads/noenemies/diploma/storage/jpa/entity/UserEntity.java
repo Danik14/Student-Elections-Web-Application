@@ -9,7 +9,4 @@ import java.util.UUID;
 public class UserEntity {
     @Id
     private UUID id;
-
-
-
 }
