@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static gigachads.noenemies.diploma.domain.model.user.UserPermission.*;
-
 @Getter
 @RequiredArgsConstructor
 public enum UserRole {
@@ -18,16 +16,16 @@ public enum UserRole {
     USER(Collections.emptySet()),
     VERIFIED_USER(
             Set.of(
-                    VERIFIED_READ,
-                    VERIFIED_UPDATE,
-                    VERIFIED_DELETE,
-                    VERIFIED_CREATE)),
+                    UserPermission.VERIFIED_READ,
+                    UserPermission.VERIFIED_UPDATE,
+                    UserPermission.VERIFIED_DELETE,
+                    UserPermission.VERIFIED_CREATE)),
     ADMIN(
             Set.of(
-                    ADMIN_READ,
-                    ADMIN_UPDATE,
-                    ADMIN_DELETE,
-                    ADMIN_CREATE));
+                    UserPermission.ADMIN_READ,
+                    UserPermission.ADMIN_UPDATE,
+                    UserPermission.ADMIN_DELETE,
+                    UserPermission.ADMIN_CREATE));
 
     private final Set<UserPermission> permissions;
 
