@@ -8,7 +8,6 @@ import lombok.ToString;
 import java.util.UUID;
 
 @ToString
-@RequiredArgsConstructor
 @Builder(toBuilder = true)
 public class VoteEntity {
     @Id

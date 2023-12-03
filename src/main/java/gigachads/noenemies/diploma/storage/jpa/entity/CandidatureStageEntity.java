@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.UUID;
 
 @ToString
-@RequiredArgsConstructor
 @Builder(toBuilder = true)
 public class CandidatureStageEntity {
 //       candidature_stage_id uuid primary key ,

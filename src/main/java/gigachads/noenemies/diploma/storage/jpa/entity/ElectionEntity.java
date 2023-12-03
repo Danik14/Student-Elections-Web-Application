@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.UUID;
 
 @ToString
-@RequiredArgsConstructor
 @Builder(toBuilder = true)
 public class ElectionEntity {
     @Id

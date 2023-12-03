@@ -6,11 +6,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @ToString
-@RequiredArgsConstructor
 @Builder(toBuilder = true)
 public class StageEntity {
 //       stage_id uuid primary key,
@@ -30,5 +30,5 @@ public class StageEntity {
     private ElectionEntity election;
 
     @OneToMany(mappedBy = "stage")
-    private Set<CandidatureStageEntity> candidatureStages;
+    private List<CandidatureStageEntity> candidatureStages;
 }
