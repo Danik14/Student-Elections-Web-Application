@@ -9,9 +9,10 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
+
+@Entity
 @ToString
-@RequiredArgsConstructor
-@Builder(toBuilder = true)
+@Table(name = "elections")
 public class ElectionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -38,11 +39,12 @@ public class ElectionEntity {
     @Column(name = "total_votes_count", nullable = false)
     private Integer totalVotesCount;
 
-
-    @OneToMany(mappedBy="stage")
+    @ToString.Exclude
+    @OneToMany(mappedBy="election")
     private Set<StageEntity> stages;
 
-    @OneToMany(mappedBy = "candidature")
+    @ToString.Exclude
+    @OneToMany(mappedBy = "election")
     private Set<CandidatureEntity> candidatures;
 
 

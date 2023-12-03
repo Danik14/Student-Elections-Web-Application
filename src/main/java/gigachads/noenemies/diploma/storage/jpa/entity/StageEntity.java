@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
+@Entity
 @ToString
-@RequiredArgsConstructor
-@Builder(toBuilder = true)
+@Table(name = "stages")
 public class StageEntity {
 //       stage_id uuid primary key,
     @Id
@@ -25,10 +25,13 @@ public class StageEntity {
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
 //    election_id uuid references elections(election_id) not null
+
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "election_id", nullable = false)
     private ElectionEntity election;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "stage")
     private Set<CandidatureStageEntity> candidatureStages;
 }

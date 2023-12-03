@@ -8,9 +8,9 @@ import lombok.ToString;
 import java.util.Set;
 import java.util.UUID;
 
+@Entity
 @ToString
-@RequiredArgsConstructor
-@Builder(toBuilder = true)
+@Table(name = "candidatures")
 public class CandidatureEntity {
 //    candidature_id uuid primary key,
     @Id
@@ -22,10 +22,11 @@ public class CandidatureEntity {
     @JoinColumn(name = "election_id", nullable = false)
     private ElectionEntity election;
 //    user_id uuid references users(user_id) not null
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
-
+    @ToString.Exclude
     @OneToMany(mappedBy = "candidature")
     private Set<CandidatureStageEntity> candidatureStages;
 }
