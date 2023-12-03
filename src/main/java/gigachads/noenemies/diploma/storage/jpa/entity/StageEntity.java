@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -13,18 +14,18 @@ import java.util.UUID;
 @ToString
 @Table(name = "stages")
 public class StageEntity {
-//       stage_id uuid primary key,
+    // stage_id uuid primary key,
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "stage_id")
     private UUID id;
-//    description text  not null,
+    // description text not null,
     @Column(name = "description", nullable = false)
     private String description;
-//    deadline timestamp  not null,
+    // deadline timestamp not null,
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
-//    election_id uuid references elections(election_id) not null
+    // election_id uuid references elections(election_id) not null
 
     @ToString.Exclude
     @ManyToOne
@@ -33,5 +34,5 @@ public class StageEntity {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "stage")
-    private Set<CandidatureStageEntity> candidatureStages;
+    private List<CandidatureStageEntity> candidatureStages;
 }

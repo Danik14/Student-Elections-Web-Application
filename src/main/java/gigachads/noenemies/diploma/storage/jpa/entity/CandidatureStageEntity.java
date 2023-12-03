@@ -12,18 +12,18 @@ import java.util.UUID;
 @ToString
 @Table(name = "candidature_stages")
 public class CandidatureStageEntity {
-//       candidature_stage_id uuid primary key ,
+    // candidature_stage_id uuid primary key ,
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "candidature_stage_id")
     private UUID id;
-//    stage_id uuid references stages(stage_id) not null,
+    // stage_id uuid references stages(stage_id) not null,
 
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "stage_id", nullable = false)
     private StageEntity stage;
-//    candidature_id uuid references candidatures(candidature_id) not null
+    // candidature_id uuid references candidatures(candidature_id) not null
 
     @ToString.Exclude
     @ManyToOne
