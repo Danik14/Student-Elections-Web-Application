@@ -28,7 +28,6 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/"))
-
                 .build();
 
     }
