@@ -27,18 +27,18 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/auth/**").permitAll()
                 .anyRequest().authenticated())
                 .oauth2Login(oauth2 -> oauth2
-                        .defaultSuccessUrl("/1"))
-                .logout(l -> l
-                        .logoutSuccessUrl("/api/v1/logoutsucess")
-                        .permitAll())
+                        .successHandler(successHandler())
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/"))
 
                 .build();
 
     }
-    // @Bean
-    // public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    // return http.build();
-    // }
+//     @Bean
+//     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//     return http.build();
+//     }
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
