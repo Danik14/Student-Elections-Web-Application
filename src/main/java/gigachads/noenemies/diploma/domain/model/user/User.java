@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
-@Builder(toBuilder = true)
+@Builder
 public class User {
     @NonNull
     private final UserId id;
@@ -21,4 +21,14 @@ public class User {
     private final String middleName = "";
     @NonNull
     private final UserRole role;
+
+    public static class UserBuilder{
+        public UserId id(UserId id) {
+            return id;
+        }
+
+        public UserId id(String id) {
+            return UserId.of(id);
+        }
+    }
 }

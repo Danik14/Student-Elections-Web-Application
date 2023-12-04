@@ -1,4 +1,4 @@
-package gigachads.noenemies.diploma.domain.model.user;
+package gigachads.noenemies.diploma.domain.model.stage;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,15 +8,15 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Data
-public class UserId {
+public class StageId {
     @NonNull
     private final UUID id;
 
-    public static UserId of(UUID id) {
-        return new UserId(id);
+    public static StageId of(UUID id) {
+        return new StageId(id);
     }
 
-    public static UserId of(String id) {
+    public static StageId of(String id) {
         return of(UUID.fromString(id));
     }
 
