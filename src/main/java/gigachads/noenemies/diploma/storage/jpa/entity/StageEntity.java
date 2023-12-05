@@ -1,6 +1,9 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
@@ -10,6 +13,9 @@ import java.util.UUID;
 @Entity
 @ToString
 @Table(name = "stages")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class StageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

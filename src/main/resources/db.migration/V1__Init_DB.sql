@@ -1,49 +1,47 @@
-create table roles (
-    role_id uuid primary key ,
-    name varchar(50) not null
+CREATE TABLE roles (
+    role_id UUID PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
 );
 
-create table users (
-    user_id uuid primary key,
-    email varchar(100) not null,
-    first_name varchar(50) not null,
-    last_name varchar(50) not null,
-    password text  not null,
-    role_id uuid references roles(role_id) not null
+CREATE TABLE users (
+    user_id uuid PRIMARY KEY,
+    email VARCHAR(100) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    password TEXT  NOT NULL,
+    role_id UUID REFERENCES roles(role_id) NOT NULL
 );
 
-create table elections (
-    election_id uuid primary key,
-    description text  not null,
-    year int  not null,
-    created_at timestamp  not null,
-    deadline timestamp  not null,
-    total_votes_count int not null default 0
+CREATE TABLE elections (
+    election_id UUID PRIMARY KEY,
+    description TEXT NOT NULL,
+    year INT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    deadline TIMESTAMP NOT NULL,
+    total_votes_count INT NOT NULL DEFAULT 0
 );
 
-create table stages (
-    stage_id uuid primary key,
-    description text  not null,
-    deadline timestamp  not null,
-    election_id uuid references elections(election_id) not null
+CREATE TABLE stages (
+    stage_id UUID PRIMARY KEY,
+    description TEXT NOT NULL,
+    deadline TIMESTAMP NOT NULL,
+    election_id UUID REFERENCES elections(election_id) NOT NULL
 );
 
-create table candidatures (
-    candidature_id uuid primary key,
-    election_id uuid references elections(election_id) not null,
-    user_id uuid references users(user_id) not null
+CREATE TABLE candidatures (
+    candidature_id UUID PRIMARY KEY,
+    election_id UUID REFERENCES elections(election_id) NOT NULL,
+    user_id UUID REFERENCES users(user_id) NOT NULL
 );
 
-create table candidature_stages(
-    candidature_stage_id uuid primary key ,
-    stage_id uuid references stages(stage_id) not null,
-    candidature_id uuid references candidatures(candidature_id) not null
+CREATE TABLE candidature_stages (
+    candidature_stage_id UUID PRIMARY KEY,
+    stage_id UUID REFERENCES stages(stage_id) NOT NULL,
+    candidature_id UUID REFERENCES candidatures(candidature_id) NOT NULL
 );
 
-create table votes (
-    vote_id uuid primary key,
-    elector_id uuid references users(user_id) not null,
-    candidature_stage_id uuid references candidature_stages(candidature_stage_id) not null
+CREATE TABLE votes (
+    vote_id UUID PRIMARY KEY,
+    elector_id UUID REFERENCES users(user_id) NOT NULL,
+    candidature_stage_id UUID REFERENCES candidature_stages(candidature_stage_id) NOT NULL
 );
-
-

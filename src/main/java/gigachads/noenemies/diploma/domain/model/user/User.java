@@ -14,21 +14,22 @@ public class User {
     @NonNull
     private final String barcode;
     @NonNull
+    private final String email;
+    @NonNull
     private final String firstName;
     @NonNull
     private final String lastName;
     @NonNull
-    private final String middleName = "";
-    @NonNull
     private final UserRole role;
 
     public static class UserBuilder{
-        public UserId id(UserId id) {
-            return id;
+        public UserBuilder id(UserId id) {
+            this.id = id;
+            return this;
         }
 
-        public UserId id(String id) {
-            return UserId.of(id);
+        public UserBuilder id(String id) {
+            return id(UserId.of(id));
         }
     }
 }

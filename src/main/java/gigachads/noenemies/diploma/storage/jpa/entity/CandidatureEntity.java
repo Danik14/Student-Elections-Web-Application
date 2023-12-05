@@ -1,6 +1,9 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
@@ -9,6 +12,9 @@ import java.util.UUID;
 @Entity
 @ToString
 @Table(name = "candidatures")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CandidatureEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

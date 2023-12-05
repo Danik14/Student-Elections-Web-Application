@@ -1,25 +1,35 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.ToString;
+import gigachads.noenemies.diploma.domain.model.user.UserRole;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "users")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(name = "barcode")
+    private String barcode;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "role")
+    private UserRole role;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user")
-    List<CandidatureEntity> candidatures;
+    private List<CandidatureEntity> candidatures;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "elector")
-    List<VoteEntity> votes;
+    private List<VoteEntity> votes;
 }

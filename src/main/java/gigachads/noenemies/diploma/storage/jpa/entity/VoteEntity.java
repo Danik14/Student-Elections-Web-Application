@@ -1,6 +1,9 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.UUID;
@@ -8,6 +11,9 @@ import java.util.UUID;
 @ToString
 @Entity
 @Table(name = "votes")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class VoteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
