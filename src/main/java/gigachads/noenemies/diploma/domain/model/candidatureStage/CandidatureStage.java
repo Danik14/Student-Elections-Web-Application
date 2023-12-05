@@ -1,14 +1,14 @@
 package gigachads.noenemies.diploma.domain.model.candidatureStage;
 
-import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureEntity;
-import gigachads.noenemies.diploma.storage.jpa.entity.StageEntity;
-import gigachads.noenemies.diploma.storage.jpa.entity.VoteEntity;
+import gigachads.noenemies.diploma.domain.model.candidature.Candidature;
+import gigachads.noenemies.diploma.domain.model.stage.Stage;
+import gigachads.noenemies.diploma.domain.model.vote.Vote;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Builder
@@ -18,13 +18,13 @@ public class CandidatureStage {
 
     @ToString.Exclude
     @NonNull
-    private StageEntity stage;
+    private Stage stage;
 
     @ToString.Exclude
     @NonNull
-    private CandidatureEntity candidature;
+    private Candidature candidature;
 
     @ToString.Exclude
     @NonNull
-    private Set<VoteEntity> votes;
+    private List<Vote> votes;
 }

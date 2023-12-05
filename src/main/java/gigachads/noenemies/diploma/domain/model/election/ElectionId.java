@@ -1,4 +1,4 @@
-package gigachads.noenemies.diploma.domain.model.Election;
+package gigachads.noenemies.diploma.domain.model.election;
 
 import gigachads.noenemies.diploma.domain.model.stage.StageId;
 import lombok.AllArgsConstructor;

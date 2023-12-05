@@ -1,4 +1,4 @@
-package gigachads.noenemies.diploma.domain.model.Election;
+package gigachads.noenemies.diploma.domain.model.election;
 
 import gigachads.noenemies.diploma.domain.model.candidature.Candidature;
 import gigachads.noenemies.diploma.domain.model.stage.Stage;
@@ -8,7 +8,7 @@ import lombok.NonNull;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Builder
@@ -33,9 +33,9 @@ public class Election {
 
     @ToString.Exclude
     @NonNull
-    private Set<Stage> stages;
+    private List<Stage> stages;
 
     @ToString.Exclude
     @NonNull
-    private Set<Candidature> candidatures;
+    private List<Candidature> candidatures;
 }

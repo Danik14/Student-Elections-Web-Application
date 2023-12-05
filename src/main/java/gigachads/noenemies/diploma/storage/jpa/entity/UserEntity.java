@@ -6,7 +6,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.ToString;
 
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,8 +17,9 @@ public class UserEntity {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user")
-    Set<CandidatureEntity> candidatures;
+    List<CandidatureEntity> candidatures;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "elector")
-    Set<VoteEntity> votes;
+    List<VoteEntity> votes;
 }
