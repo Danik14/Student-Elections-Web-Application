@@ -4,9 +4,11 @@ import gigachads.noenemies.diploma.domain.model.user.User;
 import gigachads.noenemies.diploma.domain.model.user.UserId;
 import gigachads.noenemies.diploma.domain.model.user.UserRole;
 import gigachads.noenemies.diploma.domain.service.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUsers(Integer limit) {

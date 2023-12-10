@@ -12,7 +12,7 @@ values (gen_random_uuid(), '211416@astanait.edu.kz', 'Alibek', 'Keneskhanov', 't
 select * from users;
 
 insert into elections (election_id, description, year, created_at, deadline, total_votes_count)
-values (gen_random_uuid(), 'Election for student council of 2024', 2024, now(), '20-04-2024 00:00:00', 0);
+values (gen_random_uuid(), 'Election for student council of 2024', true, 2024, now(), '20-04-2024 00:00:00', 0);
 
 select * from elections;
 

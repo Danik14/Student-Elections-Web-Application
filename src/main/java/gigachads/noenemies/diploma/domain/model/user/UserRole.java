@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
@@ -56,7 +53,7 @@ public enum UserRole {
     }
 
     private static Set<UserPermission> mergePermissions(UserRole parentRole, UserPermission... additionalPermissions) {
-        Set<UserPermission> allPermissions = EnumSet.copyOf(parentRole.getPermissions());
+        Set<UserPermission> allPermissions = parentRole.getPermissions().isEmpty() ? new HashSet<>() : EnumSet.copyOf(parentRole.getPermissions());
         allPermissions.addAll(Set.of(additionalPermissions));
         return Collections.unmodifiableSet(allPermissions);
     }

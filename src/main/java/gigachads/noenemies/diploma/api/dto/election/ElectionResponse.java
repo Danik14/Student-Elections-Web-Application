@@ -1,6 +1,8 @@
-package gigachads.noenemies.diploma.domain.model.election;
+package gigachads.noenemies.diploma.api.dto.election;
+
 
 import gigachads.noenemies.diploma.domain.model.candidature.Candidature;
+import gigachads.noenemies.diploma.domain.model.election.ElectionId;
 import gigachads.noenemies.diploma.domain.model.stage.Stage;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,9 +12,9 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
 @Builder
-public class Election {
+@Getter
+public class ElectionResponse {
     @NonNull
     private ElectionId id;
 

@@ -25,6 +25,9 @@ public class ElectionEntity {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "active")
+    private Boolean active;
+
     @Column(name = "year", nullable = false)
     private Integer year;
 

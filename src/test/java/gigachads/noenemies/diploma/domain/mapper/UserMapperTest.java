@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserMapperTest {
 
@@ -21,8 +21,6 @@ class UserMapperTest {
 
     @Test
     void testToDomain() {
-
-
     }
 
     @Test
@@ -37,5 +35,15 @@ class UserMapperTest {
                 .build();
 
         var actual = service.toEntity(user);
+
+        var expected = UserEntity.builder()
+                .id(UUID.fromString("dd1213a7-8491-4c4b-8381-e28566ff317b"))
+                .barcode("211360")
+                .firstName("Aliba")
+                .lastName("Zesty")
+                .email("alibazesty@test.com")
+                .role(UserRole.STUDENT)
+                .build();
+        assertEquals(expected, actual);
     }
 }
