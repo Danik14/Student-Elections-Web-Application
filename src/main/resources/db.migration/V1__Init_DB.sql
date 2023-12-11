@@ -15,6 +15,7 @@ CREATE TABLE elections.users (
 CREATE TABLE elections.elections (
     election_id UUID PRIMARY KEY,
     description TEXT NOT NULL,
+    status TEXT NOT NULL,
     active BOOLEAN NOT NULL,
     year INT NOT NULL,
     created_at TIMESTAMP NOT NULL,
