@@ -1,9 +1,9 @@
-CREATE TABLE roles (
+CREATE TABLE elections.roles (
     role_id UUID PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE users (
+CREATE TABLE elections.users (
     user_id uuid PRIMARY KEY,
     email VARCHAR(100) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE users (
     role_id UUID REFERENCES roles(role_id) NOT NULL
 );
 
-CREATE TABLE elections (
+CREATE TABLE elections.elections (
     election_id UUID PRIMARY KEY,
     description TEXT NOT NULL,
     active BOOLEAN NOT NULL,
@@ -22,26 +22,26 @@ CREATE TABLE elections (
     total_votes_count INT NOT NULL DEFAULT 0
 );
 
-CREATE TABLE stages (
+CREATE TABLE elections.stages (
     stage_id UUID PRIMARY KEY,
     description TEXT NOT NULL,
     deadline TIMESTAMP NOT NULL,
     election_id UUID REFERENCES elections(election_id) NOT NULL
 );
 
-CREATE TABLE candidatures (
+CREATE TABLE elections.candidatures (
     candidature_id UUID PRIMARY KEY,
     election_id UUID REFERENCES elections(election_id) NOT NULL,
     user_id UUID REFERENCES users(user_id) NOT NULL
 );
 
-CREATE TABLE candidature_stages (
+CREATE TABLE elections.candidature_stages (
     candidature_stage_id UUID PRIMARY KEY,
     stage_id UUID REFERENCES stages(stage_id) NOT NULL,
     candidature_id UUID REFERENCES candidatures(candidature_id) NOT NULL
 );
 
-CREATE TABLE votes (
+CREATE TABLE elections.votes (
     vote_id UUID PRIMARY KEY,
     elector_id UUID REFERENCES users(user_id) NOT NULL,
     candidature_stage_id UUID REFERENCES candidature_stages(candidature_stage_id) NOT NULL

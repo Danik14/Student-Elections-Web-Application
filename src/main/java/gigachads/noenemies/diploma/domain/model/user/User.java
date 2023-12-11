@@ -1,13 +1,11 @@
 package gigachads.noenemies.diploma.domain.model.user;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import lombok.ToString;
+import lombok.*;
 
 @EqualsAndHashCode
 @ToString
 @Builder
+@Getter
 public class User {
     @NonNull
     private final UserId id;

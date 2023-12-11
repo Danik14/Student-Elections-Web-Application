@@ -1,0 +1,50 @@
+# Add application-local.properties file next to application.properties
+spring:
+  profiles:
+    active: ${PROFILE:local}
+  datasource:
+    url: ${DB-URL}
+    username: ${DB-USER}
+    password: ${DB-PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: false
+      database: student_elections
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    schemas: elections
+    locations: classpath:db/migration
+    cleanDisabled: false # remove in production
+  security:
+    oauth2:
+      client:
+        registration:
+          azure:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            #client-name: Azure
+            provider: azure
+            redirect-uri: ${SERVER_BASE_URL}/login/oauth2/code/azure
+            authorization-grant-type: authorization_code
+            scope: openid,profile,email
+        provider:
+          azure:
+            authorization-uri: https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize
+            issuer-uri: https://login.microsoftonline.com/${TENANT_ID}/v2.0
+            #user-name-attribute: name
+            token-uri: https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token
+            jwk-set-uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
+            user-info-uri: https://graph.microsoft.com/oidc/userinfo
+            #user-name-attribute: id
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+#spring.jpa.generate-ddl: false
+#spring.jpa.hibernate.show-sql: false
+#spring.jpa.hibernate.ddl-auto: validate
+
+server:
+  port: 8080
+  forward-headers-strategy: native

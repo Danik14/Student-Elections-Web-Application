@@ -1,9 +1,8 @@
 package gigachads.noenemies.diploma.domain.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
-import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
-
-@Mapper(componentModel = SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CandidatureMapper {
 }

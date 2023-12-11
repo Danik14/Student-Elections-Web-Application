@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -37,4 +39,17 @@ public class UserEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "elector")
     private List<VoteEntity> votes;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(barcode, that.barcode) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && role == that.role && Objects.equals(candidatures, that.candidatures) && Objects.equals(votes, that.votes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, barcode, firstName, lastName, email, role, candidatures, votes);
+    }
 }

@@ -16,7 +16,8 @@ class UserMapperTest {
 
     @BeforeEach
     void setUp() {
-        service = new UserMapperImpl();
+        HelperMapper helperMapper = new HelperMapperImpl();
+        service = new UserMapperImpl(helperMapper);
     }
 
     @Test

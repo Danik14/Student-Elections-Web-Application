@@ -4,22 +4,36 @@ import gigachads.noenemies.diploma.domain.model.candidature.CandidatureId;
 import gigachads.noenemies.diploma.domain.model.candidatureStage.CandidatureStageId;
 import gigachads.noenemies.diploma.domain.model.election.ElectionId;
 import gigachads.noenemies.diploma.domain.model.stage.StageId;
+import gigachads.noenemies.diploma.domain.model.user.UserId;
 import gigachads.noenemies.diploma.domain.model.vote.VoteId;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
 import java.util.UUID;
 
-import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
-
-@Mapper(componentModel = SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface HelperMapper {
-    UUID map(ElectionId value);
+    default UUID map(ElectionId value) {
+        return value.getId();
+    }
 
-    UUID map(StageId value);
+    default UUID map(StageId value){
+        return value.getId();
+    }
 
-    UUID map(CandidatureStageId value);
+    default UUID map(CandidatureStageId value){
+        return value.getId();
+    }
 
-    UUID map(CandidatureId value);
+    default UUID map(CandidatureId value){
+        return value.getId();
+    }
 
-    UUID map(VoteId value);
+    default UUID map(VoteId value){
+        return value.getId();
+    }
+
+    default UUID map(UserId value){
+        return value.getId();
+    }
 }
