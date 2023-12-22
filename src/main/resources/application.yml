@@ -1,7 +1,6 @@
-# Add application-local.properties file next to application.properties
 spring:
   profiles:
-    active: ${PROFILE:local}
+    active: ${PROFILE:local} # Add application-local.properties file next to application.properties
   datasource:
     url: ${DB-URL}
     username: ${DB-USER}

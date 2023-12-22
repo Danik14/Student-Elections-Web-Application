@@ -1,3 +1,4 @@
-security:
-  basic:
-    enabled: false
+spring:
+  security:
+    basic:
+      enabled: false

@@ -2,6 +2,7 @@ package gigachads.noenemies.diploma.api.controller;
 
 import gigachads.noenemies.diploma.api.dto.election.ElectionResponse;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +13,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.HashMap;
@@ -21,10 +21,9 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @AutoConfigureMockMvc
-@ActiveProfiles("integration-test")
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@Sql(scripts = "test_data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-@TestPropertySource(locations = "classpath:application-test.yml")
+@Sql(scripts = "/test_data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 @ExtendWith(ContainerHolder.class)
 public class ElectionControllerIT {
 
@@ -39,6 +38,7 @@ public class ElectionControllerIT {
 
     @Test
     @DisplayName("Testing to finding user details by id")
+    @SneakyThrows
     void findUserByIdTest() {
         ResponseEntity<ElectionResponse> response = template.getForEntity("/api/v1/elections/{id}", ElectionResponse.class, singleParam("id", "813a19ae-49ce-4934-917c-78d2d7dc6153"));
 
