@@ -1,22 +1,18 @@
 spring:
   profiles:
-    active: ${PROFILE:local} # Add application-local.properties file next to application.properties
-  datasource:
-    url: ${DB-URL}
-    username: ${DB-USER}
-    password: ${DB-PASSWORD}
+    active: local # Add application-local.properties file next to application.properties
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    schemas: public
+    locations: classpath:db/migration
+  #    cleanDisabled: false # remove in production
   jpa:
     hibernate:
       ddl-auto: update
       show-sql: false
       database: student_elections
       database-platform: org.hibernate.dialect.PostgreSQLDialect
-  flyway:
-    enabled: true
-    baseline-on-migrate: true
-    schemas: elections
-    locations: classpath:db/migration
-    cleanDisabled: false # remove in production
   security:
     oauth2:
       client:
@@ -46,4 +42,4 @@ spring:
 
 server:
   port: 8080
-  forward-headers-strategy: native
+#  forward-headers-strategy: native
