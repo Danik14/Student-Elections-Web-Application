@@ -1,12 +1,6 @@
 spring:
   profiles:
     active: local # Add application-local.properties file next to application.properties
-  flyway:
-    enabled: true
-    baseline-on-migrate: true
-    schemas: public
-    locations: classpath:db/migration
-  #    cleanDisabled: false # remove in production
   jpa:
     hibernate:
       ddl-auto: update
