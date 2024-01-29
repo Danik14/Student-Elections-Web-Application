@@ -10,7 +10,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 @Configuration
 @EnableWebSecurity
-@Profile(value = {"development", "production"})
 public class SecurityConfig {
 
     @Bean
