@@ -1,32 +1,58 @@
 package gigachads.noenemies.diploma.domain.service.impl;
 
+import gigachads.noenemies.diploma.domain.mapper.UserMapper;
 import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import gigachads.noenemies.diploma.domain.service.UserService;
+import gigachads.noenemies.diploma.exception.EntityNotFoundException;
+import gigachads.noenemies.diploma.storage.jpa.entity.UserEntity;
+import gigachads.noenemies.diploma.storage.jpa.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    @Override
-    public List<User> getUsers(Integer limit) {
-        return null;
-    }
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Override
     public User getUserByBarcode(String barcode) {
-        return null;
+        return userMapper.toDomain(userRepository.findUserByBarcode(barcode)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("User not found with barcode: " + barcode)
+                ));
     }
 
     @Override
     public User getUserById(UserId id) {
-        return null;
+        return userMapper.toDomain(getUserEntityById(id));
     }
 
     @Override
+    public List<User> getAllCandidates() {
+        return userMapper.toDomain(userRepository.findByRole(UserRole.ACTIVE_CANDIDATE));
+    }
+
+    @Override
+    public List<User> getAllActiveCandidates() {
+        return userMapper.toDomain(userRepository.findByRole(UserRole.ACTIVE_CANDIDATE));
+    }
+
+    @Override
+    @Transactional
     public User updateUserRole(UserId id, UserRole role) {
         return null;
+    }
+
+    private UserEntity getUserEntityById(UserId id) {
+        return userRepository.findById(id.getId())
+                .orElseThrow(() ->
+                        new EntityNotFoundException("User not found with id: " + id.getAsString())
+                );
     }
 }

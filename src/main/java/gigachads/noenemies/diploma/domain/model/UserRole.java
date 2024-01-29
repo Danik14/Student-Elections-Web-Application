@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public enum UserRole {
     USER(Collections.emptySet()),
-    STUDENT(mergePermissions(
+    ACTIVE_STUDENT(mergePermissions(
             USER,
             UserPermission.STUDENT_READ,
             UserPermission.STUDENT_UPDATE,
@@ -19,14 +19,14 @@ public enum UserRole {
             UserPermission.STUDENT_CREATE
     )
     ),
-    CANDIDATE(mergePermissions(STUDENT,
+    ACTIVE_CANDIDATE(mergePermissions(ACTIVE_STUDENT,
             UserPermission.CANDIDATE_READ,
             UserPermission.CANDIDATE_UPDATE,
             UserPermission.CANDIDATE_DELETE,
             UserPermission.CANDIDATE_CREATE
     )
     ),
-    ELECTION_OFFICIAL(mergePermissions(CANDIDATE,
+    ELECTION_OFFICIAL(mergePermissions(ACTIVE_CANDIDATE,
             UserPermission.ELECTION_OFFICIAL_READ,
             UserPermission.ELECTION_OFFICIAL_UPDATE,
             UserPermission.ELECTION_OFFICIAL_DELETE,

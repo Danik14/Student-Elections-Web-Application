@@ -1,12 +1,24 @@
 package gigachads.noenemies.diploma.api.controller;
 
+import gigachads.noenemies.diploma.api.dto.UserResponse;
+import gigachads.noenemies.diploma.domain.mapper.UserMapper;
+import gigachads.noenemies.diploma.domain.model.UserId;
+import gigachads.noenemies.diploma.domain.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/user")
+@RequiredArgsConstructor
 public class UserController {
+
+    private final UserMapper userMapper;
+    private final UserService userService;
 
     @GetMapping("/login")
     public String login() {
@@ -23,6 +35,23 @@ public class UserController {
         return "logoutsuccess";
     }
 
-}
+    @GetMapping("/{userId}")
+    public UserResponse getUserById(@PathVariable UserId userId) {
+        return userMapper.toResponse(userService.getUserById(userId));
+    }
 
-//https://login.microsoftonline.com/158f15f3-83e0-4906-824c-69bdc50d9d61/oauth2/v2.0/authorize?response_type=code&client_id=f66ef411-1b58-4aa5-9b11-5eebc9e4d715&scope=openid%20profile%20email&state=K3A6tzgyHg9GXqjgeY_T5VBR3DdIkTF0vsG_VBZJylo%3D&redirect_uri=http://localhost:8080/api/v1/login/oauth2/code/&nonce=vl5scRzfb1hX3k3aBEih_eG7rCosuuAIenWzKshkfrc
+    @GetMapping("/barcode/{barcode}")
+    public UserResponse getUserById(@PathVariable String barcode) {
+        return userMapper.toResponse(userService.getUserByBarcode(barcode));
+    }
+
+    @GetMapping("/{userId}/candidates")
+    public List<UserResponse> getAllCandidates() {
+        return userMapper.toResponse(userService.getAllCandidates());
+    }
+
+    @GetMapping("/{userId}/candidates/active")
+    public List<UserResponse> getAllActiveCandidates() {
+        return userMapper.toResponse(userService.getAllActiveCandidates());
+    }
+}

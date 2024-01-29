@@ -31,7 +31,7 @@ class UserMapperTest {
                 .firstName("Aliba")
                 .lastName("Zesty")
                 .email("alibazesty@test.com")
-                .role(UserRole.STUDENT)
+                .role(UserRole.ACTIVE_STUDENT)
                 .barcode("211360")
                 .build();
 
@@ -43,7 +43,7 @@ class UserMapperTest {
                 .firstName("Aliba")
                 .lastName("Zesty")
                 .email("alibazesty@test.com")
-                .role(UserRole.STUDENT)
+                .role(UserRole.ACTIVE_STUDENT)
                 .build();
         assertEquals(expected, actual);
     }

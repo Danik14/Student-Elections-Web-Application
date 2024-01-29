@@ -20,6 +20,7 @@ public class User {
     @NonNull
     private final UserRole role;
 
+
     public static class UserBuilder{
         public UserBuilder id(UserId id) {
             this.id = id;

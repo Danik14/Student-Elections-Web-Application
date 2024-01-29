@@ -1,6 +1,6 @@
 package gigachads.noenemies.diploma.api.controller;
 
-import gigachads.noenemies.diploma.api.dto.election.ElectionResponse;
+import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;

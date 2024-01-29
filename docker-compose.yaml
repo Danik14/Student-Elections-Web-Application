@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  aggregator:
+    container_name: student-elections
+    build:
+      dockerfile: Dockerfile
+    networks:
+      - elections-network
+    ports:
+      - "8080:8080"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+    depends_on:
+      - db
+
+
+  db:
+    container_name: rssa-db
+    image: "postgres:14-alpine"
+    env_file:
+      - docker-config.env
+    volumes:
+      - rssa-db-data:/var/lib/postgresql/data
+    networks:
+      - elections-network
+    ports:
+      - "5432:5432"
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: rssa-pgadmin
+    restart: always
+    networks:
+      - elections-network
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: strong-password
+    depends_on:
+      - db
+
+networks:
+  elections-network:
+
+volumes:
+  rssa-db-data:

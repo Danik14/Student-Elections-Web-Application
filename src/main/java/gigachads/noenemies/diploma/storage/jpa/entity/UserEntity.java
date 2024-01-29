@@ -2,10 +2,7 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,21 +14,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(name = "barcode")
+    @Column(name = "barcode", nullable = false)
     private String barcode;
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "password")
-    private String password;
-    @Column(name= "email")
+    @Column(name= "email", nullable = false)
     private String email;
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     private UserRole role;
 
     @ToString.Exclude

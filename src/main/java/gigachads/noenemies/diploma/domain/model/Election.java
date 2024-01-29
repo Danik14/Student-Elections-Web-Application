@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.domain.model;
 
+import gigachads.noenemies.diploma.domain.service.ElectionService;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
@@ -9,34 +10,28 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-@Builder
+@Builder(toBuilder = true)
 public class Election {
     @NonNull
-    private ElectionId id;
-
+    private final ElectionId id;
     @NonNull
-    private String description;
-
+    private final String description;
     @NonNull
-    private Boolean active;
-
+    private final ElectionStatus status;
     @NonNull
-    private Integer year;
-
+    private final Boolean active;
     @NonNull
-    private LocalDateTime createdAt;
-
+    private final Integer year;
     @NonNull
-    private LocalDateTime deadline;
-
+    private final LocalDateTime createdAt;
     @NonNull
-    private Integer totalVotesCount;
-
+    private final LocalDateTime deadline;
+    @NonNull
+    private final Integer totalVotesCount;
     @ToString.Exclude
     @NonNull
-    private List<Stage> stages;
-
+    private final List<Stage> stages;
     @ToString.Exclude
     @NonNull
-    private List<Candidature> candidatures;
+    private final List<Candidature> candidatures;
 }

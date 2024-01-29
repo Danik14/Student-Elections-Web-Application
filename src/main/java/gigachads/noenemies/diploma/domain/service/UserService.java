@@ -4,14 +4,18 @@ import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface UserService {
-    List<User> getUsers(Integer limit);
 
     User getUserByBarcode(String barcode);
 
     User getUserById(UserId id);
+
+    List<User> getAllCandidates();
+
+    List<User> getAllActiveCandidates();
 
     User updateUserRole(UserId id, UserRole role);
 }
