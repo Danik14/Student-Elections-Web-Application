@@ -1,8 +1,8 @@
 package gigachads.noenemies.diploma.domain.service.impl;
 
-import gigachads.noenemies.diploma.domain.model.user.User;
-import gigachads.noenemies.diploma.domain.model.user.UserId;
-import gigachads.noenemies.diploma.domain.model.user.UserRole;
+import gigachads.noenemies.diploma.domain.model.User;
+import gigachads.noenemies.diploma.domain.model.UserId;
+import gigachads.noenemies.diploma.domain.model.UserRole;
 import gigachads.noenemies.diploma.domain.service.UserService;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,5 @@
-package gigachads.noenemies.diploma.domain.model.candidatureStage;
+package gigachads.noenemies.diploma.domain.model;
 
-import gigachads.noenemies.diploma.domain.model.candidature.Candidature;
-import gigachads.noenemies.diploma.domain.model.stage.Stage;
-import gigachads.noenemies.diploma.domain.model.vote.Vote;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;

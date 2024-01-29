@@ -2,7 +2,7 @@ package gigachads.noenemies.diploma.domain.mapper;
 
 
 import gigachads.noenemies.diploma.api.dto.election.ElectionResponse;
-import gigachads.noenemies.diploma.domain.model.election.Election;
+import gigachads.noenemies.diploma.domain.model.Election;
 import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

@@ -2,7 +2,7 @@ package gigachads.noenemies.diploma.api.controller;
 
 import gigachads.noenemies.diploma.api.dto.election.ElectionResponse;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
-import gigachads.noenemies.diploma.domain.model.election.ElectionId;
+import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

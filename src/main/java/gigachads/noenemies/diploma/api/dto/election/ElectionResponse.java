@@ -1,9 +1,9 @@
 package gigachads.noenemies.diploma.api.dto.election;
 
 
-import gigachads.noenemies.diploma.domain.model.candidature.Candidature;
-import gigachads.noenemies.diploma.domain.model.election.ElectionId;
-import gigachads.noenemies.diploma.domain.model.stage.Stage;
+import gigachads.noenemies.diploma.domain.model.Candidature;
+import gigachads.noenemies.diploma.domain.model.ElectionId;
+import gigachads.noenemies.diploma.domain.model.Stage;
 import lombok.*;
 
 import java.time.LocalDateTime;

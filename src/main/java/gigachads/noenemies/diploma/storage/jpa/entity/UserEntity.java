@@ -1,6 +1,6 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
-import gigachads.noenemies.diploma.domain.model.user.UserRole;
+import gigachads.noenemies.diploma.domain.model.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

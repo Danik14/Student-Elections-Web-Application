@@ -1,4 +1,4 @@
-package gigachads.noenemies.diploma.domain.model.vote;
+package gigachads.noenemies.diploma.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,15 +8,15 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Data
-public class VoteId {
+public class CandidatureId {
     @NonNull
     private final UUID id;
 
-    public static VoteId of(UUID id) {
-        return new VoteId(id);
+    public static CandidatureId of(UUID id) {
+        return new CandidatureId(id);
     }
 
-    public static VoteId of(String id) {
+    public static CandidatureId of(String id) {
         return of(UUID.fromString(id));
     }
 

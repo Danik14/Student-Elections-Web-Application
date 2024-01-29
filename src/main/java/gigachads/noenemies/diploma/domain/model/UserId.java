@@ -1,4 +1,4 @@
-package gigachads.noenemies.diploma.domain.model.user;
+package gigachads.noenemies.diploma.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

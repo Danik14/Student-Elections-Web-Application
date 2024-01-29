@@ -1,8 +1,8 @@
 package gigachads.noenemies.diploma.domain.service;
 
-import gigachads.noenemies.diploma.domain.model.candidature.Candidature;
-import gigachads.noenemies.diploma.domain.model.candidatureStage.CandidatureStageId;
-import gigachads.noenemies.diploma.domain.model.user.UserId;
+import gigachads.noenemies.diploma.domain.model.Candidature;
+import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
+import gigachads.noenemies.diploma.domain.model.UserId;
 
 public interface CandidatureService {
     Candidature getCandidatureByUserId(UserId id);

@@ -1,11 +1,11 @@
 package gigachads.noenemies.diploma.domain.mapper;
 
-import gigachads.noenemies.diploma.domain.model.candidature.CandidatureId;
-import gigachads.noenemies.diploma.domain.model.candidatureStage.CandidatureStageId;
-import gigachads.noenemies.diploma.domain.model.election.ElectionId;
-import gigachads.noenemies.diploma.domain.model.stage.StageId;
-import gigachads.noenemies.diploma.domain.model.user.UserId;
-import gigachads.noenemies.diploma.domain.model.vote.VoteId;
+import gigachads.noenemies.diploma.domain.model.CandidatureId;
+import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
+import gigachads.noenemies.diploma.domain.model.ElectionId;
+import gigachads.noenemies.diploma.domain.model.StageId;
+import gigachads.noenemies.diploma.domain.model.UserId;
+import gigachads.noenemies.diploma.domain.model.VoteId;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

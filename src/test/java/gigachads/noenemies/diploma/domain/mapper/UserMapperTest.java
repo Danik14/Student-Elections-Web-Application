@@ -1,7 +1,7 @@
 package gigachads.noenemies.diploma.domain.mapper;
 
-import gigachads.noenemies.diploma.domain.model.user.User;
-import gigachads.noenemies.diploma.domain.model.user.UserRole;
+import gigachads.noenemies.diploma.domain.model.User;
+import gigachads.noenemies.diploma.domain.model.UserRole;
 import gigachads.noenemies.diploma.storage.jpa.entity.UserEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

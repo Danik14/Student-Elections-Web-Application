@@ -1,4 +1,4 @@
-package gigachads.noenemies.diploma.domain.model.election;
+package gigachads.noenemies.diploma.domain.model;
 
 public enum ElectionStatus {
     CREATED,
