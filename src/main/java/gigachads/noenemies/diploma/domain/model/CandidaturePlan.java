@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
 
+import java.net.URI;
 import java.util.UUID;
 
 @Builder
@@ -19,7 +20,9 @@ public class CandidaturePlan {
     @NonNull
     private final String slogan;
     @NonNull
-    private final String photoUrl;
+    private final URI instagramLink;
+    @NonNull
+    private final URI telegramLink;
 
     @ToString.Exclude
     private final Candidature candidature;

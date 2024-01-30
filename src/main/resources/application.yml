@@ -3,7 +3,7 @@ spring:
     active: local # Add application-local.properties file next to application.properties
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       show-sql: false
       database: student_elections
       database-platform: org.hibernate.dialect.PostgreSQLDialect

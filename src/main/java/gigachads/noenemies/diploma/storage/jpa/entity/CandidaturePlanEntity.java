@@ -3,6 +3,7 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,8 +19,10 @@ public class CandidaturePlanEntity extends BaseEntity {
     private String description;
     @Column(name = "slogan")
     private String slogan;
-    @Column(name = "photoUrl")
-    private String photoUrl;
+    @Column(name = "instagramLinkLink")
+    private URI instagramLink;
+    @Column(name = "telegramLink")
+    private URI telegramLink;
 
     @ToString.Exclude
     @OneToOne
