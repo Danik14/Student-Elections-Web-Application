@@ -1,25 +1,18 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.UUID;
 
 @ToString
 @Entity
 @Table(name = "votes")
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VoteEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "vote_id")
-    private UUID id;
-
+public class VoteEntity extends BaseEntity{
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "elector_id", nullable = false)

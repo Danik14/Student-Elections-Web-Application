@@ -1,10 +1,7 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,15 +9,11 @@ import java.util.UUID;
 @Entity
 @ToString
 @Table(name = "candidature_stages")
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CandidatureStageEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "candidature_stage_id")
-    private UUID id;
-
+public class CandidatureStageEntity extends BaseEntity {
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "stage_id", nullable = false)

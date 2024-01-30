@@ -7,5 +7,9 @@ import gigachads.noenemies.diploma.domain.model.UserId;
 public interface CandidatureService {
     Candidature getCandidatureByUserId(UserId id);
 
+    void applyForCandidature(UserId id);
+
+    void approveCandidature(UserId userId, UserId officialId);
+
     void voteForCandidate(UserId electorId, CandidatureStageId candidatureStageId);
 }

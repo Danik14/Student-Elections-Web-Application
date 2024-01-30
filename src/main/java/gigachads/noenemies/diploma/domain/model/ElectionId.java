@@ -12,11 +12,11 @@ public class ElectionId {
     @NonNull
     private final UUID id;
 
-    public static StageId of(UUID id) {
-        return new StageId(id);
+    public static ElectionId of(UUID id) {
+        return new ElectionId(id);
     }
 
-    public static StageId of(String id) {
+    public static ElectionId of(String id) {
         return of(UUID.fromString(id));
     }
 

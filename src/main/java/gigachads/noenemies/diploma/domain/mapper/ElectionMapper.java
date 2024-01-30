@@ -23,8 +23,6 @@ public interface ElectionMapper {
     @Mapping(target = "totalVotesCount", ignore = true, defaultValue = "0")
     @Mapping(target = "status", ignore = true, defaultValue = "true")
     @Mapping(target = "stages", ignore = true)
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "candidatures", ignore = true)
     @Mapping(target = "active", ignore = true, defaultValue = "true")
     ElectionEntity toEntity (ElectionCreateRequest create);

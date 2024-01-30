@@ -15,10 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @ToString
 @Getter
-public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class UserEntity extends BaseEntity{
     @Column(name = "barcode", nullable = false)
     private String barcode;
     @Column(name = "first_name", nullable = false)
@@ -28,6 +25,7 @@ public class UserEntity {
     @Column(name= "email", nullable = false)
     private String email;
     @Column(name = "role", nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private UserRole role;
 
     @ToString.Exclude
@@ -37,17 +35,4 @@ public class UserEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "elector")
     private List<VoteEntity> votes;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserEntity that = (UserEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(barcode, that.barcode) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && role == that.role && Objects.equals(candidatures, that.candidatures) && Objects.equals(votes, that.votes);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, barcode, firstName, lastName, email, role, candidatures, votes);
-    }
 }
