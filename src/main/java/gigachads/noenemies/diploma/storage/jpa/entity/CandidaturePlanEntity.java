@@ -21,8 +21,8 @@ public class CandidaturePlanEntity extends BaseEntity {
     @Column(name = "photoUrl")
     private String photoUrl;
 
-//    @ToString.Exclude
-//    @OneToOne
-//    @JoinColumn(name = "candidature_id", nullable = false)
-//    private CandidatureEntity candidature;
+    @ToString.Exclude
+    @OneToOne
+    @JoinColumn(name = "candidature_id", nullable = false)
+    private CandidatureEntity candidature;
 }

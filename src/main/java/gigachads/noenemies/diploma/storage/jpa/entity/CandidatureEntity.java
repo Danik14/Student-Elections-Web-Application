@@ -19,11 +19,13 @@ public class CandidatureEntity extends BaseEntity{
     @JoinColumn(name = "election_id", nullable = false)
     private ElectionEntity election;
 
-//    @Column(name = "plan", nullable = false)
-//    private CandidaturePlanEntity plan;
-
     @Column(name = "approved", nullable = false)
     private boolean approved;
+
+    @ToString.Exclude
+    @OneToOne
+    @JoinColumn(name = "plan_id", nullable = false)
+    private CandidaturePlanEntity plan;
 
     @ToString.Exclude
     @ManyToOne
