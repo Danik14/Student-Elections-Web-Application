@@ -1,11 +1,13 @@
-package gigachads.noenemies.diploma.domain.model.user;
+package gigachads.noenemies.diploma.domain.model;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NonNull;
 
 import java.util.UUID;
 
-@Builder(toBuilder = true)
+@AllArgsConstructor
+@Data
 public class UserId {
     @NonNull
     private final UUID id;

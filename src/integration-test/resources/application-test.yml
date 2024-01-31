@@ -1,0 +1,6 @@
+spring:
+  security:
+    basic:
+      enabled: false
+  flyway:
+    cleanDisabled: false
