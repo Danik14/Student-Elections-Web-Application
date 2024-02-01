@@ -21,6 +21,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional
 public class ElectionServiceImpl implements ElectionService {
     private final ElectionRepository electionRepository;
     private final ElectionMapper electionMapper;

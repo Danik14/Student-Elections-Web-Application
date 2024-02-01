@@ -14,7 +14,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return new CustomAuthenticationSuccessHandler();
+        return new CustomAuthenticationSuccessHandler(null);
     }
 
     @Bean
@@ -22,7 +22,7 @@ public class SecurityConfig {
             throws Exception {
         return http.authorizeHttpRequests(r -> r
                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                .requestMatchers("/api/v1/auth/**").permitAll()
+                .requestMatchers("/api/v1/auth/**", "/api-docs/**").permitAll()
                 .anyRequest().authenticated())
                 .oauth2Login(oauth2 -> oauth2
                         .successHandler(successHandler())

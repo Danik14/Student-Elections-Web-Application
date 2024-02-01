@@ -1,17 +1,20 @@
 package gigachads.noenemies.diploma.api.dto;
 
-import gigachads.noenemies.diploma.domain.model.Candidature;
 import lombok.*;
 
 import java.net.URI;
-import java.util.UUID;
 
 @Data
 @Builder
 @AllArgsConstructor
-public class CandidaturePlanUpdate {
+public class CandidaturePlanResponse {
+    @NonNull
     private final String description;
+    @NonNull
     private final String slogan;
+    @NonNull
     private final URI instagramLink;
+    @NonNull
     private final URI telegramLink;
 }
+
