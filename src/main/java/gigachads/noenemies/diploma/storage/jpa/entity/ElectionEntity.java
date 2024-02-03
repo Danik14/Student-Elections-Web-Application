@@ -3,6 +3,7 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 import gigachads.noenemies.diploma.domain.model.ElectionStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.time.Year;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @ToString
 @Table(name = "elections")
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ElectionEntity extends BaseEntity {

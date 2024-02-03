@@ -1,7 +1,9 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
+import gigachads.noenemies.diploma.storage.jpa.converter.StringURIConverter;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.UUID;
 @ToString
 @Table(name = "candidature_plans")
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CandidaturePlanEntity extends BaseEntity {
@@ -19,13 +21,15 @@ public class CandidaturePlanEntity extends BaseEntity {
     private String description;
     @Column(name = "slogan")
     private String slogan;
-    @Column(name = "instagramLinkLink")
+    @Column(name = "instagramLink")
+    @Convert(converter = StringURIConverter.class)
     private URI instagramLink;
     @Column(name = "telegramLink")
+    @Convert(converter = StringURIConverter.class)
     private URI telegramLink;
 
     @ToString.Exclude
     @OneToOne
-    @JoinColumn(name = "candidature_id", nullable = false)
+    @JoinColumn(name = "candidature_id")
     private CandidatureEntity candidature;
 }

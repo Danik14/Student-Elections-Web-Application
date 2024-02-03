@@ -1,5 +1,8 @@
 package gigachads.noenemies.diploma.api.security;
 
+import gigachads.noenemies.diploma.domain.service.UserService;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -10,11 +13,14 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+    @NonNull
+    private final UserService userService;
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return new CustomAuthenticationSuccessHandler(null);
+        return new CustomAuthenticationSuccessHandler(userService);
     }
 
     @Bean

@@ -1,12 +1,19 @@
 spring:
   profiles:
     active: local # Add application-local.properties file next to application.properties
+  sql:
+    init:
+      mode: always
   jpa:
+    show-sql: true
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
-      show-sql: false
       database: student_elections
       database-platform: org.hibernate.dialect.PostgreSQLDialect
+      properties:
+        hibernate:
+          format_sql: true
   security:
     oauth2:
       client:

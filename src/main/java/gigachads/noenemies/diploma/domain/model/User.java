@@ -18,6 +18,8 @@ public class User {
     @NonNull
     private final String lastName;
     @NonNull
+    private final String picturePath;
+    @NonNull
     private final UserRole role;
 
 

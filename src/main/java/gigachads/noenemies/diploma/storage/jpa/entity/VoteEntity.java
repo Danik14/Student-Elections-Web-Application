@@ -2,6 +2,7 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
@@ -9,7 +10,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "votes")
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class VoteEntity extends BaseEntity{

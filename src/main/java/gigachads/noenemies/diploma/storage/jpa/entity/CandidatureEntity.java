@@ -3,6 +3,7 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 import com.azure.core.annotation.Get;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 import java.util.UUID;
@@ -11,9 +12,8 @@ import java.util.UUID;
 @ToString
 @Table(name = "candidatures")
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
 public class CandidatureEntity extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "election_id", nullable = false)
@@ -23,18 +23,13 @@ public class CandidatureEntity extends BaseEntity{
     private boolean approved;
 
     @ToString.Exclude
-    @OneToOne
-    @JoinColumn(name = "plan_id", nullable = false)
-    private CandidaturePlanEntity plan;
-
-    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "approvedBy_id")
     private UserEntity approvedBy;
 
     @ToString.Exclude
     @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @ToString.Exclude

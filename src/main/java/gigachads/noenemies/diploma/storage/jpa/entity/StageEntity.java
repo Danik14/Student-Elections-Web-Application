@@ -2,6 +2,7 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.UUID;
 @ToString
 @Table(name = "stages")
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class StageEntity extends BaseEntity{
@@ -23,7 +24,7 @@ public class StageEntity extends BaseEntity{
 
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "election_id", nullable = false)
+    @JoinColumn(name = "election_id")
     private ElectionEntity election;
 
     @ToString.Exclude
