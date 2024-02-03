@@ -2,10 +2,7 @@ package gigachads.noenemies.diploma.domain.service.impl;
 
 import gigachads.noenemies.diploma.api.dto.ElectionCreateRequest;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
-import gigachads.noenemies.diploma.domain.model.Election;
-import gigachads.noenemies.diploma.domain.model.ElectionId;
-import gigachads.noenemies.diploma.domain.model.ElectionStatus;
-import gigachads.noenemies.diploma.domain.model.UserId;
+import gigachads.noenemies.diploma.domain.model.*;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
 import gigachads.noenemies.diploma.exception.EntityNotFoundException;
 import gigachads.noenemies.diploma.exception.EntityNotUpdatedException;

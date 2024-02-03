@@ -7,8 +7,12 @@ import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public interface CandidatureService {
     Candidature getCandidatureByUserId(UserId id);
+
+    List<Candidature> findAllActiveCandidatures();
 
     void applyForCandidature(UserId studentId);
 

@@ -22,6 +22,10 @@ public class CandidatureEntity extends BaseEntity{
     @Column(name = "approved", nullable = false)
     private boolean approved;
 
+    @OneToOne
+    @JoinColumn(name = "candidature_plan_id")
+    private CandidaturePlanEntity plan;
+
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "approvedBy_id")

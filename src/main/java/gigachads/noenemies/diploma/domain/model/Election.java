@@ -28,10 +28,4 @@ public class Election {
     private final LocalDateTime deadline;
     @NonNull
     private final Integer totalVotesCount;
-    @ToString.Exclude
-    @NonNull
-    private final List<Stage> stages;
-    @ToString.Exclude
-    @NonNull
-    private final List<Candidature> candidatures;
 }

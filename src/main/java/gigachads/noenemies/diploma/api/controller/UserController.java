@@ -14,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
+@Validated
 public class UserController {
 
     private final UserMapper userMapper;
@@ -43,6 +46,7 @@ public class UserController {
                     @ApiResponse(responseCode = "404", description = "User not found",
                             content = @Content)})
     @GetMapping("/{userId}")
+    @ResponseStatus(HttpStatus.OK)
     public UserResponse getUserById(@PathVariable UserId userId) {
         return userMapper.toResponse(userService.getUserById(userId));
     }
@@ -59,6 +63,7 @@ public class UserController {
                     @ApiResponse(responseCode = "404", description = "Student not found",
                             content = @Content)})
     @GetMapping("/barcode/{barcode}")
+    @ResponseStatus(HttpStatus.OK)
     public UserResponse getStudentByBarcode(@PathVariable String barcode) {
         return userMapper.toResponse(userService.getUserByBarcode(barcode));
     }
@@ -72,6 +77,7 @@ public class UserController {
                                     schema = @Schema(implementation = UserResponse.class))})
             })
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public Page<UserResponse> getUsers(
             @RequestParam(name = "page", defaultValue = "0") Integer page,
             @RequestParam(name = "size", defaultValue = "10") Integer sizePerPage,
@@ -90,7 +96,8 @@ public class UserController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = UserResponse.class))})
                     })
-    @GetMapping("/{userId}/candidates")
+    @GetMapping("/candidates")
+    @ResponseStatus(HttpStatus.OK)
     public List<UserResponse> getAllCandidates() {
         return userMapper.toResponse(userService.getAllCandidates());
     }
@@ -103,7 +110,8 @@ public class UserController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = UserResponse.class))})
             })
-    @GetMapping("/{userId}/candidates/active")
+    @GetMapping("/candidates/active")
+    @ResponseStatus(HttpStatus.OK)
     public List<UserResponse> getAllActiveCandidates() {
         return userMapper.toResponse(userService.getAllActiveCandidates());
     }

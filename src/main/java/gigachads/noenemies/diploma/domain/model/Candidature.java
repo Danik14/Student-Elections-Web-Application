@@ -18,18 +18,13 @@ public class Candidature {
     @NonNull
     private final CandidatureId id;
     @NonNull
-    private Election election;
-    @NonNull
     private CandidaturePlan plan;
     private boolean approved;
 
     @ToString.Exclude
     @NonNull
-    private UserEntity approvedBy;
+    private User approvedBy;
     @ToString.Exclude
     @NonNull
     private User user;
-    @ToString.Exclude
-    @NonNull
-    private List<CandidatureStage> candidatureStages;
 }

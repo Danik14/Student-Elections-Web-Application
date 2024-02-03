@@ -17,18 +17,23 @@ VALUES
    (CURRENT_TIMESTAMP, '2023-12-20 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', 'Nomination Stage'),
    (CURRENT_TIMESTAMP, '2024-01-20 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', '60127c87-351d-4693-aeed-ea0bbd00cde8', 'Voting Stage');
 
--- Inserting data into candidatures table
-INSERT INTO candidatures (approved, created_at, updated_at, approved_by_id, election_id, id, user_id)
-VALUES
-   (true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', '65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be'),
-   (false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', '8dcf75a5-0636-425a-9ffd-b732d12ff197',
-   'ed28793a-14a3-48cb-a3d7-24ac1804bea8');
 
 -- Inserting data into candidature_plans table
-INSERT INTO candidature_plans (created_at, updated_at, candidature_id, id, description, instagram_link, slogan, telegram_link)
+INSERT INTO candidature_plans (created_at, updated_at, id, description, instagram_link, slogan, telegram_link)
 VALUES
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7', '0d74ba81-8232-48d6-9467-6e6b50fce980', 'Description 1', 'https://instagram.com/link1', 'Slogan 1', 'https://t.me/link1'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '8dcf75a5-0636-425a-9ffd-b732d12ff197', '35d57246-a53c-4639-aa83-e7c4e6a1d60c', 'Description 2', 'https://instagram.com/link2', 'Slogan 2', 'https://t.me/link2');
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'adeacd03-fdb0-40cf-ab75-d2aea6ce1b45', 'Description 1',
+   'https://instagram.com/link1', 'Slogan 1', 'https://t.me/link1'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1cb23d0e-1b43-4f71-81b9-33f5db18687d', 'Description 2',
+   'https://instagram.com/link2', 'Slogan 2', 'https://t.me/link2');
+
+
+-- Inserting data into candidatures table
+INSERT INTO candidatures (approved, created_at, updated_at, approved_by_id, election_id, candidature_plan_id, id, user_id)
+VALUES
+   (true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1',
+   'adeacd03-fdb0-40cf-ab75-d2aea6ce1b45', '65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be'),
+   (false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa',
+   '1cb23d0e-1b43-4f71-81b9-33f5db18687d', '8dcf75a5-0636-425a-9ffd-b732d12ff197', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8');
 
 -- Inserting data into candidature_stages table
 INSERT INTO candidature_stages (created_at, updated_at, candidature_id, id, stage_id)

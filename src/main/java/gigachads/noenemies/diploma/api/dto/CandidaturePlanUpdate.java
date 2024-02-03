@@ -10,8 +10,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class CandidaturePlanUpdate {
-    private final String description;
-    private final String slogan;
-    private final URI instagramLink;
-    private final URI telegramLink;
+    private String description;
+    private String slogan;
+    private URI instagramLink;
+    private URI telegramLink;
 }

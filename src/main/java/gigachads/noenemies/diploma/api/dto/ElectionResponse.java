@@ -1,6 +1,7 @@
 package gigachads.noenemies.diploma.api.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gigachads.noenemies.diploma.domain.model.Candidature;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.Stage;
@@ -11,28 +12,20 @@ import java.util.List;
 
 @Builder
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public class ElectionResponse {
     @NonNull
-    private ElectionId id;
+    private final ElectionId id;
     @NonNull
-    private String description;
+    private final String description;
     @NonNull
-    private Boolean active;
+    private final Boolean active;
     @NonNull
-    private Integer year;
+    private final Integer year;
     @NonNull
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
     @NonNull
-    private LocalDateTime deadline;
+    private final LocalDateTime deadline;
     @NonNull
-    private Integer totalVotesCount;
-
-    @ToString.Exclude
-    @NonNull
-    private List<Stage> stages;
-    @ToString.Exclude
-    @NonNull
-    private List<Candidature> candidatures;
+    private final Integer totalVotesCount;
 }

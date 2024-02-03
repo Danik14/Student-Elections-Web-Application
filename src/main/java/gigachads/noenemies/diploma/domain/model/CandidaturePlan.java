@@ -23,7 +23,4 @@ public class CandidaturePlan {
     private final URI instagramLink;
     @NonNull
     private final URI telegramLink;
-
-    @ToString.Exclude
-    private final Candidature candidature;
 }

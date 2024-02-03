@@ -29,7 +29,6 @@ public class CandidaturePlanEntity extends BaseEntity {
     private URI telegramLink;
 
     @ToString.Exclude
-    @OneToOne
-    @JoinColumn(name = "candidature_id")
+    @OneToOne(mappedBy = "plan")
     private CandidatureEntity candidature;
 }

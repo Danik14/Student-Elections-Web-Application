@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface HelperMapper {
+
     default UUID map(ElectionId value) {
         return value.getId();
     }

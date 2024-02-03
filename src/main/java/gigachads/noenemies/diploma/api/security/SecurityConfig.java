@@ -23,18 +23,27 @@ public class SecurityConfig {
         return new CustomAuthenticationSuccessHandler(userService);
     }
 
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http)
+//            throws Exception {
+//        return http.authorizeHttpRequests(r -> r
+//                .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+//                .requestMatchers("/api/v1/auth/**", "/api-docs/**").permitAll()
+//                .anyRequest().authenticated())
+//                .oauth2Login(oauth2 -> oauth2
+//                        .successHandler(successHandler())
+//                )
+//                .logout(logout -> logout
+//                        .logoutSuccessUrl("/"))
+//                .build();
+//
+//    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)
             throws Exception {
         return http.authorizeHttpRequests(r -> r
-                .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                .requestMatchers("/api/v1/auth/**", "/api-docs/**").permitAll()
-                .anyRequest().authenticated())
-                .oauth2Login(oauth2 -> oauth2
-                        .successHandler(successHandler())
-                )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/"))
+                        .anyRequest().permitAll())
                 .build();
 
     }
