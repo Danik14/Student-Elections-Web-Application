@@ -15,10 +15,6 @@ public class CandidatureStage {
 
     @ToString.Exclude
     @NonNull
-    private Stage stage;
-
-    @ToString.Exclude
-    @NonNull
     private Candidature candidature;
 
     @ToString.Exclude
