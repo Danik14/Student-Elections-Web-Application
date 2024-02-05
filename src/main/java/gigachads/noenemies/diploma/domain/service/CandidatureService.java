@@ -7,6 +7,7 @@ import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface CandidatureService {
@@ -18,11 +19,11 @@ public interface CandidatureService {
 
     void approveCandidature(UserId studentId, UserId officialId);
 
-    String saveImageToStorage(String uploadDirectory, MultipartFile imageFile);
+    String saveImageToStorage(String uploadDirectory, MultipartFile imageFile) throws IOException;
 
-    byte[] getImage(String imageDirectory, String imageName);
+    byte[] getImage(String imageDirectory, String imageName) throws IOException;
 
-    String deleteImage(String imageDirectory, String imageName);
+    String deleteImage(String imageDirectory, String imageName) throws IOException;
 
     CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, UserId studentId);
 
