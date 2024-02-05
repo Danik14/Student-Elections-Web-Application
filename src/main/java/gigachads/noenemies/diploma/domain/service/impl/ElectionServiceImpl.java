@@ -44,6 +44,8 @@ public class ElectionServiceImpl implements ElectionService {
         if (electionRepository.updateElectionStatus(electionId.getId(), ElectionStatus.IN_PROGRESS) == 0) {
             throw new EntityNotUpdatedException("Failed to initiate Election Entity: " + entity);
         }
+        log.info("Election {} was initiated by {}", entity.getId(), officialId);
+
     }
 
     private ElectionEntity getElectionEntityById(ElectionId id) {

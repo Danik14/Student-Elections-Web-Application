@@ -19,8 +19,6 @@ public class Election {
     @NonNull
     private final ElectionStatus status;
     @NonNull
-    private final Boolean active;
-    @NonNull
     private final Integer year;
     @NonNull
     private final LocalDateTime createdAt;

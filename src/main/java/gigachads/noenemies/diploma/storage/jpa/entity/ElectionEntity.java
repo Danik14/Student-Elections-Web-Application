@@ -23,8 +23,6 @@ public class ElectionEntity extends BaseEntity {
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private ElectionStatus status;
-    @Column(name = "active")
-    private Boolean active;
     @Column(name = "year", nullable = false)
     private Integer year;
     @Column(name = "deadline", nullable = false)
@@ -41,8 +39,10 @@ public class ElectionEntity extends BaseEntity {
 
     @PrePersist
     public void prePersist() {
-        if (year == null) {
-            year = Year.now().getValue();
-        }
+        year = Year.now().getValue();
+        totalVotesCount = 0;
+        status = ElectionStatus.CREATED;
+        this.setCreatedAt(LocalDateTime.now());
+        this.setUpdatedAt(LocalDateTime.now());
     }
 }

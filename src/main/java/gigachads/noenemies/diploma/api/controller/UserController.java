@@ -23,7 +23,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
-@Validated
 public class UserController {
 
     private final UserMapper userMapper;

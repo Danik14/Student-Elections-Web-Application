@@ -56,10 +56,10 @@ public class ElectionController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ElectionResponse.class))})
             })
-    @GetMapping("/{id}")
+    @GetMapping("/{electionId}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ElectionResponse> getElectionById(@PathVariable ElectionId electionId) {
-        return ResponseEntity.ok(electionMapper.toResponse(electionService.getElectionById(electionId)));
+    public ElectionResponse getElectionById(@PathVariable ElectionId electionId) {
+        return electionMapper.toResponse(electionService.getElectionById(electionId));
     }
 
     @Operation(summary = "Create a new Election",
@@ -73,10 +73,8 @@ public class ElectionController {
                             content = @Content)})
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ElectionResponse createNewElection(@AuthenticationPrincipal UserDetails userDetails,
+    public ElectionResponse createNewElection(
                                            @RequestBody ElectionCreateRequest request) {
-        System.out.println("*****");
-        System.out.println(userDetails);
         return electionMapper.toResponse(electionService.createElection(request));
     }
 
@@ -88,11 +86,10 @@ public class ElectionController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ElectionResponse.class))})
             })
-    @Put("/{id}/initiate")
+    @PutMapping("/{electionId}/initiate")
     @ResponseStatus(HttpStatus.OK)
-    public void initiateElectionById(@AuthenticationPrincipal UserDetails userDetails, @PathVariable ElectionId electionId) {
+    public void initiateElectionById(Principal principal, @PathVariable ElectionId electionId) {
 //        UserId officialId = userDetails.getUsername();
-        System.out.println(userDetails);
         electionService.initiateElection(UserId.of(UUID.randomUUID()), electionId);
     }
 }

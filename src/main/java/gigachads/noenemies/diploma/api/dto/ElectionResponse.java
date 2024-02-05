@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import gigachads.noenemies.diploma.domain.model.Candidature;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
+import gigachads.noenemies.diploma.domain.model.ElectionStatus;
 import gigachads.noenemies.diploma.domain.model.Stage;
 import lombok.*;
 
@@ -20,7 +21,7 @@ public class ElectionResponse {
     @NonNull
     private final String description;
     @NonNull
-    private final Boolean active;
+    private final ElectionStatus status;
     @NonNull
     private final Integer year;
     @NonNull

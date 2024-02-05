@@ -6,10 +6,10 @@ VALUES
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '/images/user2.jpg', 'ACTIVE_CANDIDATE');
 
 -- Inserting data into elections table
-INSERT INTO elections (active, total_votes_count, year, created_at, deadline, updated_at, id, description, status)
+INSERT INTO elections (total_votes_count, year, created_at, deadline, updated_at, id, description, status)
 VALUES
-   (true, 1000, 2023, CURRENT_TIMESTAMP, '2023-12-31 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'Election 2023', 'IN_PROGRESS'),
-   (false, 1500, 2024, CURRENT_TIMESTAMP, '2024-12-31 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', 'Election 2024', 'COMPLETED');
+   (1000, 2023, CURRENT_TIMESTAMP, '2023-12-31 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'Election 2023', 'COMPLETED'),
+   (1500, 2024, CURRENT_TIMESTAMP, '2024-12-31 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', 'Election 2024', 'IN_PROGRESS');
 
 -- Inserting data into stages table
 INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description)

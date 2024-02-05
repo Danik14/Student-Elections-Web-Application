@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
         description = "Auth application documentation", contact = @Contact(name = "Daniyar Ch")),
         security = {@SecurityRequirement(name = "cookie")})
 @SecuritySchemes({
-        @SecurityScheme(name = "cookie", type = SecuritySchemeType.APIKEY, in = SecuritySchemeIn.HEADER, paramName = "JSESSIONID")
+        @SecurityScheme(name = "cookie", type = SecuritySchemeType.APIKEY, in = SecuritySchemeIn.COOKIE, paramName = "JSESSIONID")
 })
 public class SwaggerOpenApiConfig {
 }
