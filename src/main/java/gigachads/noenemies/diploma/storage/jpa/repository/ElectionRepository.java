@@ -15,8 +15,8 @@ import java.util.UUID;
 public interface ElectionRepository extends JpaRepository<ElectionEntity, UUID> {
     @Modifying
     @Query("UPDATE ElectionEntity e SET e.status = :newStatus WHERE e.id = :electionId")
-    int initiateElection(@Param("electionId") UUID electionId, @Param("newStatus") ElectionStatus newStatus);
+    int updateElectionStatus(@Param("electionId") UUID electionId, @Param("newStatus") ElectionStatus newStatus);
 
     @Query("SELECT e FROM ElectionEntity e ORDER BY e.createdAt DESC LIMIT :limit")
-    List<ElectionEntity> findTopNByOrderByCreatedAtDesc(int limit);
+    List<ElectionEntity> findElectionsWithLimit(int limit);
 }

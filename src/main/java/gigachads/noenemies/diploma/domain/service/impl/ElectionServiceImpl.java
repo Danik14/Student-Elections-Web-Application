@@ -4,7 +4,6 @@ import gigachads.noenemies.diploma.api.dto.ElectionCreateRequest;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.*;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
-import gigachads.noenemies.diploma.exception.EntityNotFoundException;
 import gigachads.noenemies.diploma.exception.EntityNotUpdatedException;
 import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
 import gigachads.noenemies.diploma.storage.jpa.repository.ElectionRepository;
@@ -30,7 +29,7 @@ public class ElectionServiceImpl implements ElectionService {
 
     @Override
     public List<Election> getElections(Integer limit) {
-        return electionMapper.toDomain(electionRepository.findTopNByOrderByCreatedAtDesc(limit));
+        return electionMapper.toDomain(electionRepository.findElectionsWithLimit(limit));
     }
 
     @Override
@@ -42,7 +41,7 @@ public class ElectionServiceImpl implements ElectionService {
     @Transactional
     public void initiateElection(UserId officialId, ElectionId electionId) {
         ElectionEntity entity = getElectionEntityById(electionId);
-        if (electionRepository.initiateElection(electionId.getId(), ElectionStatus.IN_PROGRESS) == 0) {
+        if (electionRepository.updateElectionStatus(electionId.getId(), ElectionStatus.IN_PROGRESS) == 0) {
             throw new EntityNotUpdatedException("Failed to initiate Election Entity: " + entity);
         }
     }

@@ -27,7 +27,8 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
         log.info("User authenticated: {}", oidcUser.getUserInfo().getClaims());
         userService.saveUser(parseUserInfo(oidcUser));
-        super.onAuthenticationSuccess(request, response, authentication);
+
+        getRedirectStrategy().sendRedirect(request, response, "/hello");
     }
 
     private UserCreate parseUserInfo(DefaultOidcUser user) {

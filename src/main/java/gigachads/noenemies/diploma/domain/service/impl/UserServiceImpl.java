@@ -69,4 +69,8 @@ public class UserServiceImpl implements UserService {
                         new EntityNotFoundException("User not found with id: " + id.getAsString())
                 );
     }
+
+    private boolean exists(UserId id) {
+        return userRepository.existsById(id.getId());
+    }
 }

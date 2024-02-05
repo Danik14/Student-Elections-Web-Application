@@ -1,6 +1,7 @@
 package gigachads.noenemies.diploma.api.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import gigachads.noenemies.diploma.domain.model.Candidature;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
@@ -23,8 +24,10 @@ public class ElectionResponse {
     @NonNull
     private final Integer year;
     @NonNull
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime createdAt;
     @NonNull
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime deadline;
     @NonNull
     private final Integer totalVotesCount;
