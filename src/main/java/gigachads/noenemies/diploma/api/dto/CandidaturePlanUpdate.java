@@ -1,10 +1,10 @@
 package gigachads.noenemies.diploma.api.dto;
 
-import gigachads.noenemies.diploma.domain.model.Candidature;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.net.URI;
-import java.util.UUID;
 
 @Data
 @Builder

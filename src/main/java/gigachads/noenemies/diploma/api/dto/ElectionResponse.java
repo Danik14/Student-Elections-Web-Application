@@ -2,15 +2,14 @@ package gigachads.noenemies.diploma.api.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import gigachads.noenemies.diploma.domain.model.Candidature;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.ElectionStatus;
-import gigachads.noenemies.diploma.domain.model.Stage;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NonNull;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Builder
 @Getter

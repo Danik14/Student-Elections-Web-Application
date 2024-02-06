@@ -1,11 +1,7 @@
 package gigachads.noenemies.diploma.api.controller;
 
-import com.azure.core.annotation.Patch;
-import com.azure.core.annotation.Put;
-import com.azure.core.annotation.QueryParam;
 import gigachads.noenemies.diploma.api.dto.ElectionCreateRequest;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
-import gigachads.noenemies.diploma.api.dto.UserResponse;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.UserId;
@@ -16,9 +12,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;

@@ -1,13 +1,11 @@
 package gigachads.noenemies.diploma.api.dto;
 
-import gigachads.noenemies.diploma.domain.model.CandidatureStage;
-import gigachads.noenemies.diploma.domain.model.Election;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gigachads.noenemies.diploma.domain.model.StageId;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -5,7 +5,6 @@ import gigachads.noenemies.diploma.domain.model.Candidature;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;

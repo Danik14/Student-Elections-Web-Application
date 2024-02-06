@@ -7,7 +7,6 @@ import gigachads.noenemies.diploma.domain.model.Election;
 import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;

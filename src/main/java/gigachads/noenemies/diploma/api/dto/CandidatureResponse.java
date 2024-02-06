@@ -1,9 +1,7 @@
 package gigachads.noenemies.diploma.api.dto;
 
-import gigachads.noenemies.diploma.domain.model.*;
+import gigachads.noenemies.diploma.domain.model.CandidatureId;
 import lombok.*;
-
-import java.util.List;
 
 @Builder
 @Getter

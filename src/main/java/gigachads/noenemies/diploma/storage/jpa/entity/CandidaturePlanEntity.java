@@ -2,12 +2,13 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import gigachads.noenemies.diploma.storage.jpa.converter.StringURIConverter;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.net.URI;
-import java.util.List;
-import java.util.UUID;
 
 @Entity
 @ToString

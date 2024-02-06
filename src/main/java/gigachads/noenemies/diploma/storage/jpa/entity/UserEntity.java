@@ -2,14 +2,14 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")

@@ -1,13 +1,10 @@
 package gigachads.noenemies.diploma.domain.model;
 
-import gigachads.noenemies.diploma.domain.service.ElectionService;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Builder(toBuilder = true)

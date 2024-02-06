@@ -2,13 +2,15 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import gigachads.noenemies.diploma.domain.model.ElectionStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @ToString

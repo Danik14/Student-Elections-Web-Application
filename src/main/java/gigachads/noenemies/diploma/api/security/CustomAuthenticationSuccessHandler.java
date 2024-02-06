@@ -1,6 +1,5 @@
 package gigachads.noenemies.diploma.api.security;
 
-import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserCreate;
 import gigachads.noenemies.diploma.domain.service.UserService;
 import jakarta.servlet.ServletException;

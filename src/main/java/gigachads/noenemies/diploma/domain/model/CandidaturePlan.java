@@ -1,11 +1,8 @@
 package gigachads.noenemies.diploma.domain.model;
 
-import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureEntity;
-import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.ToString;
 
 import java.net.URI;
 import java.util.UUID;

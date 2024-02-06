@@ -7,7 +7,6 @@ import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
 import gigachads.noenemies.diploma.api.dto.UserResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.UserMapper;
-import gigachads.noenemies.diploma.domain.model.CandidaturePlan;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureService;
 import io.swagger.v3.oas.annotations.Operation;
