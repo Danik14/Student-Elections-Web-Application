@@ -18,7 +18,7 @@ public class User {
     @NonNull
     private final String lastName;
     @NonNull
-    private final String picturePath;
+    private final String filePhotoName;
     @NonNull
     private final UserRole role;
 

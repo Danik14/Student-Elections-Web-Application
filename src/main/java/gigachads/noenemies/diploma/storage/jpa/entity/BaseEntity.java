@@ -13,7 +13,7 @@ import java.util.UUID;
 @MappedSuperclass
 @Getter
 @Setter
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseEntity {

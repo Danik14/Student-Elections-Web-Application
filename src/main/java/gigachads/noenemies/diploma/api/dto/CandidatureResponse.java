@@ -1,7 +1,11 @@
 package gigachads.noenemies.diploma.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import gigachads.noenemies.diploma.domain.model.CandidatureId;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NonNull;
 
 @Builder
 @Getter
@@ -13,7 +17,7 @@ public class CandidatureResponse {
     private CandidaturePlanResponse plan;
     private boolean approved;
 
-    @ToString.Exclude
+    @JsonIgnoreProperties("photo")
     @NonNull
     private UserResponse approvedBy;
     @NonNull

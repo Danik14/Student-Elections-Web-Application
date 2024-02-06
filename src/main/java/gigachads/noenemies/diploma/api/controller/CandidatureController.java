@@ -4,7 +4,6 @@ package gigachads.noenemies.diploma.api.controller;
 import gigachads.noenemies.diploma.api.dto.CandidaturePlanResponse;
 import gigachads.noenemies.diploma.api.dto.CandidaturePlanUpdate;
 import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
-import gigachads.noenemies.diploma.api.dto.UserResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.UserMapper;
 import gigachads.noenemies.diploma.domain.model.UserId;
@@ -17,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.util.List;
@@ -99,29 +97,4 @@ public class CandidatureController {
         candidatureService.updateCandidaturePlan(update, studentId);
         return "Application was sent";
     }
-
-    @Operation(summary = "Approve candidature",
-            operationId = "approveCandidature",
-            tags = {"Candidature"},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Successfully updated candidature plan",
-                            content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = UserResponse.class))})
-            })
-    @PostMapping("/plan/photo")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String uploadCandidatureImage(
-            Principal principal,
-            @RequestParam("photo") MultipartFile photo
-    ) {
-        String uploadDirectory = "src/main/resources/profile/pictures";
-        String adsImagesString = "";
-
-//        for (MultipartFile imageFile : adsImages) {
-//            adsImagesString += candidatureService.saveImageToStorage(uploadDirectory, imageFile) + ",";
-
-        // Save the adsImagesString in your database
-        // You can also associate it with other data in your Ads object
-        return "";
-        }
 }

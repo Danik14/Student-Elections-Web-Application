@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 @Table(name = "candidatures")
 @Getter
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 public class CandidatureEntity extends BaseEntity{
     @ManyToOne

@@ -2,6 +2,7 @@ package gigachads.noenemies.diploma.api.controller;
 
 import gigachads.noenemies.diploma.api.dto.UserResponse;
 import gigachads.noenemies.diploma.domain.mapper.UserMapper;
+import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserSortField;
 import gigachads.noenemies.diploma.domain.service.UserService;
@@ -16,7 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -112,5 +115,23 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public List<UserResponse> getAllActiveCandidates() {
         return userMapper.toResponse(userService.getAllActiveCandidates());
+    }
+
+    @Operation(summary = "Upload user photo",
+            operationId = "uploadCandidatureImage",
+            tags = {"User"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully uploaded photo",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = String.class))})
+            })
+    @PostMapping("/{userId}/plan/photo")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User uploadUserImage(
+            Principal principal,
+            @PathVariable UserId userId,
+            @RequestParam("photo") MultipartFile photo
+    ) {
+        return userService.saveProfilePhoto(userId, photo);
     }
 }

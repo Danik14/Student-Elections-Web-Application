@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -30,8 +30,8 @@ public class UserEntity extends BaseEntity{
     @Column(name = "role", nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
-    @Column(name = "picturePath", nullable = false)
-    private String picturePath;
+    @Column(name = "filePhotoName", nullable = false)
+    private String filePhotoName;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "user")
@@ -43,7 +43,7 @@ public class UserEntity extends BaseEntity{
 
     @PrePersist
     public void onCreate() {
-        picturePath = "";
+        filePhotoName = "";
         this.setCreatedAt(LocalDateTime.now());
         this.setUpdatedAt(LocalDateTime.now());
     }

@@ -6,7 +6,9 @@ import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface UserService {
@@ -22,6 +24,12 @@ public interface UserService {
     List<User> getAllCandidates();
 
     List<User> getAllActiveCandidates();
+
+    User saveProfilePhoto(UserId userId, MultipartFile imageFile);
+
+    byte[] getImage(String imageName) throws IOException;
+
+    String deleteImage(String imageName) throws IOException;
 
     User updateUserRole(UserId id, UserRole role);
 }

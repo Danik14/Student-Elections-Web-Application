@@ -4,7 +4,9 @@ import gigachads.noenemies.diploma.api.dto.UserResponse;
 import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserCreate;
 import gigachads.noenemies.diploma.domain.model.UserRole;
+import gigachads.noenemies.diploma.domain.service.impl.FileImageService;
 import gigachads.noenemies.diploma.storage.jpa.entity.UserEntity;
+import lombok.NonNull;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,11 +19,11 @@ import java.util.List;
         uses = HelperMapper.class,
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface UserMapper {
+    FileImageService fileImageService = new FileImageService();
 
     User toDomain(UserEntity entity);
 
     List<User> toDomain(List<UserEntity> entities);
-
 
     @Mapping(target = "votes", ignore = true)
     @Mapping(target = "candidatures", ignore = true)
@@ -39,7 +41,12 @@ public interface UserMapper {
                 .build();
     }
 
+    @Mapping(target = "photo", source = "user")
     UserResponse toResponse(User user);
 
     List<UserResponse> toResponse(List<User> users);
+
+    default byte[] mapUserToPhoto(@NonNull User user) {
+        return fileImageService.getImage("/static/profile/photos/", user.getFilePhotoName());
+    }
 }
