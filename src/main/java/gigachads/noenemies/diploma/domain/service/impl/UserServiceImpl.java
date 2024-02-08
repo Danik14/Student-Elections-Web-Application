@@ -62,6 +62,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(UserId id) {
+        System.out.println(id);
         return userMapper.toDomain(getUserEntityById(id));
     }
 

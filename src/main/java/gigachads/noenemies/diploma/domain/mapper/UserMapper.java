@@ -13,6 +13,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
@@ -33,6 +34,7 @@ public interface UserMapper {
         String barcode = create.getEmail().substring(0, 6);
         boolean barcodeMatch = barcode.matches("\\d{6}");
         return UserEntity.builder()
+                .id(UUID.fromString(create.getId()))
                 .email(create.getEmail())
                 .firstName(create.getFirstName())
                 .lastName(create.getLastName())

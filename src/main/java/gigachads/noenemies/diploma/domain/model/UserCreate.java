@@ -1,18 +1,20 @@
 package gigachads.noenemies.diploma.domain.model;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NonNull;
 
 @Builder
 @Getter
 @AllArgsConstructor
 public class UserCreate {
-    @NonNull
+    @NotNull
+    private final String id;
+    @NotNull
     private final String firstName;
-    @NonNull
+    @NotNull
     private final String lastName;
-    @NonNull
+    @NotNull
     private final String email;
 }

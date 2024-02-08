@@ -16,6 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,9 +31,28 @@ public class UserController {
     private final UserMapper userMapper;
     private final UserService userService;
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @Operation(summary = "Get current user by session",
+            operationId = "getCurrentUser",
+            tags = {"User"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Found user",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = UserResponse.class))}),
+                    @ApiResponse(responseCode = "400", description = "Invalid id supplied",
+                            content = @Content),
+                    @ApiResponse(responseCode = "404", description = "User not found",
+                            content = @Content)})
+    @GetMapping("/current")
+    @ResponseStatus(HttpStatus.OK)
+    public UserResponse getCurrentUser(Principal principal) {
+        var token = (OAuth2AuthenticationToken) principal;
+        token.getPrincipal().getAttributes();
+
+        System.out.println(
+                token.getPrincipal().getAttributes()
+        );
+        return null;
+//        return userMapper.toResponse(userService.getUserById(UserId.of()));
     }
 
     @Operation(summary = "Get user by Id",
@@ -134,4 +154,6 @@ public class UserController {
     ) {
         return userService.saveProfilePhoto(userId, photo);
     }
+
+
 }

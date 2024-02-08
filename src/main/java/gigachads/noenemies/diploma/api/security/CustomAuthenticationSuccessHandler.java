@@ -9,10 +9,11 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
+import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -23,18 +24,19 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
-        log.info("User authenticated: {}", oidcUser.getUserInfo().getClaims());
-        userService.saveUser(parseUserInfo(oidcUser));
+        OAuth2AuthenticatedPrincipal oidcUser = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
+        log.info("User authenticated: {}", oidcUser);
+        userService.saveUser(parseUserInfo(oidcUser.getAttributes()));
 
         getRedirectStrategy().sendRedirect(request, response, "/hello");
     }
 
-    private UserCreate parseUserInfo(DefaultOidcUser user) {
+    private UserCreate parseUserInfo(Map<String, Object> userInfo) {
         return UserCreate.builder()
-                .firstName(user.getGivenName())
-                .lastName(user.getFamilyName())
-                .email(user.getEmail())
+                .id((String) userInfo.get("oid"))
+                .firstName((String) userInfo.get("given_name"))
+                .lastName((String) userInfo.get("family_name"))
+                .email((String) userInfo.get("email"))
                 .build();
     }
 

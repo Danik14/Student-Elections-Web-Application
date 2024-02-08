@@ -18,7 +18,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(name = "createdAt")
@@ -29,6 +28,9 @@ public class BaseEntity {
 
     @PrePersist
     public void onCreate() {
+        if (id == null) {
+            this.setId(UUID.randomUUID());
+        }
         this.setCreatedAt(LocalDateTime.now());
         this.setUpdatedAt(LocalDateTime.now());
     }

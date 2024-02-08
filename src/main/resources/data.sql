@@ -1,8 +1,8 @@
 -- Inserting data into users table
 INSERT INTO users (created_at, updated_at, id, barcode, email, first_name, last_name, file_photo_name, role)
 VALUES
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'user1@example.com', 'Eva', 'Matsuraeva', 'user3.jpg', 'USER'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', 'user1.jpg', 'ACTIVE_CANDIDATE'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'user1@example.com', 'Eva', 'Mutsuraeva', 'user3.jpeg', 'USER'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', 'user1.jpeg', 'ACTIVE_CANDIDATE'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', 'user2.jpg', 'ACTIVE_CANDIDATE');
 
 -- Inserting data into elections table
