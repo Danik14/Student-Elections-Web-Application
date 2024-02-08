@@ -12,10 +12,10 @@ VALUES
    (1500, 2024, CURRENT_TIMESTAMP, '2024-12-31 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', 'Election 2024', 'IN_PROGRESS');
 
 -- Inserting data into stages table
-INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description)
+INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description, number)
 VALUES
-   (CURRENT_TIMESTAMP, '2023-12-20 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', 'Nomination Stage'),
-   (CURRENT_TIMESTAMP, '2024-01-20 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', '60127c87-351d-4693-aeed-ea0bbd00cde8', 'Voting Stage');
+   (CURRENT_TIMESTAMP, '2023-12-20 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', 'Nomination Stage', 1),
+   (CURRENT_TIMESTAMP, '2024-01-20 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', '60127c87-351d-4693-aeed-ea0bbd00cde8', 'Voting Stage', 2);
 
 
 -- Inserting data into candidature_plans table

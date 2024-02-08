@@ -1,6 +1,5 @@
 package gigachads.noenemies.diploma.api.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import gigachads.noenemies.diploma.domain.model.VoteId;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,9 +15,4 @@ public class VoteResponse {
     @ToString.Exclude
     @NonNull
     private UserResponse elector;
-
-    @ToString.Exclude
-    @JsonIgnore
-    @NonNull
-    private CandidatureStageResponse candidatureStage;
 }

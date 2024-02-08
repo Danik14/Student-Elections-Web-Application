@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ElectionCreateRequest {
+public class ElectionCreate {
     @NotNull
     private String description;
     @NotNull

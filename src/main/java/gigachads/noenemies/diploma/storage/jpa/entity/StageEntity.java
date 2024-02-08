@@ -1,10 +1,7 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
@@ -14,12 +11,16 @@ import java.util.List;
 @ToString
 @Table(name = "stages")
 @Getter
+@Setter
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class StageEntity extends BaseEntity{
     @Column(name = "description", nullable = false)
     private String description;
+
+    @Column(name = "number", nullable = false)
+    private Integer number;
 
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
@@ -32,4 +33,29 @@ public class StageEntity extends BaseEntity{
     @ToString.Exclude
     @OneToMany(mappedBy = "stage")
     private List<CandidatureStageEntity> candidatureStages;
+
+    @PrePersist
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        if (number == null) {
+            calculateAndSetNextStageNumber();
+        }
+    }
+
+    private void calculateAndSetNextStageNumber() {
+        if (election != null) {
+            this.number = findNextStageNumberForElection(election);
+        }
+    }
+
+    private int findNextStageNumberForElection(ElectionEntity election) {
+        int maxNumber = election.getStages().stream()
+                .mapToInt(StageEntity::getNumber)
+                .max()
+                .orElse(0);
+
+        return maxNumber + 1;
+    }
 }

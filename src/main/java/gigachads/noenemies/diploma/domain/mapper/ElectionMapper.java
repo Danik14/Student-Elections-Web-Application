@@ -1,7 +1,7 @@
 package gigachads.noenemies.diploma.domain.mapper;
 
 
-import gigachads.noenemies.diploma.api.dto.ElectionCreateRequest;
+import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.domain.model.Election;
 import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
@@ -21,7 +21,7 @@ public interface ElectionMapper {
 
     ElectionEntity toEntity (Election election);
 
-    ElectionEntity toEntity (ElectionCreateRequest create);
+    ElectionEntity toEntity (ElectionCreate create);
 
     ElectionResponse toResponse (Election election);
 

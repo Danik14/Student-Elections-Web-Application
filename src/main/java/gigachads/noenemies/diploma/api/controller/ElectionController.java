@@ -1,6 +1,6 @@
 package gigachads.noenemies.diploma.api.controller;
 
-import gigachads.noenemies.diploma.api.dto.ElectionCreateRequest;
+import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
@@ -67,7 +67,7 @@ public class ElectionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ElectionResponse createNewElection(
-                                           @RequestBody ElectionCreateRequest request) {
+                                           @RequestBody ElectionCreate request) {
         return electionMapper.toResponse(electionService.createElection(request));
     }
 

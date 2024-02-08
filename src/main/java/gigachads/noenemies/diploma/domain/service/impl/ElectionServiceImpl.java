@@ -1,6 +1,6 @@
 package gigachads.noenemies.diploma.domain.service.impl;
 
-import gigachads.noenemies.diploma.api.dto.ElectionCreateRequest;
+import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.Election;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
@@ -26,7 +26,7 @@ public class ElectionServiceImpl implements ElectionService {
     private final ElectionMapper electionMapper;
 
     @Override
-    public Election createElection(ElectionCreateRequest create) {
+    public Election createElection(ElectionCreate create) {
        return electionMapper.toDomain(electionRepository.save(electionMapper.toEntity(create)));
     }
 

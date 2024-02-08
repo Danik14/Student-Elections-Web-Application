@@ -14,7 +14,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,25 +30,6 @@ public class SecurityConfig {
         return new CustomAuthenticationSuccessHandler(userService);
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http)
-            throws Exception {
-        return http.authorizeHttpRequests(r -> r
-                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/login/**", "/api-docs/**", "/error/**").permitAll()
-                        .anyRequest().authenticated())
-                .exceptionHandling(e -> e
-                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint()))
-                .oauth2Login(oauth2 -> oauth2
-                        .successHandler(successHandler())
-                )
-                .logout(logout -> logout
-                        .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
-                )
-                .csrf(AbstractHttpConfigurer::disable)
-                .build();
-    }
-
     private static class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
         @Override
         public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
@@ -62,13 +42,31 @@ public class SecurityConfig {
         }
     }
 
-
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http)
 //            throws Exception {
 //        return http.authorizeHttpRequests(r -> r
-//                        .anyRequest().permitAll())
+//                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+//                        .requestMatchers("/login/**", "/api-docs/**", "/error/**").permitAll()
+//                        .anyRequest().authenticated())
+//                .exceptionHandling(e -> e
+//                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint()))
+//                .oauth2Login(oauth2 -> oauth2
+//                        .successHandler(successHandler())
+//                )
+//                .logout(logout -> logout
+//                        .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
+//                )
+//                .csrf(AbstractHttpConfigurer::disable)
 //                .build();
-//
 //    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http.authorizeHttpRequests(r -> r
+                        .anyRequest().permitAll())
+                .csrf(AbstractHttpConfigurer::disable)
+                .build();
+
+    }
 }

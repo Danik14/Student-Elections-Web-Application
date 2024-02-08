@@ -14,7 +14,4 @@ public class Vote {
     @ToString.Exclude
     @NonNull
     private User elector;
-
-    @NonNull
-    private CandidatureStageId candidatureStageId;
 }
