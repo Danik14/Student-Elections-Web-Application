@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.domain.service.impl;
 
+import io.netty.util.internal.EmptyArrays;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class FileImageService {
             }
         } else {
             log.error("Image does not exist: {}", resource.getFilename());
-            return null;
+            return new byte[] {};
         }
     }
 

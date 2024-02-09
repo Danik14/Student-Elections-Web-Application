@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -44,7 +45,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(UserCreate create) {
-        return userMapper.toDomain(userRepository.save(userMapper.toEntity(create)));
+        if (!userRepository.existsById(UUID.fromString(create.getId()))){
+            return userMapper.toDomain(userRepository.save(userMapper.toEntity(create)));
+        }
+        return userMapper.toDomain(getUserEntityById(UserId.of(create.getId())));
     }
 
     @Override

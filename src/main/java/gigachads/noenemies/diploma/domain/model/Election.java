@@ -21,6 +21,4 @@ public class Election {
     private final LocalDateTime createdAt;
     @NonNull
     private final LocalDateTime deadline;
-    @NonNull
-    private final Integer totalVotesCount;
 }

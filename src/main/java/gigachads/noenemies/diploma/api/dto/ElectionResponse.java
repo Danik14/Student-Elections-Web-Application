@@ -29,6 +29,4 @@ public class ElectionResponse {
     @NonNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime deadline;
-    @NonNull
-    private final Integer totalVotesCount;
 }

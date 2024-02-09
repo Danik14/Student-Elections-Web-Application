@@ -29,8 +29,6 @@ public class ElectionEntity extends BaseEntity {
     private Integer year;
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
-    @Column(name = "total_votes_count", nullable = false)
-    private Integer totalVotesCount;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "election")
@@ -42,7 +40,6 @@ public class ElectionEntity extends BaseEntity {
     @PrePersist
     public void prePersist() {
         year = Year.now().getValue();
-        totalVotesCount = 0;
         status = ElectionStatus.CREATED;
         this.setCreatedAt(LocalDateTime.now());
         this.setUpdatedAt(LocalDateTime.now());
