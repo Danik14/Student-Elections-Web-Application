@@ -5,6 +5,8 @@ import gigachads.noenemies.diploma.storage.jpa.entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,4 +20,8 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     List<UserEntity> findByRole(UserRole role);
 
     Page<UserEntity> findByRole(String role, Pageable pageable);
+
+    @Modifying
+    @Query("UPDATE UserEntity u SET u.role = :newRole WHERE u.id = :id")
+    int updateUserRoleById(UUID id, UserRole newRole);
 }

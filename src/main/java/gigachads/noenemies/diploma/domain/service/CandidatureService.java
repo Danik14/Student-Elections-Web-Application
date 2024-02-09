@@ -13,9 +13,9 @@ public interface CandidatureService {
 
     List<Candidature> findAllActiveCandidatures();
 
-    void applyForCandidature(UserId studentId);
+    void applyForCandidature(UserId userId);
 
-    void approveCandidature(UserId studentId, UserId officialId);
+    void approveCandidature(UserId userId, UserId officialId);
 
     CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, UserId studentId);
 

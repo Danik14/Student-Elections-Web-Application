@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,11 +56,8 @@ public class CandidatureController {
     @PostMapping("/apply")
     @ResponseStatus(HttpStatus.OK)
     public String applyForCandidature(Principal principal) {
-        UserId studentId = UserId.of(principal.getName());
-        System.out.println(studentId);
-
-        candidatureService.applyForCandidature(studentId);
-        return "Application was sent";
+        candidatureService.applyForCandidature(getUserIdByOauth2Principal(principal));
+        return "Application was sent successfully";
     }
 
 
@@ -96,5 +94,10 @@ public class CandidatureController {
 
         candidatureService.updateCandidaturePlan(update, studentId);
         return "Application was sent";
+    }
+
+    private UserId getUserIdByOauth2Principal(Principal principal){
+        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
+        return UserId.of((String) token.getPrincipal().getAttribute("oid"));
     }
 }
