@@ -17,6 +17,8 @@ public interface UserService {
 
     Page<User> findAllByPage(Pageable pageable);
 
+    Page<User> findAllByRoleAndPage(Pageable pageable, UserRole userRole);
+
     User getUserByBarcode(String barcode);
 
     User getUserById(UserId id);

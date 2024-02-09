@@ -4,8 +4,12 @@ import gigachads.noenemies.diploma.api.dto.UserResponse;
 import gigachads.noenemies.diploma.domain.mapper.UserMapper;
 import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
+import gigachads.noenemies.diploma.domain.model.UserRole;
 import gigachads.noenemies.diploma.domain.model.UserSortField;
 import gigachads.noenemies.diploma.domain.service.UserService;
+import gigachads.noenemies.diploma.exception.EntityNotUpdatedException;
+import gigachads.noenemies.diploma.exception.InvalidRoleException;
+import gigachads.noenemies.diploma.exception.StudentElectionsException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -103,10 +107,17 @@ public class UserController {
             @RequestParam(name = "page", defaultValue = "0") Integer page,
             @RequestParam(name = "size", defaultValue = "10") Integer sizePerPage,
             @RequestParam(defaultValue = "LASTNAME") UserSortField sortField,
-            @RequestParam(defaultValue = "ASC") Sort.Direction sortDirection
-    ) {
+            @RequestParam(defaultValue = "ASC") Sort.Direction sortDirection,
+            @RequestParam(name = "role", defaultValue = "", required = false) String userRole
+            ) {
         Pageable pageable = PageRequest.of(page, sizePerPage, sortDirection, sortField.getDatabaseFieldName());
-        return userService.findAllByPage(pageable).map(userMapper::toResponse);
+        if (userRole.isEmpty()) {
+            return userService.findAllByPage(pageable).map(userMapper::toResponse);
+        } else if (!UserRole.isValidRole(userRole)) {
+            throw new InvalidRoleException("Invalid user role: " + userRole);
+        } else {
+            return userService.findAllByRoleAndPage(pageable, UserRole.valueOf(userRole)).map(userMapper::toResponse);
+        }
     }
 
     @Operation(summary = "Get all candidates",

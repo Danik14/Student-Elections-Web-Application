@@ -57,6 +57,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Page<User> findAllByRoleAndPage(Pageable pageable, UserRole userRole) {
+        return userRepository.findByRole(userRole.name(), pageable).map(userMapper::toDomain);
+    }
+
+    @Override
     public User getUserByBarcode(String barcode) {
         return userMapper.toDomain(userRepository.findUserByBarcode(barcode)
                 .orElseThrow(() ->

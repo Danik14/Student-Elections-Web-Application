@@ -1,6 +1,7 @@
 -- Inserting data into users table
 INSERT INTO users (created_at, updated_at, id, barcode, email, first_name, last_name, file_photo_name, role)
 VALUES
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '29718428-14e1-4482-9b32-e4b806e58320', '', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', 'papzan.jpg', 'SUPER_ADMIN'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'user1@example.com', 'Eva', 'Mutsuraeva', 'user3.jpeg', 'USER'),
 
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', 'user1.jpeg', 'ACTIVE_STUDENT'),
@@ -10,7 +11,9 @@ VALUES
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '9a9c8cea-b3ce-484c-bbf5-01da56eaa632', '222222', 'jesus@example.com', 'jesus', 'christovich', '', 'ACTIVE_STUDENT'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'df5e8505-8a34-48fc-b3e5-56eb4463dc93', '333333', 'zestuar@example.com', 'aituar', 'zestovich', '', 'ACTIVE_STUDENT'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'eb77f9b4-1553-4b65-9213-c657ed0ad641', '444444', 'skinhead@example.com', 'skinhead', 'skinheadov', '', 'ACTIVE_STUDENT'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'fa48d4ee-ccd9-4c84-b95a-86291c8662f6', '555555', 'test@example.com', 'test', 'testovich', '', 'ACTIVE_STUDENT');
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'fa48d4ee-ccd9-4c84-b95a-86291c8662f6', '555555', 'test@example.com', 'test', 'testovich', '', 'ACTIVE_STUDENT'),
+
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '84b8c821-6754-4db0-9f6f-407ff69f1086', '193211', 'satanist@example.com', 'satan', 'satanov', '', 'APPLIED_FOR_CANDIDATURE');
 
 -- Inserting data into elections table
 INSERT INTO elections (year, created_at, deadline, updated_at, id, description, status)

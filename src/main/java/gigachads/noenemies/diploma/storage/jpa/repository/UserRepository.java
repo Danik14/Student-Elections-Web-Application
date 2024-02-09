@@ -2,6 +2,8 @@ package gigachads.noenemies.diploma.storage.jpa.repository;
 
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import gigachads.noenemies.diploma.storage.jpa.entity.UserEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +16,6 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     Optional<UserEntity> findUserByBarcode(String barcode);
 
     List<UserEntity> findByRole(UserRole role);
+
+    Page<UserEntity> findByRole(String role, Pageable pageable);
 }
