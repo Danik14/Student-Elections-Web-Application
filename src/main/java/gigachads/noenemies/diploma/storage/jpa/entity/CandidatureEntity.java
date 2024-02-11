@@ -19,11 +19,7 @@ public class CandidatureEntity extends BaseEntity{
     @JoinColumn(name = "election_id", nullable = false)
     private ElectionEntity election;
 
-    @Column(name = "approved", nullable = false)
-    private boolean approved;
-
     @OneToOne(mappedBy = "candidature")
-    @JoinColumn
     private CandidaturePlanEntity plan;
 
     @ToString.Exclude
@@ -39,4 +35,11 @@ public class CandidatureEntity extends BaseEntity{
     @ToString.Exclude
     @OneToMany(mappedBy = "candidature")
     private List<CandidatureStageEntity> candidatureStages;
+
+
+    @PrePersist
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 }

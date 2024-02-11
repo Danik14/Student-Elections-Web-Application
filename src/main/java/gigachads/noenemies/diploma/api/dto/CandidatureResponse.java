@@ -15,7 +15,6 @@ public class CandidatureResponse {
     private final CandidatureId id;
     @NonNull
     private CandidaturePlanResponse plan;
-    private boolean approved;
 
     @JsonIgnoreProperties("photo")
     @NonNull

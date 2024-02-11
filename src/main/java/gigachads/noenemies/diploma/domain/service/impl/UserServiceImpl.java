@@ -88,6 +88,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveProfilePhoto(UserId userId, MultipartFile photo) {
         UserEntity entity = getUserEntityById(userId);
+        imageService.deleteImage(photoDirectory, entity.getFilePhotoName());
         return userMapper.toDomain(userRepository.save(entity.toBuilder()
                 .filePhotoName(imageService.saveImageToStorage(photoDirectory, photo))
                 .build()));

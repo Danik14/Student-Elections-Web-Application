@@ -12,7 +12,6 @@ public class Candidature {
     private final CandidatureId id;
     @NonNull
     private CandidaturePlan plan;
-    private boolean approved;
 
     @ToString.Exclude
     @NonNull

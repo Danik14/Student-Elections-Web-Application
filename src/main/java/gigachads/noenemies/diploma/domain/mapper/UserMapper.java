@@ -49,6 +49,8 @@ public interface UserMapper {
     List<UserResponse> toResponse(List<User> users);
 
     default byte[] mapUserToPhoto(@NonNull User user) {
-        return fileImageService.getImage("/static/profile/photos/", user.getFilePhotoName());
+        return fileImageService
+                .getImage("/static/profile/photos/",
+                        user.getFilePhotoName().isEmpty() ? "default-user-image.jpeg" : user.getFilePhotoName());
     }
 }

@@ -12,11 +12,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/election")
@@ -82,7 +82,11 @@ public class ElectionController {
     @PutMapping("/{electionId}/initiate")
     @ResponseStatus(HttpStatus.OK)
     public void initiateElectionById(Principal principal, @PathVariable ElectionId electionId) {
-//        UserId officialId = userDetails.getUsername();
-        electionService.initiateElection(UserId.of(UUID.randomUUID()), electionId);
+        electionService.initiateElection(getUserIdByOauth2Principal(principal), electionId);
+    }
+
+    private UserId getUserIdByOauth2Principal(Principal principal){
+        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
+        return UserId.of((String) token.getPrincipal().getAttribute("oid"));
     }
 }

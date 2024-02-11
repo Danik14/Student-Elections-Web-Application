@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
-import java.net.URI;
-
 @Data
 @Builder
 @AllArgsConstructor
@@ -16,8 +14,8 @@ public class CandidaturePlanResponse {
     @NonNull
     private final String slogan;
     @NonNull
-    private final URI instagramLink;
+    private final String instagramLink;
     @NonNull
-    private final URI telegramLink;
+    private final String telegramLink;
 }
 

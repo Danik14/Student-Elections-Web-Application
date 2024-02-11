@@ -8,6 +8,7 @@ import gigachads.noenemies.diploma.domain.model.ElectionStatus;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
 import gigachads.noenemies.diploma.exception.EntityNotUpdatedException;
+import gigachads.noenemies.diploma.exception.StudentElectionsException;
 import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
 import gigachads.noenemies.diploma.storage.jpa.repository.ElectionRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,14 +43,15 @@ public class ElectionServiceImpl implements ElectionService {
     }
 
     @Override
-    @Transactional
     public void initiateElection(UserId officialId, ElectionId electionId) {
         ElectionEntity entity = getElectionEntityById(electionId);
+        if (findInProgressElection().isPresent()) {
+            throw new StudentElectionsException("An election in progress already exists");
+        }
         if (electionRepository.updateElectionStatus(electionId.getId(), ElectionStatus.IN_PROGRESS) == 0) {
             throw new EntityNotUpdatedException("Failed to initiate Election Entity: " + entity);
         }
         log.info("Election {} was initiated by {}", entity.getId(), officialId);
-
     }
 
     private ElectionEntity getElectionEntityById(ElectionId id) {
@@ -57,5 +60,9 @@ public class ElectionServiceImpl implements ElectionService {
                         new EntityNotUpdatedException("Election not found with id: " + id.getAsString()
                         )
                 );
+    }
+
+    public Optional<ElectionEntity> findInProgressElection() {
+        return electionRepository.findInProgressElection();
     }
 }

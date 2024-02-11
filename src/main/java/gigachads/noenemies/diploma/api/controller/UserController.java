@@ -47,14 +47,7 @@ public class UserController {
     @GetMapping("/current")
     @ResponseStatus(HttpStatus.OK)
     public UserResponse getCurrentUser(Principal principal) {
-        var token = (OAuth2AuthenticationToken) principal;
-        token.getPrincipal().getAttributes();
-
-        System.out.println(
-                token.getPrincipal().getAttributes()
-        );
-        return null;
-//        return userMapper.toResponse(userService.getUserById(UserId.of()));
+        return userMapper.toResponse(userService.getUserById(getUserIdByOauth2Principal(principal)));
     }
 
     @Operation(summary = "Get user by Id",
@@ -154,15 +147,17 @@ public class UserController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = String.class))})
             })
-    @PostMapping("/{userId}/plan/photo")
+    @PostMapping("/photo")
     @ResponseStatus(HttpStatus.CREATED)
     public User uploadUserImage(
             Principal principal,
-            @PathVariable UserId userId,
             @RequestParam("photo") MultipartFile photo
     ) {
-        return userService.saveProfilePhoto(userId, photo);
+        return userService.saveProfilePhoto(getUserIdByOauth2Principal(principal), photo);
     }
 
-
+    private UserId getUserIdByOauth2Principal(Principal principal){
+        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
+        return UserId.of((String) token.getPrincipal().getAttribute("oid"));
+    }
 }

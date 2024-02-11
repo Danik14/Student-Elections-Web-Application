@@ -7,8 +7,12 @@ import gigachads.noenemies.diploma.domain.service.CandidatureService;
 import gigachads.noenemies.diploma.exception.EntityNotFoundException;
 import gigachads.noenemies.diploma.exception.InvalidRoleException;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureEntity;
+import gigachads.noenemies.diploma.storage.jpa.entity.CandidaturePlanEntity;
+import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
 import gigachads.noenemies.diploma.storage.jpa.entity.UserEntity;
+import gigachads.noenemies.diploma.storage.jpa.repository.CandidaturePlanRepository;
 import gigachads.noenemies.diploma.storage.jpa.repository.CandidatureRepository;
+import gigachads.noenemies.diploma.storage.jpa.repository.ElectionRepository;
 import gigachads.noenemies.diploma.storage.jpa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +27,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CandidatureServiceImpl implements CandidatureService {
     private final CandidatureRepository candidatureRepository;
+    private final CandidaturePlanRepository candidaturePlanRepository;
     private final CandidatureMapper candidatureMapper;
     private final UserRepository userRepository;
+    private final ElectionRepository electionRepository;
 
     @Override
     public Candidature getCandidatureByUserId(UserId id) {
@@ -48,8 +54,22 @@ public class CandidatureServiceImpl implements CandidatureService {
     }
 
     @Override
-    public void approveCandidature(UserId userId, UserId officialId) {
-
+    public Candidature approveCandidature(UserId userId, UserId officialId) {
+        CandidatureEntity candidatureEntity = candidatureRepository.save(CandidatureEntity.builder()
+                .election(findInProgressElection())
+                .user(getUserEntityById(userId))
+                .approvedBy(getUserEntityById(officialId))
+                .build());
+        CandidaturePlanEntity planEntity = candidaturePlanRepository.save(CandidaturePlanEntity.builder()
+                .description("")
+                .slogan("")
+                .instagramLink("")
+                .telegramLink("")
+                .candidature(candidatureEntity)
+                .build());
+        return candidatureMapper.toDomain(candidatureEntity.toBuilder()
+                .plan(planEntity)
+                .build());
     }
 
     @Override
@@ -62,6 +82,7 @@ public class CandidatureServiceImpl implements CandidatureService {
 
     }
 
+
     private UserEntity getUserEntityById(UserId id) {
         return userRepository.findById(id.getId())
                 .orElseThrow(() ->
@@ -72,5 +93,12 @@ public class CandidatureServiceImpl implements CandidatureService {
     private CandidatureEntity getCandidatureEntityById(CandidatureId candidatureId) {
         return candidatureRepository.findById(candidatureId.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Candidature not found with id " + candidatureId.getId()));
+    }
+
+    private ElectionEntity findInProgressElection() {
+        return electionRepository.findInProgressElection()
+                .orElseThrow(() ->
+                        new EntityNotFoundException("No Election In progress")
+                );
     }
 }
