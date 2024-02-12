@@ -16,6 +16,8 @@ public class StageResponse {
     @NonNull
     private final String description;
     @NonNull
+    private final String status;
+    @NonNull
     private final Integer number;
     @NonNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")

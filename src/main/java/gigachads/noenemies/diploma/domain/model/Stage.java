@@ -14,6 +14,8 @@ public class Stage {
     @NonNull
     private final String description;
     @NonNull
+    private final StageStatus status;
+    @NonNull
     private final Integer number;
     @NonNull
     private final LocalDateTime deadline;

@@ -18,10 +18,10 @@ import java.util.List;
 public class StageEntity extends BaseEntity{
     @Column(name = "description", nullable = false)
     private String description;
-
+    @Column(name = "status", nullable = false)
+    private String status;
     @Column(name = "number", nullable = false)
     private Integer number;
-
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
 

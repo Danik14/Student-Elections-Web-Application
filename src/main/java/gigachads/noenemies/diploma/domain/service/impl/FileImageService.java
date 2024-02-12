@@ -23,7 +23,7 @@ public class FileImageService {
     public String saveImageToStorage(String uploadDirectory, MultipartFile imageFile) {
         String uniqueFileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
 
-        Path uploadPath = Path.of(uploadDirectory);
+        Path uploadPath = Path.of("src/main/" + uploadDirectory);
         Path filePath = uploadPath.resolve(uniqueFileName);
 
         if (!Files.exists(uploadPath)) {
