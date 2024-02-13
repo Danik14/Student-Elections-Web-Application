@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import lombok.Builder;
@@ -19,6 +20,7 @@ public class UserResponse {
     private final String firstName;
     @NonNull
     private final String lastName;
+    @JsonIgnore
     private final byte[] photo;
     @NonNull
     private final UserRole role;

@@ -14,6 +14,9 @@ import java.util.UUID;
 
 @Repository
 public interface ElectionRepository extends JpaRepository<ElectionEntity, UUID> {
+    @Query("SELECT e FROM ElectionEntity e WHERE e.status = 'CREATED'")
+    Optional<ElectionEntity> findCreatedElection();
+
     @Query("SELECT e FROM ElectionEntity e WHERE e.status = 'IN_PROGRESS'")
     Optional<ElectionEntity> findInProgressElection();
 

@@ -1,7 +1,9 @@
 package gigachads.noenemies.diploma.api.controller;
 
+import gigachads.noenemies.diploma.api.dto.CandidatureStageResponse;
 import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
+import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.UserId;
@@ -24,6 +26,7 @@ import java.util.List;
 public class ElectionController {
     private final ElectionService electionService;
     private final ElectionMapper electionMapper;
+    private final CandidatureMapper candidatureMapper;
 
     @Operation(summary = "Get elections",
             operationId = "getElections",
@@ -81,8 +84,8 @@ public class ElectionController {
             })
     @PutMapping("/{electionId}/initiate")
     @ResponseStatus(HttpStatus.OK)
-    public void initiateElectionById(Principal principal, @PathVariable ElectionId electionId) {
-        electionService.initiateElection(getUserIdByOauth2Principal(principal), electionId);
+    public List<CandidatureStageResponse> initiateElectionById(Principal principal, @PathVariable ElectionId electionId) {
+        return candidatureMapper.toCandidatureStageResponse(electionService.initiateElection(getUserIdByOauth2Principal(principal), electionId));
     }
 
     private UserId getUserIdByOauth2Principal(Principal principal){

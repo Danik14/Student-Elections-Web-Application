@@ -14,18 +14,8 @@ import java.util.List;
 public class CandidatureStageResponse {
     @NonNull
     private CandidatureStageId id;
-
-    @ToString.Exclude
-    @NonNull
-    private StageResponse stage;
-
-    @ToString.Exclude
-    @JsonIgnore
     @NonNull
     private CandidatureResponse candidature;
-
-    @ToString.Exclude
-    @JsonIgnore
     @NonNull
     private List<VoteResponse> votes;
 }

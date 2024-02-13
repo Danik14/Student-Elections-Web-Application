@@ -8,41 +8,61 @@ VALUES
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '', 'ACTIVE_STUDENT'),
 
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '30a567a9-37bb-4fc0-8659-ba7543403c6d', '111111', 'gigabyte@example.com', 'gigabyte', 'jinsovich', '', 'ACTIVE_STUDENT'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '9a9c8cea-b3ce-484c-bbf5-01da56eaa632', '222222', 'jesus@example.com', 'jesus', 'christovich', '', 'ACTIVE_STUDENT'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '9a9c8cea-b3ce-484c-bbf5-01da56eaa632', '222222', 'kamchick@example.com', 'kamchick', 'kamchickovich', '', 'ACTIVE_STUDENT'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'df5e8505-8a34-48fc-b3e5-56eb4463dc93', '333333', 'zestuar@example.com', 'aituar', 'zestovich', '', 'ACTIVE_STUDENT'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'eb77f9b4-1553-4b65-9213-c657ed0ad641', '444444', 'skinhead@example.com', 'skinhead', 'skinheadov', '', 'ACTIVE_STUDENT'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'fa48d4ee-ccd9-4c84-b95a-86291c8662f6', '555555', 'test@example.com', 'test', 'testovich', '', 'ACTIVE_STUDENT'),
 
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '84b8c821-6754-4db0-9f6f-407ff69f1086', '193211', 'satanist@example.com', 'satan', 'satanov', '', 'APPLIED_FOR_CANDIDATURE');
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '84b8c821-6754-4db0-9f6f-407ff69f1086', '193211', 'satanist@example.com', 'satan', 'satanov', '', 'ACTIVE_CANDIDATE'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '3122d297-7abd-4951-9d44-171b00651465', '214234', 'drip@example.com', 'fara', 'dripovich', '', 'ACTIVE_CANDIDATE');
 
 -- Inserting data into elections table
 INSERT INTO elections (year, created_at, deadline, updated_at, id, description, status)
 VALUES
    (2023, CURRENT_TIMESTAMP, '2023-12-31 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'Election 2023', 'COMPLETED'),
-   (2024, CURRENT_TIMESTAMP, '2024-12-31 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', 'Election 2024', 'IN_PROGRESS');
+   (2024, CURRENT_TIMESTAMP, '2024-12-31 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', 'Election 2024', 'COMPLETED'),
+   (2025, CURRENT_TIMESTAMP, '2025-12-31 23:59:59', CURRENT_TIMESTAMP, 'ab159bae-6d23-441b-b647-99a8312838c4', 'Election 2025', 'CREATED');
 
 -- Inserting data into stages table
 INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description, status, number, is_votable)
 VALUES
-   (CURRENT_TIMESTAMP, '2023-02-20 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', '2023 stage 1', 'CREATED', 1, false),
-   (CURRENT_TIMESTAMP, '2023-03-10 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', '9dbc17ae-c522-48a7-b9f9-531d8b8a528f', '2023 stage 2', 'CREATED', 2, false),
-   (CURRENT_TIMESTAMP, '2023-04-15 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2023 stage 3', 'CREATED', 3, false);
+   (CURRENT_TIMESTAMP, '2023-02-20 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', '2023 stage 1', 'COMPLETED', 1, true),
+   (CURRENT_TIMESTAMP, '2023-03-10 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', '9dbc17ae-c522-48a7-b9f9-531d8b8a528f', '2023 stage 2', 'COMPLETED', 2, true),
+   (CURRENT_TIMESTAMP, '2023-04-15 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2023 stage 3', 'COMPLETED', 3, true),
+
+   (CURRENT_TIMESTAMP, '2025-02-20 23:59:59', CURRENT_TIMESTAMP, 'ab159bae-6d23-441b-b647-99a8312838c4', '7d8796b7-0511-441f-baff-154f58d6a766', '2025 stage 1', 'CREATED', 1, false),
+   (CURRENT_TIMESTAMP, '2025-02-20 23:59:59', CURRENT_TIMESTAMP, 'ab159bae-6d23-441b-b647-99a8312838c4', '69e25896-11b0-4525-bab5-a7d68264af84', '2025 stage 2', 'CREATED', 2, false);
+
 
 -- Inserting data into candidatures table
 INSERT INTO candidatures (created_at, updated_at, approved_by_id, election_id, id, user_id)
 VALUES
+-- Election 2023 candidatures
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1',
     '65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1',
-    '8dcf75a5-0636-425a-9ffd-b732d12ff197', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8');
+    '8dcf75a5-0636-425a-9ffd-b732d12ff197', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8'),
+
+-- Election 2025 candidatures
+    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', 'ab159bae-6d23-441b-b647-99a8312838c4',
+    'ee7331ef-052f-44c5-a721-57330503ef93', '84b8c821-6754-4db0-9f6f-407ff69f1086'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', 'ab159bae-6d23-441b-b647-99a8312838c4',
+    '2abaad23-78b0-43ba-9792-e2d7bdda99fc', '3122d297-7abd-4951-9d44-171b00651465');
 
 -- Inserting data into candidature_plans table
 INSERT INTO candidature_plans (created_at, updated_at, id, candidature_id, description, instagram_link, slogan, telegram_link)
 VALUES
+-- Election 2023 candidature plans
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'adeacd03-fdb0-40cf-ab75-d2aea6ce1b45', '65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7', 'Description 1',
    'https://instagram.com/link1', 'Slogan 1', 'https://t.me/link1'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1cb23d0e-1b43-4f71-81b9-33f5db18687d', '8dcf75a5-0636-425a-9ffd-b732d12ff197', 'Description 2',
-   'https://instagram.com/link2', 'Slogan 2', 'https://t.me/link2');
+   'https://instagram.com/link2', 'Slogan 2', 'https://t.me/link2'),
+
+-- Election 2025 candidature plans
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '867952b1-570b-45f7-a41c-6d6c18f3057c', 'ee7331ef-052f-44c5-a721-57330503ef93', 'election 2025 s Description 1',
+      'https://instagram.com/link1', 'Slogan 1', 'https://t.me/link1'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '86c450d7-addf-4c0f-883e-842b76339b19', '2abaad23-78b0-43ba-9792-e2d7bdda99fc', 'elections 2025 fara drip Description 2',
+      'https://instagram.com/link2', 'Slogan 2', 'https://t.me/link2');
 
 
 -- Inserting data into candidature_stages table

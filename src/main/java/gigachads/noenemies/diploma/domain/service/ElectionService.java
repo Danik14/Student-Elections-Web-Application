@@ -1,6 +1,7 @@
 package gigachads.noenemies.diploma.domain.service;
 
 import gigachads.noenemies.diploma.api.dto.ElectionCreate;
+import gigachads.noenemies.diploma.domain.model.CandidatureStage;
 import gigachads.noenemies.diploma.domain.model.Election;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.UserId;
@@ -14,5 +15,5 @@ public interface ElectionService {
 
         Election getElectionById(ElectionId id);
 
-        void initiateElection(UserId officialId, ElectionId electionId);
+        List<CandidatureStage> initiateElection(UserId officialId, ElectionId electionId);
 }

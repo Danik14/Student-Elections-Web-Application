@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
+import gigachads.noenemies.diploma.domain.model.StageStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -19,7 +20,8 @@ public class StageEntity extends BaseEntity{
     @Column(name = "description", nullable = false)
     private String description;
     @Column(name = "status", nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StageStatus status;
     @Column(name = "number", nullable = false)
     private Integer number;
     @Column(name = "is_votable", nullable = false)
