@@ -1,6 +1,5 @@
 package gigachads.noenemies.diploma.domain.service.impl;
 
-import gigachads.noenemies.diploma.api.dto.CandidatureStageResponse;
 import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
@@ -45,6 +44,13 @@ public class ElectionServiceImpl implements ElectionService {
     @Override
     public Election getElectionById(ElectionId id) {
         return electionMapper.toDomain(getElectionEntityById(id));
+    }
+
+    @Override
+    public List<CandidatureStage> findCandidatureStagesByElectionId(ElectionId electionId) {
+        return candidatureMapper.toCandidatureStageDomain(
+                candidatureStageRepository.findByElectionId(electionId.getId())
+        );
     }
 
     @Override

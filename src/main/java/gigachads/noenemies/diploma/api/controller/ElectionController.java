@@ -58,6 +58,21 @@ public class ElectionController {
         return electionMapper.toResponse(electionService.getElectionById(electionId));
     }
 
+    @Operation(summary = "Get candidature stages info by election id",
+            operationId = "getCandidatureStagesByElectionId",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidatureStageResponse.class))})
+            })
+    @GetMapping("/{electionId}/candidature-stage")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CandidatureStageResponse> getCandidatureStagesByElectionId(@PathVariable ElectionId electionId) {
+        return candidatureMapper
+                .toCandidatureStageResponse(electionService.findCandidatureStagesByElectionId(electionId));
+    }
+
     @Operation(summary = "Create a new Election",
             operationId = "createNewElection",
             tags = {"Election"},
