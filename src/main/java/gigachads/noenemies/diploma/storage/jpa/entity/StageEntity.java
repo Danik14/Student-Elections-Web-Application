@@ -22,6 +22,8 @@ public class StageEntity extends BaseEntity{
     private String status;
     @Column(name = "number", nullable = false)
     private Integer number;
+    @Column(name = "is_votable", nullable = false)
+    private boolean votable;
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
 

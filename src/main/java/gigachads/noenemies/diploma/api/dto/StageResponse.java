@@ -17,6 +17,7 @@ public class StageResponse {
     private final String description;
     @NonNull
     private final String status;
+    private final boolean votable;
     @NonNull
     private final Integer number;
     @NonNull

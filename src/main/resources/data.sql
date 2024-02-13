@@ -22,11 +22,11 @@ VALUES
    (2024, CURRENT_TIMESTAMP, '2024-12-31 23:59:59', CURRENT_TIMESTAMP, 'a3fa5abc-cf09-4171-ba32-fbf9c6cfe1aa', 'Election 2024', 'IN_PROGRESS');
 
 -- Inserting data into stages table
-INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description, status, number)
+INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description, status, number, is_votable)
 VALUES
-   (CURRENT_TIMESTAMP, '2023-02-20 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', '2023 stage 1', 'CREATED', 1),
-   (CURRENT_TIMESTAMP, '2023-03-10 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', '9dbc17ae-c522-48a7-b9f9-531d8b8a528f', '2023 stage 2', 'CREATED', 2),
-   (CURRENT_TIMESTAMP, '2023-04-15 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2023 stage 3', 'CREATED', 3);
+   (CURRENT_TIMESTAMP, '2023-02-20 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', '2023 stage 1', 'CREATED', 1, false),
+   (CURRENT_TIMESTAMP, '2023-03-10 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', '9dbc17ae-c522-48a7-b9f9-531d8b8a528f', '2023 stage 2', 'CREATED', 2, false),
+   (CURRENT_TIMESTAMP, '2023-04-15 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2023 stage 3', 'CREATED', 3, false);
 
 -- Inserting data into candidatures table
 INSERT INTO candidatures (created_at, updated_at, approved_by_id, election_id, id, user_id)
