@@ -13,4 +13,6 @@ public interface StageService {
     Stage createElectionStage(ElectionId electionId, StageCreate create);
 
     Stage findStageById(StageId stageId);
+
+    Stage findCurrentStage();
 }

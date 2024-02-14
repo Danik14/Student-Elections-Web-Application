@@ -5,6 +5,7 @@ import gigachads.noenemies.diploma.domain.mapper.StageMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.Stage;
 import gigachads.noenemies.diploma.domain.model.StageId;
+import gigachads.noenemies.diploma.domain.model.StageStatus;
 import gigachads.noenemies.diploma.domain.service.StageService;
 import gigachads.noenemies.diploma.exception.EntityNotFoundException;
 import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
@@ -45,6 +46,17 @@ public class StageServiceImpl implements StageService {
     @Override
     public Stage findStageById(StageId stageId) {
         return stageMapper.toDomain(findEntityById(stageId));
+    }
+
+    @Override
+    public Stage findCurrentStage() {
+        return stageMapper.toDomain(findByStatus(StageStatus.IN_PROGRESS));
+    }
+
+    private StageEntity findByStatus(StageStatus status) {
+        return stageRepository.findByStatus(status).orElseThrow(
+                () -> new EntityNotFoundException("No stage found with status " + status)
+        );
     }
 
     private StageEntity findEntityById(StageId stageId){

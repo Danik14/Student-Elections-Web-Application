@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.api.controller;
 
+import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.api.dto.StageCreate;
 import gigachads.noenemies.diploma.api.dto.StageResponse;
 import gigachads.noenemies.diploma.domain.mapper.StageMapper;
@@ -36,19 +37,19 @@ public class StageController {
         return stageMapper.toResponse(stageService.findStagesByElectionId(electionId));
     }
 
-//    @Operation(summary = "Get stages by election id",
-//            operationId = "getStagesByElectionId",
-//            tags = {"Stage"},
-//            responses = {
-//                    @ApiResponse(responseCode = "200", description = "List of election's stages",
-//                            content = {@Content(mediaType = "application/json",
-//                                    schema = @Schema(implementation = StageResponse.class))})
-//            })
-//    @GetMapping("/{electionId}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public ElectionResponse getElectionById(@PathVariable ElectionId electionId) {
-//        return electionMapper.toResponse(electionService.getElectionById(electionId));
-//    }
+    @Operation(summary = "Get stages by election id",
+            operationId = "getStagesByElectionId",
+            tags = {"Stage"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Current Stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = StageResponse.class))})
+            })
+    @GetMapping("/current")
+    @ResponseStatus(HttpStatus.OK)
+    public StageResponse getElectionById() {
+        return stageMapper.toResponse(stageService.findCurrentStage());
+    }
 
     @Operation(summary = "Create new election's stage",
             operationId = "createElectionStage",
