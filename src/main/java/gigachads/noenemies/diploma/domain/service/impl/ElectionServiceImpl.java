@@ -5,6 +5,7 @@ import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.*;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
+import gigachads.noenemies.diploma.exception.EntityNotFoundException;
 import gigachads.noenemies.diploma.exception.EntityNotUpdatedException;
 import gigachads.noenemies.diploma.exception.StudentElectionsException;
 import gigachads.noenemies.diploma.storage.jpa.entity.*;
@@ -44,6 +45,14 @@ public class ElectionServiceImpl implements ElectionService {
     @Override
     public Election getElectionById(ElectionId id) {
         return electionMapper.toDomain(getElectionEntityById(id));
+    }
+
+    @Override
+    public Election getCurrentElection() {
+        return electionMapper.toDomain(findInProgressElection().orElseThrow(
+                () -> new EntityNotFoundException("No election found with status" + ElectionStatus.IN_PROGRESS)
+                )
+        );
     }
 
     @Override

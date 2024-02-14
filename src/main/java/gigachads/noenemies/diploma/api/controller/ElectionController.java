@@ -44,6 +44,20 @@ public class ElectionController {
         return electionMapper.toResponse(electionService.getElections(limit));
     }
 
+    @Operation(summary = "Get current",
+            operationId = "getCurrentElection",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Found election",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ElectionResponse.class))})
+            })
+    @GetMapping("/{electionId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ElectionResponse getCurrentElection() {
+        return electionMapper.toResponse(electionService.getCurrentElection());
+    }
+
     @Operation(summary = "Get election by Id",
             operationId = "getElectionById",
             tags = {"Election"},

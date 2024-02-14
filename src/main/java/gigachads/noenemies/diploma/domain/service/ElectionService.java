@@ -15,6 +15,8 @@ public interface ElectionService {
 
         Election getElectionById(ElectionId id);
 
+        Election getCurrentElection();
+
         List<CandidatureStage> findCandidatureStagesByElectionId(ElectionId electionId);
 
         List<CandidatureStage> initiateElection(UserId officialId, ElectionId electionId);
