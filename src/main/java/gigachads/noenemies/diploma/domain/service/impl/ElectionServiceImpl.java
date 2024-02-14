@@ -68,6 +68,11 @@ public class ElectionServiceImpl implements ElectionService {
     }
 
     @Override
+    public List<CandidatureStage> findCurrentElectionCandidatureStagesByStatus(StageStatus stageStatus) {
+        return candidatureMapper.toCandidatureStageDomain(candidatureStageRepository.findByElectionIdAndStatus(findCurrentElectionEntity().getId(), stageStatus));
+    }
+
+    @Override
     public List<CandidatureStage> initiateElection(UserId officialId, ElectionId electionId) {
         ElectionEntity electionEntity = getElectionEntityById(electionId);
         if (findInProgressElection().isPresent()) {
@@ -112,6 +117,12 @@ public class ElectionServiceImpl implements ElectionService {
 
     public Optional<ElectionEntity> findInProgressElection() {
         return electionRepository.findInProgressElection();
+    }
+
+    private ElectionEntity findCurrentElectionEntity() {
+        return electionRepository.findInProgressElection().orElseThrow(
+                () -> new EntityNotFoundException("No election found with status " + ElectionStatus.IN_PROGRESS)
+        );
     }
 
     private List<UserEntity> getAllActiveCandidates() {

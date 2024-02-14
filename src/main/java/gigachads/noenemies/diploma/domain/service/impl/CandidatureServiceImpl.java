@@ -108,4 +108,5 @@ public class CandidatureServiceImpl implements CandidatureService {
                         new EntityNotFoundException("No Election with status created")
                 );
     }
+
 }

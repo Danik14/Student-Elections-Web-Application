@@ -94,19 +94,19 @@ public class ElectionController {
         return electionMapper.toResponse(electionService.getElectionById(electionId));
     }
 
-    @Operation(summary = "Get current candidature stages info by election id",
-            operationId = "getCurrentCandidatureStagesByElectionId",
+    @Operation(summary = "Get current candidature stages info",
+            operationId = "getCurrentElectionCurrentCandidatureStages",
             tags = {"Election"},
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = CandidatureStageResponse.class))})
             })
-    @GetMapping("/{electionId}/candidature-stage/current")
+    @GetMapping("/current/candidature-stage/current")
     @ResponseStatus(HttpStatus.OK)
-    public List<CandidatureStageResponse> getCurrentCandidatureStagesByElectionId(@PathVariable ElectionId electionId) {
+    public List<CandidatureStageResponse> getCurrentElectionCurrentCandidatureStages() {
         return candidatureMapper
-                .toCandidatureStageResponse(electionService.findCandidatureStagesByElectionIdAndStatus(electionId, StageStatus.IN_PROGRESS));
+                .toCandidatureStageResponse(electionService.findCurrentElectionCandidatureStagesByStatus(StageStatus.IN_PROGRESS));
     }
 
     @Operation(summary = "Create a new Election",
