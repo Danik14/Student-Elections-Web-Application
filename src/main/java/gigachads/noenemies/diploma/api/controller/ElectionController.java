@@ -53,7 +53,6 @@ public class ElectionController {
                                     schema = @Schema(implementation = ElectionResponse.class))})
             })
     @GetMapping("/current")
-    @CrossOrigin("http://localhost:3000")
     @ResponseStatus(HttpStatus.OK)
     public ElectionResponse getCurrentElection() {
         return electionMapper.toResponse(electionService.getCurrentElection());
