@@ -16,4 +16,8 @@ public class CandidatureStageResponse {
     private CandidatureResponse candidature;
     @NonNull
     private List<VoteResponse> votes;
+
+    public int getVotesCount() {
+        return votes.size();
+    }
 }
