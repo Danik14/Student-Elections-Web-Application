@@ -49,13 +49,15 @@ public class StageServiceImpl implements StageService {
     }
 
     @Override
-    public Stage findCurrentStage() {
-        return stageMapper.toDomain(findByStatus(StageStatus.IN_PROGRESS));
+    public Stage findCurrentStageByElectionId(ElectionId electionId) {
+        return stageMapper.toDomain(findByElectionIdAndStatus(electionId, StageStatus.IN_PROGRESS));
     }
 
-    private StageEntity findByStatus(StageStatus status) {
-        return stageRepository.findByStatus(status).orElseThrow(
-                () -> new EntityNotFoundException("No stage found with status " + status)
+    private StageEntity findByElectionIdAndStatus(ElectionId electionId, StageStatus status) {
+        return stageRepository.findByElection_IdAndStatus(electionId.getId(), status).orElseThrow(
+                () -> new EntityNotFoundException(
+                        String.format("No Election found with id %s and status %s", electionId, status)
+                )
         );
     }
 

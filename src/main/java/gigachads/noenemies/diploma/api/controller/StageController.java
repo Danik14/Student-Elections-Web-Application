@@ -47,8 +47,8 @@ public class StageController {
             })
     @GetMapping("/current")
     @ResponseStatus(HttpStatus.OK)
-    public StageResponse getElectionById() {
-        return stageMapper.toResponse(stageService.findCurrentStage());
+    public StageResponse getCurrentElectionStage(@PathVariable ElectionId electionId) {
+        return stageMapper.toResponse(stageService.findCurrentStageByElectionId(electionId));
     }
 
     @Operation(summary = "Create new election's stage",

@@ -13,5 +13,5 @@ import java.util.UUID;
 public interface StageRepository extends JpaRepository<StageEntity, UUID> {
     List<StageEntity> findByElection_Id(UUID electionId);
 
-    Optional<StageEntity> findByStatus(StageStatus status);
+    Optional<StageEntity> findByElection_IdAndStatus(UUID electionId, StageStatus status);
 }
