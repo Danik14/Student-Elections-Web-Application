@@ -6,6 +6,7 @@ import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
+import gigachads.noenemies.diploma.domain.model.StageStatus;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -58,19 +59,19 @@ public class ElectionController {
         return electionMapper.toResponse(electionService.getCurrentElection());
     }
 
-    @Operation(summary = "Get election by Id",
-            operationId = "getElectionById",
-            tags = {"Election"},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Found election",
-                            content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = ElectionResponse.class))})
-            })
-    @GetMapping("/{electionId}")
-    @ResponseStatus(HttpStatus.OK)
-    public ElectionResponse getElectionById(@PathVariable ElectionId electionId) {
-        return electionMapper.toResponse(electionService.getElectionById(electionId));
-    }
+//    @Operation(summary = "Get election by Id",
+//            operationId = "getElectionById",
+//            tags = {"Election"},
+//            responses = {
+//                    @ApiResponse(responseCode = "200", description = "Found election",
+//                            content = {@Content(mediaType = "application/json",
+//                                    schema = @Schema(implementation = ElectionResponse.class))})
+//            })
+//    @GetMapping("/{electionId}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public ElectionResponse getElectionById(@PathVariable ElectionId electionId) {
+//        return electionMapper.toResponse(electionService.getElectionById(electionId));
+//    }
 
     @Operation(summary = "Get candidature stages info by election id",
             operationId = "getCandidatureStagesByElectionId",
@@ -85,6 +86,27 @@ public class ElectionController {
     public List<CandidatureStageResponse> getCandidatureStagesByElectionId(@PathVariable ElectionId electionId) {
         return candidatureMapper
                 .toCandidatureStageResponse(electionService.findCandidatureStagesByElectionId(electionId));
+    }
+
+    @GetMapping("/{electionId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ElectionResponse getElectionById(@PathVariable ElectionId electionId) {
+        return electionMapper.toResponse(electionService.getElectionById(electionId));
+    }
+
+    @Operation(summary = "Get current candidature stages info by election id",
+            operationId = "getCurrentCandidatureStagesByElectionId",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidatureStageResponse.class))})
+            })
+    @GetMapping("/{electionId}/candidature-stage/current")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CandidatureStageResponse> getCurrentCandidatureStagesByElectionId(@PathVariable ElectionId electionId) {
+        return candidatureMapper
+                .toCandidatureStageResponse(electionService.findCandidatureStagesByElectionIdAndStatus(electionId, StageStatus.IN_PROGRESS));
     }
 
     @Operation(summary = "Create a new Election",

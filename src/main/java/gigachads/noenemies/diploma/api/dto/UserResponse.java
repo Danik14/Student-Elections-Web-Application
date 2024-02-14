@@ -20,7 +20,6 @@ public class UserResponse {
     private final String firstName;
     @NonNull
     private final String lastName;
-    @JsonIgnore
     private final byte[] photo;
     @NonNull
     private final UserRole role;

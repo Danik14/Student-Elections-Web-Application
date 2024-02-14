@@ -63,6 +63,11 @@ public class ElectionServiceImpl implements ElectionService {
     }
 
     @Override
+    public List<CandidatureStage> findCandidatureStagesByElectionIdAndStatus(ElectionId electionId, StageStatus stageStatus) {
+        return candidatureMapper.toCandidatureStageDomain(candidatureStageRepository.findByElectionIdAndStatus(electionId.getId(), stageStatus));
+    }
+
+    @Override
     public List<CandidatureStage> initiateElection(UserId officialId, ElectionId electionId) {
         ElectionEntity electionEntity = getElectionEntityById(electionId);
         if (findInProgressElection().isPresent()) {
