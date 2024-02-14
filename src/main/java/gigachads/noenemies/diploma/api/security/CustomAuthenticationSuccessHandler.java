@@ -28,7 +28,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
         log.info("User authenticated: {}", oidcUser);
         userService.saveUser(parseUserInfo(oidcUser.getAttributes()));
 
-        getRedirectStrategy().sendRedirect(request, response, "/hello");
+        getRedirectStrategy().sendRedirect(request, response, "http://localhost:3000/");
     }
 
     private UserCreate parseUserInfo(Map<String, Object> userInfo) {
