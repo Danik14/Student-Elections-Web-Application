@@ -52,7 +52,7 @@ public class ElectionController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ElectionResponse.class))})
             })
-    @GetMapping("/{electionId}")
+    @GetMapping("/current")
     @ResponseStatus(HttpStatus.OK)
     public ElectionResponse getCurrentElection() {
         return electionMapper.toResponse(electionService.getCurrentElection());
