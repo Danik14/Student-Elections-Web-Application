@@ -63,6 +63,7 @@ public class SecurityConfig {
                         .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
                 )
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .build();
     }
 
@@ -76,26 +77,26 @@ public class SecurityConfig {
 //    }
 
 
-//    @Bean
-//    protected CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOriginPatterns(List.of("*"));
-//        configuration.setAllowedMethods(List.of("*"));
-//        configuration.setAllowCredentials(true);
-//        configuration.setAllowedHeaders(List.of("*"));
-//        configuration.setExposedHeaders(
-//                List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials",
-//                        "Access-Control-Allow-Headers", "Access-Control-Allow-Methods"));
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
-
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    protected CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOriginPatterns(List.of("*"));
+        configuration.setAllowedMethods(List.of("*"));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setExposedHeaders(
+                List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials",
+                        "Access-Control-Allow-Headers", "Access-Control-Allow-Methods"));
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("http://localhost:3000", new CorsConfiguration().applyPermitDefaultValues());
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("http://localhost:3000", new CorsConfiguration().applyPermitDefaultValues());
+//        return source;
+//    }
 }
