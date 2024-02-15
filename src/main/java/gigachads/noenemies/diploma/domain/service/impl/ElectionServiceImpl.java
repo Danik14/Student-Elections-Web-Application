@@ -16,8 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -64,12 +66,24 @@ public class ElectionServiceImpl implements ElectionService {
 
     @Override
     public List<CandidatureStage> findCandidatureStagesByElectionIdAndStatus(ElectionId electionId, StageStatus stageStatus) {
-        return candidatureMapper.toCandidatureStageDomain(candidatureStageRepository.findByElectionIdAndStatus(electionId.getId(), stageStatus));
+        return candidatureMapper.toCandidatureStageDomain(
+                candidatureStageRepository.findByElectionIdAndStatus(electionId.getId(), stageStatus)
+                        .stream()
+                        .sorted(Comparator.comparingInt((CandidatureStageEntity candidatureStageEntity) ->
+                                candidatureStageEntity.getVotes().size()).reversed())
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
     public List<CandidatureStage> findCurrentElectionCandidatureStagesByStatus(StageStatus stageStatus) {
-        return candidatureMapper.toCandidatureStageDomain(candidatureStageRepository.findByElectionIdAndStatus(findCurrentElectionEntity().getId(), stageStatus));
+        return candidatureMapper.toCandidatureStageDomain(
+                candidatureStageRepository.findByElectionIdAndStatus(findCurrentElectionEntity().getId(), stageStatus)
+                        .stream()
+                        .sorted(Comparator.comparingInt((CandidatureStageEntity candidatureStageEntity) ->
+                                candidatureStageEntity.getVotes().size()).reversed())
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override

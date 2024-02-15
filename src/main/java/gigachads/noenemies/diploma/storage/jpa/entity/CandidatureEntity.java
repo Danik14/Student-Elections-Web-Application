@@ -33,11 +33,4 @@ public class CandidatureEntity extends BaseEntity{
     @ToString.Exclude
     @OneToMany(mappedBy = "candidature")
     private List<CandidatureStageEntity> candidatureStages;
-
-
-    @PrePersist
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
 }
