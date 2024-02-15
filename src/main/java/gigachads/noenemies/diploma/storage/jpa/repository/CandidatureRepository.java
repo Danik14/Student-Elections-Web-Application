@@ -14,4 +14,5 @@ import java.util.UUID;
 public interface CandidatureRepository extends JpaRepository<CandidatureEntity, UUID> {
     @Query("SELECT c FROM CandidatureEntity c INNER JOIN c.user u WHERE u.role = :role")
     List<CandidatureEntity> findCandidaturesByUserRole(@Param("role") UserRole role);
+
 }

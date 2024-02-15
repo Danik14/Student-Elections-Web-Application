@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @ToString
 @Table(name = "candidature_plans")
 @Getter
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class CandidaturePlanEntity extends BaseEntity {

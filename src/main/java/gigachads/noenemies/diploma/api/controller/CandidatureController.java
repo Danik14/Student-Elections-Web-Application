@@ -110,12 +110,11 @@ public class CandidatureController {
             })
     @PatchMapping("/plan")
     @ResponseStatus(HttpStatus.OK)
-    public String updateCandidaturePlan(Principal principal,
+    public CandidaturePlanResponse updateCandidaturePlan(Principal principal,
                                         @RequestBody CandidaturePlanUpdate update) {
         UserId studentId = UserId.of(principal.getName());
 
-        candidatureService.updateCandidaturePlan(update, studentId);
-        return "Application was sent";
+        return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, studentId));
     }
 
     private UserId getUserIdByOauth2Principal(Principal principal){
