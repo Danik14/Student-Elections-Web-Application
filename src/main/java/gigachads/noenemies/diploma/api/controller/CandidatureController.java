@@ -4,11 +4,15 @@ package gigachads.noenemies.diploma.api.controller;
 import gigachads.noenemies.diploma.api.dto.CandidaturePlanResponse;
 import gigachads.noenemies.diploma.api.dto.CandidaturePlanUpdate;
 import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
+import gigachads.noenemies.diploma.api.dto.VoteResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.UserMapper;
+import gigachads.noenemies.diploma.domain.mapper.VoteMapper;
 import gigachads.noenemies.diploma.domain.model.Candidature;
+import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureService;
+import gigachads.noenemies.diploma.domain.service.VoteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,9 +31,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Validated
 public class CandidatureController {
-    private final UserMapper userMapper;
     private final CandidatureService candidatureService;
+    private final VoteService voteService;
     private final CandidatureMapper candidatureMapper;
+    private final UserMapper userMapper;
+    private final VoteMapper voteMapper;
 
 
     @Operation(summary = "Get active candidatures",
@@ -75,6 +81,23 @@ public class CandidatureController {
     public Candidature approveCandidature(Principal principal,
                                           @PathVariable UserId studentId) {
         return candidatureService.approveCandidature(studentId, getUserIdByOauth2Principal(principal));
+    }
+
+    @Operation(summary = "Vote for candidature on current stage",
+            operationId = "voteForCandidatureStage",
+            tags = {"Candidature"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully voted for candidature on current stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = VoteResponse.class))})
+            })
+    @PostMapping("/{candidatureStageId}/vote")
+    @ResponseStatus(HttpStatus.OK)
+    public VoteResponse voteForCandidatureStage(Principal principal,
+                                                @PathVariable CandidatureStageId candidatureStageId) {
+        return voteMapper.toResponse(
+                voteService.voteForCandidatureStage(getUserIdByOauth2Principal(principal), candidatureStageId)
+        );
     }
 
     @Operation(summary = "Update candidature plan",
