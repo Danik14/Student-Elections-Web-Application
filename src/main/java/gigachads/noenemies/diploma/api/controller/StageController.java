@@ -1,6 +1,5 @@
 package gigachads.noenemies.diploma.api.controller;
 
-import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.api.dto.StageCreate;
 import gigachads.noenemies.diploma.api.dto.StageResponse;
 import gigachads.noenemies.diploma.domain.mapper.StageMapper;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/election/{electionId}/stage")
+@RequestMapping("/api/v1/election/")
 @RequiredArgsConstructor
 public class StageController {
     private final StageService stageService;
@@ -31,7 +30,7 @@ public class StageController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = StageResponse.class))})
             })
-    @GetMapping
+    @GetMapping("{electionId}/stage")
     @ResponseStatus(HttpStatus.OK)
     public List<StageResponse> getStagesByElectionId(@PathVariable ElectionId electionId) {
         return stageMapper.toResponse(stageService.findStagesByElectionId(electionId));
@@ -45,10 +44,24 @@ public class StageController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = StageResponse.class))})
             })
-    @GetMapping("/current")
+    @GetMapping("/{electionId}/stage/current")
     @ResponseStatus(HttpStatus.OK)
     public StageResponse getCurrentElectionStage(@PathVariable ElectionId electionId) {
         return stageMapper.toResponse(stageService.findCurrentStageByElectionId(electionId));
+    }
+
+    @Operation(summary = "Get current election's current stage",
+            operationId = "getCurrentElectionCurrentStage",
+            tags = {"Stage"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Current Election's current stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = StageResponse.class))})
+            })
+    @GetMapping("/current/stage/current")
+    @ResponseStatus(HttpStatus.OK)
+    public StageResponse getCurrentElectionCurrentStage() {
+        return stageMapper.toResponse(stageService.findCurrentElectionCurrentStage());
     }
 
     @Operation(summary = "Create new election's stage",
@@ -59,7 +72,7 @@ public class StageController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = StageResponse.class))})
             })
-    @PostMapping
+    @PostMapping("/{electionId}/stage")
     @ResponseStatus(HttpStatus.CREATED)
     public StageResponse createElectionStage(
             @PathVariable ElectionId electionId,

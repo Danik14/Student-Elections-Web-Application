@@ -5,7 +5,6 @@ import gigachads.noenemies.diploma.domain.model.VoteId;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.ToString;
 
 @Builder
 @Getter

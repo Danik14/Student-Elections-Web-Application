@@ -2,10 +2,7 @@ package gigachads.noenemies.diploma.domain.service.impl;
 
 import gigachads.noenemies.diploma.api.dto.StageCreate;
 import gigachads.noenemies.diploma.domain.mapper.StageMapper;
-import gigachads.noenemies.diploma.domain.model.ElectionId;
-import gigachads.noenemies.diploma.domain.model.Stage;
-import gigachads.noenemies.diploma.domain.model.StageId;
-import gigachads.noenemies.diploma.domain.model.StageStatus;
+import gigachads.noenemies.diploma.domain.model.*;
 import gigachads.noenemies.diploma.domain.service.StageService;
 import gigachads.noenemies.diploma.exception.EntityNotFoundException;
 import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
@@ -51,6 +48,17 @@ public class StageServiceImpl implements StageService {
     @Override
     public Stage findCurrentStageByElectionId(ElectionId electionId) {
         return stageMapper.toDomain(findByElectionIdAndStatus(electionId, StageStatus.IN_PROGRESS));
+    }
+
+    @Override
+    public Stage findCurrentElectionCurrentStage() {
+        return findCurrentStageByElectionId(ElectionId.of(findCurrentElectionEntity().getId()));
+    }
+
+    private ElectionEntity findCurrentElectionEntity() {
+        return electionRepository.findInProgressElection().orElseThrow(
+                () -> new EntityNotFoundException("No election found with status " + ElectionStatus.IN_PROGRESS)
+        );
     }
 
     private StageEntity findByElectionIdAndStatus(ElectionId electionId, StageStatus status) {
