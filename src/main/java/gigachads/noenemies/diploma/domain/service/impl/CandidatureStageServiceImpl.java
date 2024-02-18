@@ -1,10 +1,7 @@
 package gigachads.noenemies.diploma.domain.service.impl;
 
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
-import gigachads.noenemies.diploma.domain.model.CandidatureStage;
-import gigachads.noenemies.diploma.domain.model.ElectionId;
-import gigachads.noenemies.diploma.domain.model.ElectionStatus;
-import gigachads.noenemies.diploma.domain.model.StageStatus;
+import gigachads.noenemies.diploma.domain.model.*;
 import gigachads.noenemies.diploma.domain.service.CandidatureStageService;
 import gigachads.noenemies.diploma.exception.EntityNotFoundException;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureStageEntity;
@@ -45,6 +42,7 @@ public class CandidatureStageServiceImpl implements CandidatureStageService {
 
     @Override
     public List<CandidatureStage> findCurrentElectionCandidatureStagesByStatus(StageStatus stageStatus) {
+        System.out.println(candidatureStageRepository.findByElectionIdAndStageStatus(findCurrentElectionEntity().getId(), stageStatus));
         return candidatureMapper.toCandidatureStageDomain(
                 candidatureStageRepository.findByElectionIdAndStageStatus(findCurrentElectionEntity().getId(), stageStatus)
                         .stream()
@@ -54,6 +52,16 @@ public class CandidatureStageServiceImpl implements CandidatureStageService {
         );
     }
 
+    @Override
+    public CandidatureStage findCandidatureStageById(CandidatureStageId candidatureStageId) {
+        return candidatureMapper.toCandidatureStageDomain(findCandidatureStageEntityById(candidatureStageId));
+    }
+
+    private CandidatureStageEntity findCandidatureStageEntityById(CandidatureStageId candidatureStageId){
+        return candidatureStageRepository.findById(candidatureStageId.getId()).orElseThrow(
+                () -> new EntityNotFoundException("CandidatureStage not found with id " + candidatureStageId)
+        );
+    }
     private ElectionEntity findCurrentElectionEntity() {
         return electionRepository.findInProgressElection().orElseThrow(
                 () -> new EntityNotFoundException("No election found with status " + ElectionStatus.IN_PROGRESS)

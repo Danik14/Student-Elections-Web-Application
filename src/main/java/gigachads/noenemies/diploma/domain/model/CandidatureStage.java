@@ -20,4 +20,6 @@ public class CandidatureStage {
     @ToString.Exclude
     @NonNull
     private List<Vote> votes;
+    @NonNull
+    private Stage stage;
 }

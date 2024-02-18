@@ -5,9 +5,7 @@ import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
-import gigachads.noenemies.diploma.domain.model.ElectionId;
-import gigachads.noenemies.diploma.domain.model.StageStatus;
-import gigachads.noenemies.diploma.domain.model.UserId;
+import gigachads.noenemies.diploma.domain.model.*;
 import gigachads.noenemies.diploma.domain.service.CandidatureStageService;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -109,6 +107,23 @@ public class ElectionController {
     public List<CandidatureStageResponse> getCurrentElectionCurrentCandidatureStages() {
         return candidatureMapper
                 .toCandidatureStageResponse(candidatureStageService.findCurrentElectionCandidatureStagesByStatus(StageStatus.IN_PROGRESS));
+    }
+
+    @Operation(summary = "Get current candidature stages info",
+            operationId = "getCurrentElectionCurrentCandidatureStages",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidatureStageResponse.class))})
+            })
+    @GetMapping("/current/candidature-stage/{candidatureStageId}")
+    @ResponseStatus(HttpStatus.OK)
+    public CandidatureStageResponse getCurrentElectionCandidatureStageById(
+            @PathVariable CandidatureStageId candidatureStageId
+            ) {
+        return candidatureMapper
+                .toCandidatureStageResponse(candidatureStageService.findCandidatureStageById(candidatureStageId));
     }
 
     @Operation(summary = "Create a new Election",
