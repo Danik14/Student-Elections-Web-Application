@@ -24,10 +24,13 @@ public class CandidatureStageEntity extends BaseEntity {
 
     @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "candidature_id")
+    @JoinColumn(name = "candidature_id", nullable = false)
     private CandidatureEntity candidature;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "candidatureStage")
     private List<VoteEntity> votes;
+    @ToString.Exclude
+    @OneToOne(mappedBy = "candidatureStage")
+    private CandidatureStagePlanEntity candidatureStagePlan;
 }

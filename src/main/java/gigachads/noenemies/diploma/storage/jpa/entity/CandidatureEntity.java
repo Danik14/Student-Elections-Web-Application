@@ -19,9 +19,6 @@ public class CandidatureEntity extends BaseEntity{
     @JoinColumn(name = "election_id", nullable = false)
     private ElectionEntity election;
 
-    @OneToOne(mappedBy = "candidature")
-    private CandidaturePlanEntity plan;
-
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "approvedBy_id")
@@ -30,6 +27,8 @@ public class CandidatureEntity extends BaseEntity{
     @OneToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
+    @OneToOne(mappedBy = "candidature")
+    private CandidaturePlanEntity plan;
     @ToString.Exclude
     @OneToMany(mappedBy = "candidature")
     private List<CandidatureStageEntity> candidatureStages;
