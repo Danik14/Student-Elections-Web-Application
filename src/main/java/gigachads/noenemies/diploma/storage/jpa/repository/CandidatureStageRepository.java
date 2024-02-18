@@ -20,7 +20,7 @@ public interface CandidatureStageRepository extends JpaRepository<CandidatureSta
     @Query("SELECT cs FROM CandidatureStageEntity cs " +
             "JOIN cs.stage s " +
             "WHERE s.election.id = :electionId AND s.status = :status")
-    List<CandidatureStageEntity> findByElectionIdAndStatus(
+    List<CandidatureStageEntity> findByElectionIdAndStageStatus(
             @Param("electionId") UUID electionId,
             @Param("status") StageStatus status
     );

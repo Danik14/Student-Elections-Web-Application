@@ -23,6 +23,7 @@ public class CandidatureStagePlanEntity extends BaseEntity {
     @Column(name = "link2", nullable = false)
     private String link2;
 
+    @ToString.Exclude
     @JoinColumn(name = "candidature_stage_id")
     @OneToOne
     private CandidatureStageEntity candidatureStage;

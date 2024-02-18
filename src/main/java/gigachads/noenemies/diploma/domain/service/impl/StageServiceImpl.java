@@ -64,7 +64,7 @@ public class StageServiceImpl implements StageService {
     private StageEntity findByElectionIdAndStatus(ElectionId electionId, StageStatus status) {
         return stageRepository.findByElection_IdAndStatus(electionId.getId(), status).orElseThrow(
                 () -> new EntityNotFoundException(
-                        String.format("No Election found with id %s and status %s", electionId, status)
+                        String.format("No Stage found with election id %s and status %s", electionId, status)
                 )
         );
     }

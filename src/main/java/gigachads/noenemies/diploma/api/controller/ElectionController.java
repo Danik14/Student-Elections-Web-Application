@@ -8,6 +8,7 @@ import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.StageStatus;
 import gigachads.noenemies.diploma.domain.model.UserId;
+import gigachads.noenemies.diploma.domain.service.CandidatureStageService;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,6 +27,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ElectionController {
     private final ElectionService electionService;
+    private final CandidatureStageService candidatureStageService;
     private final ElectionMapper electionMapper;
     private final CandidatureMapper candidatureMapper;
 
@@ -85,7 +87,7 @@ public class ElectionController {
     @ResponseStatus(HttpStatus.OK)
     public List<CandidatureStageResponse> getCandidatureStagesByElectionId(@PathVariable ElectionId electionId) {
         return candidatureMapper
-                .toCandidatureStageResponse(electionService.findCandidatureStagesByElectionId(electionId));
+                .toCandidatureStageResponse(candidatureStageService.findCandidatureStagesByElectionId(electionId));
     }
 
     @GetMapping("/{electionId}")
@@ -106,7 +108,7 @@ public class ElectionController {
     @ResponseStatus(HttpStatus.OK)
     public List<CandidatureStageResponse> getCurrentElectionCurrentCandidatureStages() {
         return candidatureMapper
-                .toCandidatureStageResponse(electionService.findCurrentElectionCandidatureStagesByStatus(StageStatus.IN_PROGRESS));
+                .toCandidatureStageResponse(candidatureStageService.findCurrentElectionCandidatureStagesByStatus(StageStatus.IN_PROGRESS));
     }
 
     @Operation(summary = "Create a new Election",

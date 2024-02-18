@@ -16,10 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +27,7 @@ public class ElectionServiceImpl implements ElectionService {
     private final ElectionRepository electionRepository;
     private final CandidatureRepository candidatureRepository;
     private final CandidatureStageRepository candidatureStageRepository;
+    private final CandidatureStagePlanRepository candidatureStagePlanRepository;
     private final StageRepository stageRepository;
     private final UserRepository userRepository;
     private final ElectionMapper electionMapper;
@@ -54,35 +53,6 @@ public class ElectionServiceImpl implements ElectionService {
         return electionMapper.toDomain(findInProgressElection().orElseThrow(
                 () -> new EntityNotFoundException("No election found with status" + ElectionStatus.IN_PROGRESS)
                 )
-        );
-    }
-
-    @Override
-    public List<CandidatureStage> findCandidatureStagesByElectionId(ElectionId electionId) {
-        return candidatureMapper.toCandidatureStageDomain(
-                candidatureStageRepository.findByElectionId(electionId.getId())
-        );
-    }
-
-    @Override
-    public List<CandidatureStage> findCandidatureStagesByElectionIdAndStatus(ElectionId electionId, StageStatus stageStatus) {
-        return candidatureMapper.toCandidatureStageDomain(
-                candidatureStageRepository.findByElectionIdAndStatus(electionId.getId(), stageStatus)
-                        .stream()
-                        .sorted(Comparator.comparingInt((CandidatureStageEntity candidatureStageEntity) ->
-                                candidatureStageEntity.getVotes().size()).reversed())
-                        .collect(Collectors.toList())
-        );
-    }
-
-    @Override
-    public List<CandidatureStage> findCurrentElectionCandidatureStagesByStatus(StageStatus stageStatus) {
-        return candidatureMapper.toCandidatureStageDomain(
-                candidatureStageRepository.findByElectionIdAndStatus(findCurrentElectionEntity().getId(), stageStatus)
-                        .stream()
-                        .sorted(Comparator.comparingInt((CandidatureStageEntity candidatureStageEntity) ->
-                                candidatureStageEntity.getVotes().size()).reversed())
-                        .collect(Collectors.toList())
         );
     }
 
@@ -123,14 +93,29 @@ public class ElectionServiceImpl implements ElectionService {
     }
 
     private CandidatureStageEntity createCandidatureStage(StageEntity stageEntity, CandidatureEntity candidatureEntity){
-        return candidatureStageRepository.save(CandidatureStageEntity.builder()
+        CandidatureStageEntity candidatureStageEntity =  candidatureStageRepository.save(CandidatureStageEntity.builder()
                         .stage(stageEntity)
                         .candidature(candidatureEntity)
+                        .stagePlan(candidatureStagePlanRepository.save(CandidatureStagePlanEntity.builder()
+                                .link1("")
+                                .link2("")
+                                .description("")
+                                .build()))
                 .build());
+
+        var result = findCandidatureStageById(CandidatureStageId.of(candidatureStageEntity.getId()));
+        System.out.println(result);
+        return result;
     }
 
     public Optional<ElectionEntity> findInProgressElection() {
         return electionRepository.findInProgressElection();
+    }
+
+    private CandidatureStageEntity findCandidatureStageById(CandidatureStageId candidatureStageId){
+        return candidatureStageRepository.findById(candidatureStageId.getId()).orElseThrow(
+                () -> new EntityNotFoundException("Candidature Stage not found with id " + candidatureStageId)
+        );
     }
 
     private ElectionEntity findCurrentElectionEntity() {

@@ -12,7 +12,8 @@ import java.util.List;
 public class CandidatureStage {
     @NonNull
     private CandidatureStageId id;
-
+    @NonNull
+    private CandidatureStagePlan stagePlan;
     @ToString.Exclude
     @NonNull
     private Candidature candidature;

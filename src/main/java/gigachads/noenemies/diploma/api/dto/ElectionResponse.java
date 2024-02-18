@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Getter
@@ -29,4 +30,7 @@ public class ElectionResponse {
     @NonNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime deadline;
+
+    @NonNull
+    private final List<StageResponse> stages;
 }

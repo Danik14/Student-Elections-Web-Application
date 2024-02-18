@@ -22,7 +22,6 @@ public class CandidatureStageEntity extends BaseEntity {
     @JoinColumn(name = "stage_id", nullable = false)
     private StageEntity stage;
 
-    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "candidature_id", nullable = false)
     private CandidatureEntity candidature;
@@ -30,7 +29,6 @@ public class CandidatureStageEntity extends BaseEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "candidatureStage")
     private List<VoteEntity> votes;
-    @ToString.Exclude
     @OneToOne(mappedBy = "candidatureStage")
-    private CandidatureStagePlanEntity candidatureStagePlan;
+    private CandidatureStagePlanEntity stagePlan;
 }
