@@ -171,7 +171,6 @@ VALUES
    'https://instagram.com/link2', 'Slogan 2', 'https://t.me/link2');
 
 
--- Inserting data into candidature_stages table
 INSERT INTO candidature_stages (created_at, updated_at, candidature_id, id, stage_id)
 VALUES
 --- user1 candidature stages
@@ -184,8 +183,26 @@ VALUES
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '8dcf75a5-0636-425a-9ffd-b732d12ff197', '223bf42e-b931-4926-af13-050817d160e1', '9dbc17ae-c522-48a7-b9f9-531d8b8a528f'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '8dcf75a5-0636-425a-9ffd-b732d12ff197', '01d2835e-ff45-4847-9a82-61bf83634b28', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea');
 
---
--- Inserting data into votes table
+
+INSERT INTO candidature_stage_plans (created_at, updated_at, id, candidature_stage_id, link1, link2, description)
+VALUES
+--- user1 candidature stage plans
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'ceede86d-b5c6-4f6d-9a9f-b51a6979db8d', 'b62443c7-8d37-4ef1-a8d1-d0d3f6908412',
+    'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user1 stage1'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '5068432f-4195-45ea-b4fb-be1bdfecb2c4', 'e2df0d5d-eb3f-4b2e-84a8-f962c0ae10a0',
+    'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user1 stage2'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '1aae27e3-158e-4c5d-80be-1c6ea245b8a4', '1efe9085-27b5-4b1c-9997-6c0144aaa8fa',
+    'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user1 stage3'),
+
+--- user2 candidature stage plans
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '43c239f5-8982-4857-be1b-1a557f64b542', '16d28a8c-1251-4c0e-88fe-60ba89abb080',
+    'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user2 stage1'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0766fec7-22ef-4e37-9b67-d6efef5e3f98', '223bf42e-b931-4926-af13-050817d160e1',
+    'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user2 stage2'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '53d8bb5d-3abf-419e-b01c-982f71b81afe', '01d2835e-ff45-4847-9a82-61bf83634b28',
+    'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user2 stage3');
+
+
 INSERT INTO votes (created_at, updated_at, candidature_stage_id, elector_id, id)
 VALUES
 --- gigabyte votes for user1
