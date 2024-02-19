@@ -5,7 +5,10 @@ import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
-import gigachads.noenemies.diploma.domain.model.*;
+import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
+import gigachads.noenemies.diploma.domain.model.ElectionId;
+import gigachads.noenemies.diploma.domain.model.StageStatus;
+import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureStageService;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -75,7 +78,7 @@ public class ElectionController {
 
     @Operation(summary = "Get candidature stages info by election id",
             operationId = "getCandidatureStagesByElectionId",
-            tags = {"Election"},
+            tags = {"CandidatureStage"},
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
                             content = {@Content(mediaType = "application/json",
@@ -96,7 +99,7 @@ public class ElectionController {
 
     @Operation(summary = "Get current candidature stages info",
             operationId = "getCurrentElectionCurrentCandidatureStages",
-            tags = {"Election"},
+            tags = {"CandidatureStage"},
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
                             content = {@Content(mediaType = "application/json",
@@ -109,11 +112,11 @@ public class ElectionController {
                 .toCandidatureStageResponse(candidatureStageService.findCurrentElectionCandidatureStagesByStatus(StageStatus.IN_PROGRESS));
     }
 
-    @Operation(summary = "Get current candidature stages info",
-            operationId = "getCurrentElectionCurrentCandidatureStages",
-            tags = {"Election"},
+    @Operation(summary = "Get current election's candidature stage info by id",
+            operationId = "getCurrentElectionCandidatureStageById",
+            tags = {"CandidatureStage"},
             responses = {
-                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
+                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stage",
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = CandidatureStageResponse.class))})
             })
@@ -144,7 +147,7 @@ public class ElectionController {
 
     @Operation(summary = "Initiate election by Id",
             operationId = "initiateElectionById",
-            tags = {"Election"},
+            tags = {"CandidatureStage"},
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully initiated election",
                             content = {@Content(mediaType = "application/json",

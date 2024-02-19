@@ -85,13 +85,13 @@ public class CandidatureController {
 
     @Operation(summary = "Vote for candidature on current stage",
             operationId = "voteForCandidatureStage",
-            tags = {"Candidature"},
+            tags = {"CandidatureStage"},
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully voted for candidature on current stage",
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = VoteResponse.class))})
             })
-    @PostMapping("/{candidatureStageId}/vote")
+    @GetMapping("/{candidatureStageId}/vote")
     @ResponseStatus(HttpStatus.OK)
     public VoteResponse voteForCandidatureStage(Principal principal,
                                                 @PathVariable CandidatureStageId candidatureStageId) {

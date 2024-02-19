@@ -1,7 +1,6 @@
 package gigachads.noenemies.diploma.api.dto;
 
 import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
-import gigachads.noenemies.diploma.domain.model.Stage;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
