@@ -1,31 +1,65 @@
 package gigachads.noenemies.diploma.api.controller;
 
-//@AutoConfigureMockMvc
-//@ActiveProfiles("test")
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-//@Sql(scripts = "/test_data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-//@ExtendWith(ContainerHolder.class)
-public class ElectionControllerIT {
+import gigachads.noenemies.diploma.api.dto.ElectionResponse;
+import gigachads.noenemies.diploma.containers.ContainerHolder;
+import io.restassured.http.ContentType;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 
-//    @Autowired
-//    private TestRestTemplate template;
-//
-//    private Map<String, String> singleParam(String key, String value) {
-//        Map<String, String> params = new HashMap<>();
-//        params.put(key, value);
-//        return params;
-//    }
-//
-//    @Test
-//    @DisplayName("Testing to finding user details by id")
-//    @SneakyThrows
-//    void findUserByIdTest() {
-//        ResponseEntity<ElectionResponse> response = template.getForEntity("/api/v1/elections/{id}", ElectionResponse.class, singleParam("id", "813a19ae-49ce-4934-917c-78d2d7dc6153"));
-//
-//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//
-////        assertThat(response.getBody())
-////                .extracting(UserDTO::getEmail, UserDTO::getFirstName, UserDTO::getLastName)
-////                .containsExactly("user2@some.com", "John", "Duke");
-//    }
+import java.util.HashMap;
+import java.util.Map;
+
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.mockMvc;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@AutoConfigureMockMvc
+@ActiveProfiles("integration-test")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Sql(scripts = "test-scripts/test-election-in-progress.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+@ExtendWith(ContainerHolder.class)
+public class ElectionControllerIT {
+    private static final String BASE_RELATIVE_PATH = "/api/v1/election";
+
+    @Autowired
+    private TestRestTemplate template;
+
+    private Map<String, String> singleParam(String key, String value) {
+        Map<String, String> params = new HashMap<>();
+        params.put(key, value);
+        return params;
+    }
+
+    @Test
+    @DisplayName("Testing to finding user details by id")
+    @SneakyThrows
+    void test_findElectionById_success() {
+        var actual = given()
+                .log().all()
+                .header("Accept", "application/json")
+                .when()
+                .get(BASE_RELATIVE_PATH + "/{electionId}", "9f5eb7fe-5531-4d59-b644-3b93c9abd8d1")
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .extract().as(ElectionResponse.class);
+//        assertThat(response.getBody())
+//                .extracting(UserDTO::getEmail, UserDTO::getFirstName, UserDTO::getLastName)
+//                .containsExactly("user2@some.com", "John", "Duke");
+    }
 }
