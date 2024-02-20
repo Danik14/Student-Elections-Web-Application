@@ -1,6 +1,6 @@
 spring:
   security:
     basic:
-      enabled: false
+      enable: false
   flyway:
     cleanDisabled: false
