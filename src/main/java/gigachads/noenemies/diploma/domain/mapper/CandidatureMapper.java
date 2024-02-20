@@ -6,17 +6,14 @@ import gigachads.noenemies.diploma.api.dto.CandidatureStageResponse;
 import gigachads.noenemies.diploma.domain.model.Candidature;
 import gigachads.noenemies.diploma.domain.model.CandidaturePlan;
 import gigachads.noenemies.diploma.domain.model.CandidatureStage;
-import gigachads.noenemies.diploma.domain.model.Vote;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureEntity;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidaturePlanEntity;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureStageEntity;
-import gigachads.noenemies.diploma.storage.jpa.entity.VoteEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,

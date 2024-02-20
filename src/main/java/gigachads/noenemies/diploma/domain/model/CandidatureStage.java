@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
 
-import java.util.List;
-
 @Getter
 @Builder
 public class CandidatureStage {

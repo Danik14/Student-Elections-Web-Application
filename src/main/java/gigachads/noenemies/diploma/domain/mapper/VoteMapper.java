@@ -2,13 +2,10 @@ package gigachads.noenemies.diploma.domain.mapper;
 
 
 import gigachads.noenemies.diploma.api.dto.VoteResponse;
-import gigachads.noenemies.diploma.domain.model.CandidatureStage;
 import gigachads.noenemies.diploma.domain.model.Vote;
-import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureStageEntity;
 import gigachads.noenemies.diploma.storage.jpa.entity.VoteEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;

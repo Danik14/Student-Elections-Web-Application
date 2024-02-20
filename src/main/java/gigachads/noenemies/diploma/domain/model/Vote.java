@@ -1,6 +1,5 @@
 package gigachads.noenemies.diploma.domain.model;
 
-import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureStageEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;

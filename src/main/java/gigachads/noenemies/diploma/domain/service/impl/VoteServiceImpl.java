@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -35,12 +36,11 @@ public class VoteServiceImpl implements VoteService {
     public Vote voteForCandidatureStage(UserId electorId, CandidatureStageId candidatureStageId) {
         UserEntity elector = findUserEntityById(electorId);
         CandidatureStageEntity candidatureStage = findCandidatureStageEntityById(candidatureStageId);
-        if(!candidatureStage.getStage().isVotable()){
+        if (!candidatureStage.getStage().isVotable()){
             throw new StudentElectionsException("This stage is not open for voting");
         }
-
-        if (hasUserVotedForStage(electorId, candidatureStageId)) {
-            throw new IllegalStateException("User has already voted on the specified stage.");
+        if (hasUserVotedForStage(electorId, candidatureStage.getStage().getId())) {
+            throw new StudentElectionsException("User has already voted on the specified stage.");
         }
 
         return voteMapper.toDomain(voteRepository.save(VoteEntity.builder()
@@ -55,8 +55,8 @@ public class VoteServiceImpl implements VoteService {
     }
 
 
-    private boolean hasUserVotedForStage(UserId electorId, CandidatureStageId candidatureStageId) {
-        return voteRepository.existsByElectorIdAndCandidatureStage_Stage_Id(electorId.getId(), candidatureStageId.getId());
+    private boolean hasUserVotedForStage(UserId electorId, UUID stageId) {
+        return voteRepository.hasUserVotedOnStage(electorId.getId(), stageId);
     }
 
 
