@@ -1,12 +1,15 @@
 package gigachads.noenemies.diploma.api.controller;
 
 import gigachads.noenemies.diploma.api.dto.UserResponse;
+import gigachads.noenemies.diploma.api.dto.VoteResponse;
 import gigachads.noenemies.diploma.domain.mapper.UserMapper;
+import gigachads.noenemies.diploma.domain.mapper.VoteMapper;
 import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import gigachads.noenemies.diploma.domain.model.UserSortField;
 import gigachads.noenemies.diploma.domain.service.UserService;
+import gigachads.noenemies.diploma.domain.service.VoteService;
 import gigachads.noenemies.diploma.exception.InvalidRoleException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -29,9 +32,10 @@ import java.util.List;
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 public class UserController {
-
-    private final UserMapper userMapper;
     private final UserService userService;
+    private final VoteService voteService;
+    private final UserMapper userMapper;
+    private final VoteMapper voteMapper;
 
     @Operation(summary = "Get current user by session",
             operationId = "getCurrentUser",
@@ -82,6 +86,21 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public UserResponse getStudentByBarcode(@PathVariable String barcode) {
         return userMapper.toResponse(userService.getUserByBarcode(barcode));
+    }
+
+    @Operation(summary = "Get user votes user id",
+            operationId = "getUserVotesByUserId",
+            tags = {"User"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Found user votes",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = VoteResponse.class))})
+                    })
+    @GetMapping("/{userId}/votes")
+    @ResponseStatus(HttpStatus.OK)
+    public List<VoteResponse> getUserVotesByUserId(@PathVariable UserId userId,
+                                                   @RequestParam(value = "limit", defaultValue = "5", required = false) Integer limit) {
+        return voteMapper.toResponse(voteService.findUserVotesByUserId(userId, limit));
     }
 
     @Operation(summary = "Get users with pagination",

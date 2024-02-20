@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.domain.model;
 
+import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureStageEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
@@ -8,8 +9,11 @@ import lombok.NonNull;
 @Builder
 public class Vote {
     @NonNull
-    private VoteId id;
+    private final VoteId id;
 
     @NonNull
-    private User elector;
+    private final User elector;
+
+    @NonNull
+    private final CandidatureStage candidatureStage;
 }

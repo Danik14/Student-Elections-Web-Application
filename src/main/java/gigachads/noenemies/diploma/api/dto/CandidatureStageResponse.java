@@ -15,13 +15,9 @@ public class CandidatureStageResponse {
     @NonNull
     private CandidatureResponse candidature;
     @NonNull
-    private List<VoteResponse> votes;
+    private Integer votesCount;
     @NonNull
     private CandidatureStagePlanResponse stagePlan;
     @NonNull
     private StageResponse stage;
-
-    public int getVotesCount() {
-        return votes.size();
-    }
 }

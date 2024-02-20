@@ -17,9 +17,8 @@ public class CandidatureStage {
     @ToString.Exclude
     @NonNull
     private Candidature candidature;
-    @ToString.Exclude
     @NonNull
-    private List<Vote> votes;
+    private Integer votesCount;
     @NonNull
     private Stage stage;
 }

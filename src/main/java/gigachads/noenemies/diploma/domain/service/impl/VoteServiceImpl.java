@@ -15,8 +15,11 @@ import gigachads.noenemies.diploma.storage.jpa.repository.UserRepository;
 import gigachads.noenemies.diploma.storage.jpa.repository.VoteRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -45,6 +48,12 @@ public class VoteServiceImpl implements VoteService {
                         .candidatureStage(candidatureStage)
                 .build()));
     }
+
+    @Override
+    public List<Vote> findUserVotesByUserId(UserId userId, int limit) {
+        return voteMapper.toDomain(voteRepository.findAllByElectorIdOrderByCreatedAtDesc(userId.getId(), PageRequest.of(0, limit)));
+    }
+
 
     private boolean hasUserVotedForStage(UserId electorId, CandidatureStageId candidatureStageId) {
         return voteRepository.existsByElectorIdAndCandidatureStage_Stage_Id(electorId.getId(), candidatureStageId.getId());

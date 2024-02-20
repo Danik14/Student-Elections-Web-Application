@@ -29,6 +29,7 @@ public class CandidatureStageEntity extends BaseEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "candidatureStage")
     private List<VoteEntity> votes;
+
     @OneToOne(mappedBy = "candidatureStage")
     private CandidatureStagePlanEntity stagePlan;
 }

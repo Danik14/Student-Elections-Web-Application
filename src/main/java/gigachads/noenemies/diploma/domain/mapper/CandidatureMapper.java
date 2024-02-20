@@ -32,6 +32,7 @@ public interface CandidatureMapper {
 
     List<CandidatureResponse> toResponse(List<Candidature> candidature);
 
+    @Mapping(target = "votesCount", expression = "java(entity.getVotes().size())")
     CandidatureStage toCandidatureStageDomain(CandidatureStageEntity entity);
 
     List<CandidatureStage> toCandidatureStageDomain(List<CandidatureStageEntity> entities);
@@ -44,13 +45,13 @@ public interface CandidatureMapper {
 
     CandidaturePlanResponse toCandidaturePlanResponse(CandidaturePlan candidaturePlan);
 
-    Vote voteEntityToDomain (VoteEntity entity);
+//    Vote voteEntityToDomain (VoteEntity entity);
 
-    default List<Vote> voteEntityListToDomain(List<VoteEntity> voteEntities) {
-        if (voteEntities == null){
-            return new ArrayList<>();
-        }
-
-        return voteEntities.stream().map(this::voteEntityToDomain).toList();
-    }
+//    default List<Vote> voteEntityListToDomain(List<VoteEntity> voteEntities) {
+//        if (voteEntities == null){
+//            return new ArrayList<>();
+//        }
+//
+//        return voteEntities.stream().map(this::voteEntityToDomain).toList();
+//    }
 }
