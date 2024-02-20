@@ -2,8 +2,6 @@ package gigachads.noenemies.diploma.api.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.ElectionStatus;
 import lombok.AllArgsConstructor;
@@ -28,7 +26,6 @@ public class ElectionResponse {
     private final Integer year;
     @NonNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @JsonDeserialize
     private final LocalDateTime createdAt;
     @NonNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
