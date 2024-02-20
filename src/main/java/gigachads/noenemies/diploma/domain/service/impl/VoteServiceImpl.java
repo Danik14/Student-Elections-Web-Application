@@ -47,10 +47,7 @@ public class VoteServiceImpl implements VoteService {
     }
 
     private boolean hasUserVotedForStage(UserId electorId, CandidatureStageId candidatureStageId) {
-        UserEntity elector = findUserEntityById(electorId);
-        CandidatureStageEntity candidatureStage = findCandidatureStageEntityById(candidatureStageId);
-
-        return voteRepository.existsByElectorAndCandidatureStage(elector, candidatureStage);
+        return voteRepository.existsByElectorIdAndCandidatureStage_Stage_Id(electorId.getId(), candidatureStageId.getId());
     }
 
 

@@ -10,5 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface VoteRepository extends JpaRepository<VoteEntity, UUID> {
-    boolean existsByElectorAndCandidatureStage(UserEntity elector, CandidatureStageEntity candidatureStage);
+    boolean existsByElectorIdAndCandidatureStage_Stage_Id(UUID userId, UUID stageId);
 }
