@@ -25,10 +25,10 @@ public class ElectionResponse {
     @NonNull
     private final Integer year;
     @NonNull
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private final LocalDateTime createdAt;
     @NonNull
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private final LocalDateTime deadline;
 
     @NonNull
