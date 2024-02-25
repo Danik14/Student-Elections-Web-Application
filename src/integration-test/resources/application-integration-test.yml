@@ -4,3 +4,8 @@ spring:
       enable: false
   flyway:
     cleanDisabled: false
+  sql:
+    init:
+      mode: never
+  jpa:
+    show-sql: true
