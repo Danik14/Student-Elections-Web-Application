@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+import static gigachads.noenemies.diploma.HelperClass.getUserIdByOauth2Principal;
+
 @RestController
 @RequestMapping("/api/v1/candidature")
 @RequiredArgsConstructor
@@ -115,10 +117,5 @@ public class CandidatureController {
         UserId studentId = UserId.of(principal.getName());
 
         return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, studentId));
-    }
-
-    private UserId getUserIdByOauth2Principal(Principal principal){
-        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
-        return UserId.of((String) token.getPrincipal().getAttribute("oid"));
     }
 }

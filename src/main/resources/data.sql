@@ -1,7 +1,7 @@
 ---- Inserting data into users table
 --INSERT INTO users (created_at, updated_at, id, barcode, email, first_name, last_name, file_photo_name, role)
 --VALUES
---   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '29718428-14e1-4482-9b32-e4b806e58320', '', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
+--   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '2004cc3b-a00b-649b-0000-000000000000', '', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
 --   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'user1@example.com', 'Eva', 'Mutsuraeva', '', 'USER'),
 --
 --   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_STUDENT'),
@@ -126,7 +126,7 @@
 -- In progress scenario
 INSERT INTO users (created_at, updated_at, id, barcode, email, first_name, last_name, file_photo_name, role)
 VALUES
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '29718428-14e1-4482-9b32-e4b806e58320', '', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
+   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '2004cc3b-a00b-649b-0000-000000000000', '', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'USER'),
 
    (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_CANDIDATE'),

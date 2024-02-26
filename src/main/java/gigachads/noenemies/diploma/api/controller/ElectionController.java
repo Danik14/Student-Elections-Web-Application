@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+import static gigachads.noenemies.diploma.HelperClass.getUserIdByOauth2Principal;
+
 @RestController
 @RequestMapping("/api/v1/election")
 @RequiredArgsConstructor
@@ -157,10 +159,5 @@ public class ElectionController {
     @ResponseStatus(HttpStatus.OK)
     public List<CandidatureStageResponse> initiateElectionById(Principal principal, @PathVariable ElectionId electionId) {
         return candidatureMapper.toCandidatureStageResponse(electionService.initiateElection(getUserIdByOauth2Principal(principal), electionId));
-    }
-
-    private UserId getUserIdByOauth2Principal(Principal principal){
-        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
-        return UserId.of((String) token.getPrincipal().getAttribute("oid"));
     }
 }

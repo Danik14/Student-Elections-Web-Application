@@ -13,7 +13,14 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
+
+import static gigachads.noenemies.diploma.HelperClass.generateUUIDFromString;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -25,19 +32,19 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         OAuth2AuthenticatedPrincipal oidcUser = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
+        System.out.println(generateUUIDFromString(oidcUser.getName()));
         log.info("User authenticated: {}", oidcUser);
-        userService.saveUser(parseUserInfo(oidcUser.getAttributes()));
+        userService.saveUser(parseUserInfo(oidcUser));
 
         getRedirectStrategy().sendRedirect(request, response, "http://localhost:3000/");
     }
 
-    private UserCreate parseUserInfo(Map<String, Object> userInfo) {
+    private UserCreate parseUserInfo(OAuth2AuthenticatedPrincipal oidcUser) {
         return UserCreate.builder()
-                .id((String) userInfo.get("oid"))
-                .firstName((String) userInfo.get("given_name"))
-                .lastName((String) userInfo.get("family_name"))
-                .email((String) userInfo.get("email"))
+                .id(Objects.requireNonNull(generateUUIDFromString(oidcUser.getName())).toString())
+                .firstName(oidcUser.getAttribute("given_name"))
+                .lastName(oidcUser.getAttribute("family_name"))
+                .email(oidcUser.getAttribute("email"))
                 .build();
     }
-
 }

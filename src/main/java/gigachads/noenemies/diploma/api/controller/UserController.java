@@ -28,6 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.security.Principal;
 import java.util.List;
 
+import static gigachads.noenemies.diploma.HelperClass.getUserIdByOauth2Principal;
+
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
@@ -173,11 +175,5 @@ public class UserController {
             @RequestParam("photo") MultipartFile photo
     ) {
         return userService.saveProfilePhoto(getUserIdByOauth2Principal(principal), photo);
-    }
-
-    private UserId getUserIdByOauth2Principal(Principal principal){
-        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
-        System.out.println(token);
-        return UserId.of((String) token.getPrincipal().getAttribute("oid"));
     }
 }
