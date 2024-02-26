@@ -177,6 +177,7 @@ public class UserController {
 
     private UserId getUserIdByOauth2Principal(Principal principal){
         OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
+        System.out.println(token);
         return UserId.of((String) token.getPrincipal().getAttribute("oid"));
     }
 }
