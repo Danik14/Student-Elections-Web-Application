@@ -8,7 +8,6 @@ import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.StageStatus;
-import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureStageService;
 import gigachads.noenemies.diploma.domain.service.ElectionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,7 +16,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;

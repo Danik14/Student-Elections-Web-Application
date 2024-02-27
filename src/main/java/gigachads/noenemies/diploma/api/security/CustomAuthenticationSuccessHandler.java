@@ -13,12 +13,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import java.io.IOException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 import static gigachads.noenemies.diploma.HelperClass.generateUUIDFromString;
 

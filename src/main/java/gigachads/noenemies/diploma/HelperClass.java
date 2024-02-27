@@ -2,7 +2,6 @@ package gigachads.noenemies.diploma;
 
 import gigachads.noenemies.diploma.domain.model.UserId;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
