@@ -68,7 +68,7 @@ public class UserController {
                             content = @Content)})
     @GetMapping("/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public UserResponse getUserById(@PathVariable UserId userId) {
+    public UserResponse getUserById(@PathVariable("userId") UserId userId) {
         return userMapper.toResponse(userService.getUserById(userId));
     }
 
