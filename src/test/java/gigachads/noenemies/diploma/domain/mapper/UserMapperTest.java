@@ -31,6 +31,7 @@ class UserMapperTest {
                 .firstName("Aliba")
                 .lastName("Zesty")
                 .email("alibazesty@test.com")
+                .filePhotoName("test_image1")
                 .role(UserRole.ACTIVE_STUDENT)
                 .barcode("211360")
                 .build();
@@ -43,6 +44,7 @@ class UserMapperTest {
                 .firstName("Aliba")
                 .lastName("Zesty")
                 .email("alibazesty@test.com")
+                .filePhotoName("test_image1")
                 .role(UserRole.ACTIVE_STUDENT)
                 .build();
         assertEquals(expected, actual);

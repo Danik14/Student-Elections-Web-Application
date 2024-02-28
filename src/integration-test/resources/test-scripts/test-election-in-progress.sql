@@ -1,3 +1,12 @@
+truncate table candidature_plans cascade;
+truncate table candidature_stage_plans cascade;
+truncate table candidature_stages cascade;
+truncate table candidatures cascade;
+truncate table elections cascade;
+truncate table stages cascade;
+truncate table users cascade;
+truncate table votes cascade;
+
 -- In progress scenario
 INSERT INTO users (created_at, updated_at, id, barcode, email, first_name, last_name, file_photo_name, role)
 VALUES

@@ -1,7 +1,4 @@
 spring:
-  security:
-    basic:
-      enable: false
   flyway:
     cleanDisabled: false
   sql:
@@ -9,3 +6,5 @@ spring:
       mode: never
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create-drop

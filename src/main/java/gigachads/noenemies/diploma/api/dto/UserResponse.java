@@ -2,24 +2,24 @@ package gigachads.noenemies.diploma.api.dto;
 
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 @Data
 @Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserResponse {
     @NonNull
-    private final UserId id;
+    private UserId id;
     @NonNull
-    private final String barcode;
+    private String barcode;
     @NonNull
-    private final String email;
+    private String email;
     @NonNull
-    private final String firstName;
+    private String firstName;
     @NonNull
-    private final String lastName;
-    private final byte[] photo;
+    private String lastName;
+    private byte[] photo;
     @NonNull
-    private final UserRole role;
+    private UserRole role;
 }

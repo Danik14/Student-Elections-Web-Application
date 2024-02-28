@@ -30,7 +30,7 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.mockMvc;
 
 @AutoConfigureMockMvc
 @ActiveProfiles("integration-test")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "classpath:test-scripts/test-election-in-progress.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 @ExtendWith(ContainerHolder.class)
 public class UserControllerIT{
@@ -58,10 +58,9 @@ public class UserControllerIT{
                         "sub"
                 ),
                 Stream.of("OIDC_USER), SCOPE_email, SCOPE_openid, SCOPE_profile").map(SimpleGrantedAuthority::new).collect(Collectors.toList()),
-                "123"
+                "stub"
         );
         mockMvc(mvc);
-
     }
 
     private Map<String, String> singleParam(String key, String value) {

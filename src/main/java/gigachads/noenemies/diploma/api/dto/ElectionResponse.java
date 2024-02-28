@@ -4,10 +4,7 @@ package gigachads.noenemies.diploma.api.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.ElectionStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,22 +12,23 @@ import java.util.List;
 @Builder
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ElectionResponse {
     @NonNull
-    private final ElectionId id;
+    private ElectionId id;
     @NonNull
-    private final String description;
+    private String description;
     @NonNull
-    private final ElectionStatus status;
+    private ElectionStatus status;
     @NonNull
-    private final Integer year;
-    @NonNull
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
-    private final LocalDateTime createdAt;
+    private Integer year;
     @NonNull
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
-    private final LocalDateTime deadline;
+    private LocalDateTime createdAt;
+    @NonNull
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+    private LocalDateTime deadline;
 
     @NonNull
-    private final List<StageResponse> stages;
+    private List<StageResponse> stages;
 }

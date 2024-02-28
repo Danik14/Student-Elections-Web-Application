@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.api.controller;
 
+import gigachads.noenemies.diploma.TestHelper;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
 import io.restassured.http.ContentType;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.mockMvc;
 
 
@@ -30,7 +30,7 @@ public class ElectionControllerIT {
     private static final String BASE_RELATIVE_PATH = "/api/v1/election";
 
     @Autowired
-    private TestRestTemplate template;
+    private TestHelper testHelper;
 
     @Autowired
     private MockMvc mvc;
@@ -50,6 +50,7 @@ public class ElectionControllerIT {
     // TODO
     void test_findElectionById_success() {
         var actual = given()
+                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()

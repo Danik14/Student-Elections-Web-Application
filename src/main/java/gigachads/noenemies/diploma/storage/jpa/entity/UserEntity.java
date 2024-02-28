@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -46,5 +47,18 @@ public class UserEntity extends BaseEntity{
         filePhotoName = "";
         this.setCreatedAt(LocalDateTime.now());
         this.setUpdatedAt(LocalDateTime.now());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return Objects.equals(getBarcode(), that.getBarcode()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getEmail(), that.getEmail()) && getRole() == that.getRole() && Objects.equals(getFilePhotoName(), that.getFilePhotoName()) && Objects.equals(getCandidatures(), that.getCandidatures()) && Objects.equals(getVotes(), that.getVotes());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getBarcode(), getFirstName(), getLastName(), getEmail(), getRole(), getFilePhotoName(), getCandidatures(), getVotes());
     }
 }

@@ -93,7 +93,7 @@ public class ElectionController {
 
     @GetMapping("/{electionId}")
     @ResponseStatus(HttpStatus.OK)
-    public ElectionResponse getElectionById(@PathVariable ElectionId electionId) {
+    public ElectionResponse getElectionById(@PathVariable("electionId") ElectionId electionId) {
         return electionMapper.toResponse(electionService.getElectionById(electionId));
     }
 
