@@ -10,30 +10,30 @@ truncate table votes cascade;
 -- In progress scenario
 INSERT INTO users (created_at, updated_at, id, barcode, email, first_name, last_name, file_photo_name, role)
 VALUES
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '2004cc3b-a00b-649b-0000-000000000000', '', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'USER'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '2004cc3b-a00b-649b-0000-000000000000', '', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'USER'),
 
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_CANDIDATE'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '', 'ACTIVE_CANDIDATE'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_CANDIDATE'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '', 'ACTIVE_CANDIDATE'),
 
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '30a567a9-37bb-4fc0-8659-ba7543403c6d', '111111', 'gigabyte@example.com', 'gigabyte', 'jinsovich', '', 'ACTIVE_STUDENT'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '9a9c8cea-b3ce-484c-bbf5-01da56eaa632', '222222', 'kamchick@example.com', 'kamchick', 'kamchickovich', '', 'ACTIVE_STUDENT'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'df5e8505-8a34-48fc-b3e5-56eb4463dc93', '333333', 'zestuar@example.com', 'aituar', 'zestovich', '', 'ACTIVE_STUDENT'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'eb77f9b4-1553-4b65-9213-c657ed0ad641', '444444', 'skinhead@example.com', 'skinhead', 'skinheadov', '', 'ACTIVE_STUDENT'),
-   (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'fa48d4ee-ccd9-4c84-b95a-86291c8662f6', '555555', 'test@example.com', 'test', 'testovich', '', 'ACTIVE_STUDENT');
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '30a567a9-37bb-4fc0-8659-ba7543403c6d', '111111', 'gigabyte@example.com', 'gigabyte', 'jinsovich', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '9a9c8cea-b3ce-484c-bbf5-01da56eaa632', '222222', 'kamchick@example.com', 'kamchick', 'kamchickovich', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'df5e8505-8a34-48fc-b3e5-56eb4463dc93', '333333', 'zestuar@example.com', 'aituar', 'zestovich', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'eb77f9b4-1553-4b65-9213-c657ed0ad641', '444444', 'skinhead@example.com', 'skinhead', 'skinheadov', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'fa48d4ee-ccd9-4c84-b95a-86291c8662f6', '555555', 'test@example.com', 'test', 'testovich', '', 'ACTIVE_STUDENT');
 
 
 -- Inserting data into elections table
 INSERT INTO elections (year, created_at, deadline, updated_at, id, description, status)
 VALUES
-   (2024, CURRENT_TIMESTAMP, '2024-12-31 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'Election 2024', 'IN_PROGRESS');
+   (2024, '2024-01-15 14:00:00', '2024-03-15 23:59:59', '2024-01-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'Election 2024', 'IN_PROGRESS');
 
 -- Inserting data into stages table
 INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description, status, number, is_votable)
 VALUES
-   (CURRENT_TIMESTAMP, '2024-02-20 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', '2024 stage 1', 'COMPLETED', 1, true),
-   (CURRENT_TIMESTAMP, '2024-03-10 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', '9dbc17ae-c522-48a7-b9f9-531d8b8a528f', '2024 stage 2', 'COMPLETED', 2, true),
-   (CURRENT_TIMESTAMP, '2024-04-15 23:59:59', CURRENT_TIMESTAMP, '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2024 stage 3', 'IN_PROGRESS', 3, true);
+   ('2024-01-15 14:00:00', '2024-01-20 23:59:59', '2024-01-15 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', '2024 stage 1', 'COMPLETED', 1, true),
+   ('2024-01-15 14:00:00', '2024-02-20 23:59:59', '2024-01-15 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', '9dbc17ae-c522-48a7-b9f9-531d8b8a528f', '2024 stage 2', 'COMPLETED', 2, true),
+   ('2024-01-15 14:00:00', '2024-03-20 23:59:59', '2024-01-15 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2024 stage 3', 'IN_PROGRESS', 3, true);
 
 
 -- Inserting data into candidatures table
