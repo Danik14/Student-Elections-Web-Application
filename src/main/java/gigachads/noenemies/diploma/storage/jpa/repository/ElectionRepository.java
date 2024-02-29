@@ -25,5 +25,5 @@ public interface ElectionRepository extends JpaRepository<ElectionEntity, UUID> 
     int updateElectionStatus(@Param("electionId") UUID electionId, @Param("newStatus") ElectionStatus newStatus);
 
     @Query("SELECT e FROM ElectionEntity e ORDER BY e.createdAt DESC LIMIT :limit")
-    List<ElectionEntity> findElectionsWithLimit(int limit);
+    List<ElectionEntity> findElectionsWithLimit(@Param("limit") int limit);
 }
