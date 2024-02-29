@@ -1,17 +1,17 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.net.URI;
-import java.util.List;
-import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @ToString
 @Table(name = "candidature_plans")
 @Getter
-@Builder
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class CandidaturePlanEntity extends BaseEntity {
@@ -19,13 +19,13 @@ public class CandidaturePlanEntity extends BaseEntity {
     private String description;
     @Column(name = "slogan")
     private String slogan;
-    @Column(name = "instagramLinkLink")
-    private URI instagramLink;
+    @Column(name = "instagramLink")
+    private String instagramLink;
     @Column(name = "telegramLink")
-    private URI telegramLink;
+    private String telegramLink;
 
     @ToString.Exclude
     @OneToOne
-    @JoinColumn(name = "candidature_id", nullable = false)
+    @JoinColumn(name = "candidature_id")
     private CandidatureEntity candidature;
 }

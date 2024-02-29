@@ -19,6 +19,10 @@ public enum UserRole {
             UserPermission.STUDENT_CREATE
     )
     ),
+    APPLIED_FOR_CANDIDATURE(mergePermissions(
+            ACTIVE_STUDENT
+    )
+    ),
     ACTIVE_CANDIDATE(mergePermissions(ACTIVE_STUDENT,
             UserPermission.CANDIDATE_READ,
             UserPermission.CANDIDATE_UPDATE,
@@ -42,6 +46,15 @@ public enum UserRole {
     );
 
     private final Set<UserPermission> permissions;
+
+    public static boolean isValidRole(String role) {
+        for (UserRole validRole : UserRole.values()) {
+            if (validRole.name().equalsIgnoreCase(role)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public List<SimpleGrantedAuthority> getAuthorities() {
         var authorities = getPermissions()

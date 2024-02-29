@@ -1,16 +1,19 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @ToString
 @Table(name = "candidature_stages")
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CandidatureStageEntity extends BaseEntity {
@@ -19,7 +22,6 @@ public class CandidatureStageEntity extends BaseEntity {
     @JoinColumn(name = "stage_id", nullable = false)
     private StageEntity stage;
 
-    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "candidature_id", nullable = false)
     private CandidatureEntity candidature;
@@ -27,4 +29,7 @@ public class CandidatureStageEntity extends BaseEntity {
     @ToString.Exclude
     @OneToMany(mappedBy = "candidatureStage")
     private List<VoteEntity> votes;
+
+    @OneToOne(mappedBy = "candidatureStage")
+    private CandidatureStagePlanEntity stagePlan;
 }

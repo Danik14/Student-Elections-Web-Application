@@ -1,12 +1,19 @@
 spring:
   profiles:
     active: local # Add application-local.properties file next to application.properties
+  sql:
+    init:
+      mode: always
   jpa:
+    show-sql: true
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
-      show-sql: false
       database: student_elections
       database-platform: org.hibernate.dialect.PostgreSQLDialect
+      properties:
+        hibernate:
+          format_sql: true
   security:
     oauth2:
       client:
@@ -29,11 +36,16 @@ spring:
             user-info-uri: https://graph.microsoft.com/oidc/userinfo
             #user-name-attribute: id
 
-# Hibernate ddl auto (create, create-drop, validate, update)
-#spring.jpa.generate-ddl: false
-#spring.jpa.hibernate.show-sql: false
-#spring.jpa.hibernate.ddl-auto: validate
-
 server:
   port: 8080
 #  forward-headers-strategy: native
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    operationsSorter: method
+    path: /api-docs/ui
+
+users.profile.photo-image-directory: static/profile/photos/
+logging.level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG

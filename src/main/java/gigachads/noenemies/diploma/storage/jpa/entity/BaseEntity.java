@@ -1,31 +1,43 @@
 package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @MappedSuperclass
 @Getter
+@Setter
+@SuperBuilder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "createdAt", nullable = false)
-    private Date createdAt;
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt;
 
-    @Column(name = "updatedAt", nullable = false)
-    private Date updatedAt;
+    @Column(name = "updatedAt")
+    private LocalDateTime updatedAt;
 
     @PrePersist
-    protected void onCreate() {
-        createdAt = new Date();
+    public void onCreate() {
+        if (id == null) {
+            this.setId(UUID.randomUUID());
+        }
+        this.setCreatedAt(LocalDateTime.now());
+        this.setUpdatedAt(LocalDateTime.now());
     }
 
     @PreUpdate
-    protected void onUpdate() {
-        updatedAt = new Date();
+    public void onUpdate() {
+        this.setUpdatedAt(LocalDateTime.now());
     }
+
 }
