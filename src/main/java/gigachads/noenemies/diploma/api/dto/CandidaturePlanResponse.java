@@ -1,21 +1,19 @@
 package gigachads.noenemies.diploma.api.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class CandidaturePlanResponse {
     @NonNull
-    private final String description;
+    private String description;
     @NonNull
-    private final String slogan;
+    private String slogan;
     @NonNull
-    private final String instagramLink;
+    private String instagramLink;
     @NonNull
-    private final String telegramLink;
+    private String telegramLink;
 }
 

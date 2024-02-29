@@ -2,21 +2,21 @@ package gigachads.noenemies.diploma.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import gigachads.noenemies.diploma.domain.model.VoteId;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 @Builder
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class VoteResponse {
     @NonNull
-    private final VoteId id;
+    private VoteId id;
 
     @NonNull
     @JsonIgnoreProperties("photo")
-    private final UserResponse elector;
+    private UserResponse elector;
 
     @NonNull
     @JsonIgnoreProperties({"stagePlan", "stage"})
-    private final CandidatureStageResponse candidatureStage;
+    private CandidatureStageResponse candidatureStage;
 }

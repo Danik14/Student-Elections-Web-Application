@@ -7,11 +7,10 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+@Data
 @Builder
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 public class StageResponse {
     @NonNull
     private StageId id;
@@ -25,4 +24,15 @@ public class StageResponse {
     @NonNull
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     private LocalDateTime deadline;
+
+    public static class StageResponseBuilder {
+        public StageResponseBuilder id(StageId id){
+            this.id = id;
+            return this;
+        }
+
+        public StageResponseBuilder id(String stringId){
+            return id(StageId.of(stringId));
+        }
+    }
 }

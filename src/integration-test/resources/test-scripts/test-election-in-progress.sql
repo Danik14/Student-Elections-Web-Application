@@ -34,7 +34,7 @@ VALUES
 INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description, status, number, is_votable)
 VALUES
 -- Election 2023 stage
-   ('2023-02-20 14:00:00', '2023-02-20 23:59:59', '2023-02-20 14:00:00', 'b09903bf-03fb-4c44-a925-29db853b9477', '0552f1d3-e597-4e51-afcc-4b5d0fa94454', '2023 stage 2', 'COMPLETED', 1, true),
+   ('2023-02-20 14:00:00', '2023-02-20 23:59:59', '2023-02-20 14:00:00', 'b09903bf-03fb-4c44-a925-29db853b9477', '0552f1d3-e597-4e51-afcc-4b5d0fa94454', '2023 stage 1', 'COMPLETED', 1, true),
    ('2023-02-20 14:00:00', '2023-03-20 23:59:59', '2023-02-20 14:00:00', 'b09903bf-03fb-4c44-a925-29db853b9477', '04cdaca4-a321-4968-93c2-068b7f3c9894', '2023 stage 2', 'COMPLETED', 2, true),
 
 -- Election 2024 stage

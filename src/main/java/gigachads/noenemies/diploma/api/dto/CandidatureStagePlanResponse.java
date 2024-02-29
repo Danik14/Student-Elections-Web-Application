@@ -1,13 +1,11 @@
 package gigachads.noenemies.diploma.api.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
+@Data
 @Builder
-@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class CandidatureStagePlanResponse {
     @NonNull
     private String description;

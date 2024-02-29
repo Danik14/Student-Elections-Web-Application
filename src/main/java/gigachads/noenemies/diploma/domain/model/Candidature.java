@@ -19,4 +19,15 @@ public class Candidature {
     @ToString.Exclude
     @NonNull
     private User user;
+
+    public static class CandidatureBuilder {
+        public CandidatureBuilder id(CandidatureId id){
+            this.id = id;
+            return this;
+        }
+
+        public CandidatureBuilder id(String stringId){
+            return id(CandidatureId.of(stringId));
+        }
+    }
 }

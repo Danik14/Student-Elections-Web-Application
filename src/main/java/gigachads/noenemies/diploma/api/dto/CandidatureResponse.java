@@ -2,23 +2,33 @@ package gigachads.noenemies.diploma.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import gigachads.noenemies.diploma.domain.model.CandidatureId;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
+@Data
 @Builder
-@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class CandidatureResponse {
     @NonNull
-    private final CandidatureId id;
+    private CandidatureId id;
     @NonNull
     private CandidaturePlanResponse plan;
 
     @JsonIgnoreProperties("photo")
     @NonNull
     private UserResponse approvedBy;
+    @JsonIgnoreProperties("photo")
     @NonNull
     private UserResponse user;
+
+    public static class CandidatureResponseBuilder {
+        public CandidatureResponseBuilder id(CandidatureId id){
+            this.id = id;
+            return this;
+        }
+
+        public CandidatureResponseBuilder id(String stringId){
+            return id(CandidatureId.of(stringId));
+        }
+    }
 }
