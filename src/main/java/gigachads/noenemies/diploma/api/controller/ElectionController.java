@@ -120,9 +120,9 @@ public class ElectionController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = CandidatureStageResponse.class))})
             })
-    @GetMapping("/current/candidature-stage/{candidatureStageId}")
+    @GetMapping("/candidature-stage/{candidatureStageId}")
     @ResponseStatus(HttpStatus.OK)
-    public CandidatureStageResponse getCurrentElectionCandidatureStageById(
+    public CandidatureStageResponse geCandidatureStageById(
             @PathVariable CandidatureStageId candidatureStageId
             ) {
         return candidatureMapper

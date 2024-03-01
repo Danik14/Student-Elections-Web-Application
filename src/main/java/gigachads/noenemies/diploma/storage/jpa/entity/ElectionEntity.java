@@ -10,6 +10,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,6 +42,9 @@ public class ElectionEntity extends BaseEntity {
     public void prePersist() {
         year = Year.now().getValue();
         status = ElectionStatus.CREATED;
+        if (stages == null){
+            stages = new ArrayList<>();
+        }
         this.setCreatedAt(LocalDateTime.now());
         this.setUpdatedAt(LocalDateTime.now());
     }

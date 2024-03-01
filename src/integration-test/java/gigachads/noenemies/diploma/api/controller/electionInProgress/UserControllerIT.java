@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "classpath:test-scripts/test-election-in-progress.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 @ExtendWith(ContainerHolder.class)
-public class UserControllerIT{
+public class UserControllerIT {
     private static final String BASE_RELATIVE_PATH = "/api/v1/user";
 
     @Autowired
@@ -60,7 +60,7 @@ public class UserControllerIT{
                 .id(UserId.of("2004cc3b-a00b-649b-0000-000000000000"))
                 .email("211360@astanait.edu.kz")
                 .barcode("211360")
-                .photo(new byte[] {})
+                .photo(new byte[]{})
                 .role(UserRole.SUPER_ADMIN)
                 .firstName("Daniyar")
                 .lastName("Chapagan")
@@ -90,7 +90,37 @@ public class UserControllerIT{
                 .id(UserId.of("9a9c8cea-b3ce-484c-bbf5-01da56eaa632"))
                 .email("kamchick@example.com")
                 .barcode("222222")
-                .photo(new byte[] {})
+                .photo(new byte[]{})
+                .role(UserRole.ACTIVE_STUDENT)
+                .firstName("kamchick")
+                .lastName("kamchickovich")
+                .build();
+        assertThat(actual)
+                .usingRecursiveComparison()
+                .ignoringFields("photo")
+                .isEqualTo(expected);
+    }
+
+    @Test
+    void test_getStudentByBarcode_success() {
+        var actual = given()
+                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .log().all()
+                .header("Accept", "application/json")
+                .when()
+                .get(BASE_RELATIVE_PATH + "/barcode/" + "222222")
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .extract().as(UserResponse.class);
+
+        var expected = UserResponse.builder()
+                .id(UserId.of("9a9c8cea-b3ce-484c-bbf5-01da56eaa632"))
+                .email("kamchick@example.com")
+                .barcode("222222")
+                .photo(new byte[]{})
                 .role(UserRole.ACTIVE_STUDENT)
                 .firstName("kamchick")
                 .lastName("kamchickovich")
