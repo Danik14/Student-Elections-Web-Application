@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> findAllByRoleAndPage(Pageable pageable, UserRole userRole) {
-        return userRepository.findByRole(userRole.name(), pageable).map(userMapper::toDomain);
+        return userRepository.findByRole(userRole, pageable).map(userMapper::toDomain);
     }
 
     @Override

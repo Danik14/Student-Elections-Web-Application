@@ -5,9 +5,9 @@ import gigachads.noenemies.diploma.domain.model.VoteId;
 import lombok.*;
 
 @Builder
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class VoteResponse {
     @NonNull
     private VoteId id;
@@ -17,6 +17,6 @@ public class VoteResponse {
     private UserResponse elector;
 
     @NonNull
-    @JsonIgnoreProperties({"stagePlan", "stage"})
-    private CandidatureStageResponse candidatureStage;
+    @JsonIgnoreProperties({"approvedBy", "plan"})
+    private CandidatureResponse candidature;
 }

@@ -2,20 +2,28 @@ package gigachads.noenemies.diploma.api.controller.electionInProgress;
 
 
 import gigachads.noenemies.diploma.TestHelper;
+import gigachads.noenemies.diploma.api.dto.CandidaturePlanResponse;
+import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
 import gigachads.noenemies.diploma.api.dto.UserResponse;
+import gigachads.noenemies.diploma.api.dto.VoteResponse;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
+import gigachads.noenemies.diploma.domain.model.VoteId;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.mockMvc;
@@ -129,5 +137,143 @@ public class UserControllerIT {
                 .usingRecursiveComparison()
                 .ignoringFields("photo")
                 .isEqualTo(expected);
+    }
+
+    @Test
+    void test_userVotesByUserId_success() {
+        var actual = given()
+                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .log().all()
+                .header("Accept", "application/json")
+                .when()
+                .get(BASE_RELATIVE_PATH + "/{userId}/votes", "9a9c8cea-b3ce-484c-bbf5-01da56eaa632")
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .extract()
+                .jsonPath()
+                .getList(".", VoteResponse.class);
+
+        var expected = List.of(
+                VoteResponse.builder()
+                        .id(VoteId.of("c02de392-3cba-442d-9776-a170f987c6b9"))
+                        .elector(
+                                UserResponse.builder()
+                                        .id("9a9c8cea-b3ce-484c-bbf5-01da56eaa632")
+                                        .barcode("222222")
+                                        .email("kamchick@example.com")
+                                        .firstName("kamchick")
+                                        .lastName("kamchickovich")
+                                        .role(UserRole.valueOf("ACTIVE_STUDENT"))
+                                        .build()
+                        )
+                        .candidature(
+                                CandidatureResponse.builder()
+                                        .id("8dcf75a5-0636-425a-9ffd-b732d12ff197")
+                                        .plan(new CandidaturePlanResponse())
+                                        .approvedBy(new UserResponse())
+                                        .user(
+                                                UserResponse.builder()
+                                                        .id("ed28793a-14a3-48cb-a3d7-24ac1804bea8")
+                                                        .barcode("654321")
+                                                        .email("user2@example.com")
+                                                        .firstName("Candidate2")
+                                                        .lastName("2")
+                                                        .role(UserRole.valueOf("ACTIVE_CANDIDATE"))
+                                                        .build()
+                                        )
+                                        .build()
+                        )
+                        .build(),
+                VoteResponse.builder()
+                        .id(VoteId.of("0578ed02-eacf-4d91-ad73-0483a4afd248"))
+                        .elector(
+                                UserResponse.builder()
+                                        .id("9a9c8cea-b3ce-484c-bbf5-01da56eaa632")
+                                        .barcode("222222")
+                                        .email("kamchick@example.com")
+                                        .firstName("kamchick")
+                                        .lastName("kamchickovich")
+                                        .role(UserRole.valueOf("ACTIVE_STUDENT"))
+                                        .build()
+                        )
+                        .candidature(
+                                CandidatureResponse.builder()
+                                        .id("8dcf75a5-0636-425a-9ffd-b732d12ff197")
+                                        .plan(new CandidaturePlanResponse())
+                                        .approvedBy(new UserResponse())
+                                        .user(
+                                                UserResponse.builder()
+                                                        .id("ed28793a-14a3-48cb-a3d7-24ac1804bea8")
+                                                        .barcode("654321")
+                                                        .email("user2@example.com")
+                                                        .firstName("Candidate2")
+                                                        .lastName("2")
+                                                        .role(UserRole.valueOf("ACTIVE_CANDIDATE"))
+                                                        .build()
+                                        )
+                                        .build()
+                        )
+                        .build(),
+                VoteResponse.builder()
+                        .id(VoteId.of("d48d3a19-21df-4898-ad03-9bbe17366f8a"))
+                        .elector(
+                                UserResponse.builder()
+                                        .id("9a9c8cea-b3ce-484c-bbf5-01da56eaa632")
+                                        .barcode("222222")
+                                        .email("kamchick@example.com")
+                                        .firstName("kamchick")
+                                        .lastName("kamchickovich")
+                                        .role(UserRole.valueOf("ACTIVE_STUDENT"))
+                                        .build()
+                        )
+                        .candidature(
+                                CandidatureResponse.builder()
+                                        .id("8dcf75a5-0636-425a-9ffd-b732d12ff197")
+                                        .plan(new CandidaturePlanResponse())
+                                        .approvedBy(new UserResponse())
+                                        .user(
+                                                UserResponse.builder()
+                                                        .id("ed28793a-14a3-48cb-a3d7-24ac1804bea8")
+                                                        .barcode("654321")
+                                                        .email("user2@example.com")
+                                                        .firstName("Candidate2")
+                                                        .lastName("2")
+                                                        .role(UserRole.valueOf("ACTIVE_CANDIDATE"))
+                                                        .build()
+                                        )
+                                        .build()
+                        )
+                        .build()
+        );
+        assertThat(actual)
+                .usingRecursiveComparison()
+                .ignoringFields("candidature.plan", "candidature.approvedBy")
+                .isEqualTo(expected);
+    }
+
+    @Test
+    @Disabled
+    void test_getUsers_withRole_success() {
+        var actual = given()
+                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .log().all()
+                .header("Accept", "application/json")
+                .when()
+                .get(BASE_RELATIVE_PATH + "?" + "role=ACTIVE_CANDIDATE")
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .extract()
+                .as(PageImpl.class);
+
+        System.out.println(actual);
+
+        var expected = List.of(
+        );
     }
 }

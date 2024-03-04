@@ -6,6 +6,7 @@ import gigachads.noenemies.diploma.domain.model.Vote;
 import gigachads.noenemies.diploma.storage.jpa.entity.VoteEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public interface VoteMapper {
 
     List<Vote> toDomain(List<VoteEntity> entities);
 
+    @Mapping(target = "candidature", source = "candidatureStage.candidature")
     VoteResponse toResponse(Vote vote);
 
     List<VoteResponse> toResponse(List<Vote> votes);

@@ -115,10 +115,10 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Page<UserResponse> getUsers(
-            @RequestParam(name = "page", defaultValue = "0") Integer page,
-            @RequestParam(name = "size", defaultValue = "10") Integer sizePerPage,
-            @RequestParam(defaultValue = "LASTNAME") UserSortField sortField,
-            @RequestParam(defaultValue = "ASC") Sort.Direction sortDirection,
+            @RequestParam(name = "page", defaultValue = "0", required = false) Integer page,
+            @RequestParam(name = "size", defaultValue = "10", required = false) Integer sizePerPage,
+            @RequestParam(defaultValue = "LASTNAME", required = false) UserSortField sortField,
+            @RequestParam(defaultValue = "ASC", required = false) Sort.Direction sortDirection,
             @RequestParam(name = "role", defaultValue = "", required = false) String userRole
             ) {
         Pageable pageable = PageRequest.of(page, sizePerPage, sortDirection, sortField.getDatabaseFieldName());
@@ -130,34 +130,34 @@ public class UserController {
             return userService.findAllByRoleAndPage(pageable, UserRole.valueOf(userRole)).map(userMapper::toResponse);
         }
     }
+//
+//    @Operation(summary = "Get all candidates",
+//            operationId = "getAllCandidates",
+//            tags = {"User"},
+//            responses = {
+//                    @ApiResponse(responseCode = "200", description = "List of all candidates",
+//                            content = {@Content(mediaType = "application/json",
+//                                    schema = @Schema(implementation = UserResponse.class))})
+//                    })
+//    @GetMapping("/candidates")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<UserResponse> getAllCandidates() {
+//        return userMapper.toResponse(userService.getAllCandidates());
+//    }
 
-    @Operation(summary = "Get all candidates",
-            operationId = "getAllCandidates",
-            tags = {"User"},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "List of all candidates",
-                            content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = UserResponse.class))})
-                    })
-    @GetMapping("/candidates")
-    @ResponseStatus(HttpStatus.OK)
-    public List<UserResponse> getAllCandidates() {
-        return userMapper.toResponse(userService.getAllCandidates());
-    }
-
-    @Operation(summary = "Get all active candidates",
-            operationId = "getAllActiveCandidates",
-            tags = {"User"},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "List of all current candidates",
-                            content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = UserResponse.class))})
-            })
-    @GetMapping("/candidates/active")
-    @ResponseStatus(HttpStatus.OK)
-    public List<UserResponse> getAllActiveCandidates() {
-        return userMapper.toResponse(userService.getAllActiveCandidates());
-    }
+//    @Operation(summary = "Get all active candidates",
+//            operationId = "getAllActiveCandidates",
+//            tags = {"User"},
+//            responses = {
+//                    @ApiResponse(responseCode = "200", description = "List of all current candidates",
+//                            content = {@Content(mediaType = "application/json",
+//                                    schema = @Schema(implementation = UserResponse.class))})
+//            })
+//    @GetMapping("/candidates/active")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<UserResponse> getAllActiveCandidates() {
+//        return userMapper.toResponse(userService.getAllActiveCandidates());
+//    }
 
     @Operation(summary = "Upload user photo",
             operationId = "uploadCandidatureImage",

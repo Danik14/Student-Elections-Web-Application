@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     List<UserEntity> findByRole(UserRole role);
 
-    Page<UserEntity> findByRole(String role, Pageable pageable);
+    Page<UserEntity> findByRole(UserRole userRole, Pageable pageable);
 
     @Modifying
     @Query("UPDATE UserEntity u SET u.role = :newRole WHERE u.id = :id")
