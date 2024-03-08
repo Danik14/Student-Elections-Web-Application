@@ -79,20 +79,4 @@ public class StageController {
             @RequestBody StageCreate create) {
         return stageMapper.toResponse(stageService.createElectionStage(electionId, create));
     }
-
-//    @Operation(summary = "Create new election's stage",
-//            operationId = "createElectionStage",
-//            tags = {"Stage"},
-//            responses = {
-//                    @ApiResponse(responseCode = "200", description = "Create new election stage",
-//                            content = {@Content(mediaType = "application/json",
-//                                    schema = @Schema(implementation = StageResponse.class))})
-//            })
-//    @PutMapping("/{electionId}/stage")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public StageResponse createElectionStage(
-//            @PathVariable ElectionId electionId,
-//            @RequestBody StageCreate create) {
-//        return stageMapper.toResponse(stageService.createElectionStage(electionId, create));
-//    }
 }

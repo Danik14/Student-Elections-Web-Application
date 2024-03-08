@@ -1,8 +1,10 @@
 package gigachads.noenemies.diploma.api.controller.electionInProgress;
 
 import gigachads.noenemies.diploma.TestHelper;
+import gigachads.noenemies.diploma.api.dto.StageCreate;
 import gigachads.noenemies.diploma.api.dto.StageResponse;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
+import gigachads.noenemies.diploma.domain.model.Election;
 import gigachads.noenemies.diploma.domain.model.StageId;
 import gigachads.noenemies.diploma.domain.model.StageStatus;
 import io.restassured.http.ContentType;
@@ -23,6 +25,7 @@ import java.util.List;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.mockMvc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @AutoConfigureMockMvc
 @ActiveProfiles("integration-test")
@@ -46,7 +49,7 @@ public class StageControllerIT {
     @Test
     public void test_getStagesByElectionId_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -84,7 +87,7 @@ public class StageControllerIT {
     @Test
     public void test_getCurrentElectionStage_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -111,7 +114,7 @@ public class StageControllerIT {
     @Test
     public void test_getCurrentElectionCurrentStage_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -131,6 +134,43 @@ public class StageControllerIT {
                 .votable(true)
                 .number(3)
                 .deadline(LocalDateTime.parse("2024-03-20T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
+                .build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void test_createElectionStage_success() {
+        Election election = testHelper.createDefaultElection();
+        var requestBody = StageCreate.builder()
+                .description("Test Description")
+                .votable(true)
+                .deadline(testHelper.toDefaultTime("2025-03-20T23:59:59"))
+                .build();
+
+        var actual = given()
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
+                .log().all()
+                .header("Accept", "application/json")
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post(BASE_RELATIVE_PATH + "/{electionId}/stage", election.getId().getAsString())
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(201)
+                .contentType(ContentType.JSON)
+                .extract()
+                .as(StageResponse.class);
+
+        assertNotNull(actual.getId());
+        var expected = StageResponse.builder()
+                .id(actual.getId())
+                .description("Test Description")
+                .status(StageStatus.CREATED)
+                .votable(true)
+                .number(1)
+                .deadline(testHelper.toDefaultTime("2025-03-20T23:59:59"))
                 .build();
         assertEquals(expected, actual);
     }

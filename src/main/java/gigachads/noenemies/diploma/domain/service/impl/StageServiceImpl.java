@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -35,6 +36,8 @@ public class StageServiceImpl implements StageService {
 
         StageEntity stageEntity = stageMapper.toEntity(create);
         stageEntity.setElection(electionEntity);
+        stageEntity.setCandidatureStages(new ArrayList<>());
+        System.out.println(stageEntity);
         stageEntity = stageRepository.save(stageEntity);
 
         return stageMapper.toDomain(stageEntity);

@@ -42,7 +42,7 @@ public class StageEntity extends BaseEntity{
     @Override
     public void onCreate() {
         super.onCreate();
-
+        status = StageStatus.CREATED;
         if (number == null) {
             calculateAndSetNextStageNumber();
         }

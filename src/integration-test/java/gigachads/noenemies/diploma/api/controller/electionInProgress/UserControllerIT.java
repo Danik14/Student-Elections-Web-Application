@@ -52,7 +52,7 @@ public class UserControllerIT {
     @Test
     void test_getCurrentUser_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -82,7 +82,7 @@ public class UserControllerIT {
     @Test
     void test_getUserById_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -112,7 +112,7 @@ public class UserControllerIT {
     @Test
     void test_getStudentByBarcode_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -142,7 +142,7 @@ public class UserControllerIT {
     @Test
     void test_userVotesByUserId_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -258,7 +258,7 @@ public class UserControllerIT {
     @Disabled
     void test_getUsers_withRole_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -276,4 +276,6 @@ public class UserControllerIT {
         var expected = List.of(
         );
     }
+
+
 }

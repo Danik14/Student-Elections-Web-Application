@@ -56,7 +56,7 @@ public class ElectionControllerIT {
     @Test
     void test_findElectionById_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -109,7 +109,7 @@ public class ElectionControllerIT {
     @Test
     void test_getElections_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -187,7 +187,7 @@ public class ElectionControllerIT {
     @Test
     void test_getCurrentElection_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -239,7 +239,7 @@ public class ElectionControllerIT {
     @Test
     void test_getCandidatureStagesByElectionId_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -478,7 +478,7 @@ public class ElectionControllerIT {
     @Test
     void test_getCurrentElectionCurrentCandidatureStages_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -610,7 +610,7 @@ public class ElectionControllerIT {
     @Test
     void test_getCandidatureStageById_success() {
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .when()
@@ -675,7 +675,7 @@ public class ElectionControllerIT {
                                         .status(StageStatus.valueOf("IN_PROGRESS"))
                                         .votable(true)
                                         .number(3)
-                                        .deadline(LocalDateTime.parse("2024-03-20T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
+                                        .deadline(testHelper.toDefaultTime("2024-03-20T23:59:59"))
                                         .build()
                         )
                         .build();
@@ -684,16 +684,16 @@ public class ElectionControllerIT {
 
     @Test
     void test_createNewElection_success() {
-        ElectionCreate electionCreate = ElectionCreate.builder()
-                .deadline(LocalDateTime.parse("2024-03-31T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
+        var requestBody = ElectionCreate.builder()
+                .deadline(testHelper.toDefaultTime("2024-03-31T23:59:59"))
                 .description("some description")
                 .build();
         var actual = given()
-                .auth().principal(testHelper.getTestOauth2TokenPrincipal())
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
                 .log().all()
                 .header("Accept", "application/json")
                 .contentType(ContentType.JSON)
-                .body(electionCreate)
+                .body(requestBody)
                 .when()
                 .post(BASE_RELATIVE_PATH)
                 .then()
@@ -710,7 +710,7 @@ public class ElectionControllerIT {
                 .status(ElectionStatus.CREATED)
                 .year(2024)
                 .createdAt(actual.getCreatedAt())
-                .deadline(LocalDateTime.parse("2024-03-31T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
+                .deadline(testHelper.toDefaultTime("2024-03-31T23:59:59"))
                 .stages(emptyList())
                 .build();
         assertEquals(expected, actual);
