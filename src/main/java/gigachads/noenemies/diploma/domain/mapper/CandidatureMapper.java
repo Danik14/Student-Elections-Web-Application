@@ -24,6 +24,7 @@ public interface CandidatureMapper {
 
     List<Candidature> toDomain(List<CandidatureEntity> entities);
 
+    @Mapping(target = "approvedById", source = "approvedBy.id")
     @Mapping(target = "user", source = "candidature.user")
     CandidatureResponse toResponse(Candidature candidature);
 

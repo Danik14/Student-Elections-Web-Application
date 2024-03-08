@@ -2,6 +2,7 @@ package gigachads.noenemies.diploma.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import gigachads.noenemies.diploma.domain.model.CandidatureId;
+import gigachads.noenemies.diploma.domain.model.UserId;
 import lombok.*;
 
 @Data
@@ -16,7 +17,7 @@ public class CandidatureResponse {
 
     @JsonIgnoreProperties("photo")
     @NonNull
-    private UserResponse approvedBy;
+    private UserId approvedById;
     @JsonIgnoreProperties("photo")
     @NonNull
     private UserResponse user;
