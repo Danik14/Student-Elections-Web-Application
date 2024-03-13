@@ -28,6 +28,7 @@ import java.util.List;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.mockMvc;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @AutoConfigureMockMvc
@@ -172,7 +173,6 @@ public class UserControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("8dcf75a5-0636-425a-9ffd-b732d12ff197")
-                                        .plan(new CandidaturePlanResponse())
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -202,7 +202,6 @@ public class UserControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("8dcf75a5-0636-425a-9ffd-b732d12ff197")
-                                        .plan(new CandidaturePlanResponse())
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -232,7 +231,6 @@ public class UserControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("8dcf75a5-0636-425a-9ffd-b732d12ff197")
-                                        .plan(new CandidaturePlanResponse())
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -248,10 +246,7 @@ public class UserControllerIT {
                         )
                         .build()
         );
-        assertThat(actual)
-                .usingRecursiveComparison()
-                .ignoringFields("candidature.plan")
-                .isEqualTo(expected);
+       assertEquals(expected, actual);
     }
 
     @Test

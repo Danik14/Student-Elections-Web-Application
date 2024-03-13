@@ -258,14 +258,6 @@ public class ElectionControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("812991c5-646b-4fc7-bff9-f809cdeca5ef")
-                                        .plan(
-                                                CandidaturePlanResponse.builder()
-                                                        .description("Description 1")
-                                                        .slogan("Slogan 2023 1")
-                                                        .instagramLink("https://instagram.com/link1")
-                                                        .telegramLink("https://t.me/link1")
-                                                        .build()
-                                        )
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -304,14 +296,6 @@ public class ElectionControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("812991c5-646b-4fc7-bff9-f809cdeca5ef")
-                                        .plan(
-                                                CandidaturePlanResponse.builder()
-                                                        .description("Description 1")
-                                                        .slogan("Slogan 2023 1")
-                                                        .instagramLink("https://instagram.com/link1")
-                                                        .telegramLink("https://t.me/link1")
-                                                        .build()
-                                        )
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -350,14 +334,6 @@ public class ElectionControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("c858dc55-ba61-4fb8-ae5d-8d03e589be54")
-                                        .plan(
-                                                CandidaturePlanResponse.builder()
-                                                        .description("Description 2")
-                                                        .slogan("Slogan 2023 2")
-                                                        .instagramLink("https://instagram.com/link2")
-                                                        .telegramLink("https://t.me/link2")
-                                                        .build()
-                                        )
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -395,14 +371,6 @@ public class ElectionControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("c858dc55-ba61-4fb8-ae5d-8d03e589be54")
-                                        .plan(
-                                                CandidaturePlanResponse.builder()
-                                                        .description("Description 2")
-                                                        .slogan("Slogan 2023 2")
-                                                        .instagramLink("https://instagram.com/link2")
-                                                        .telegramLink("https://t.me/link2")
-                                                        .build()
-                                        )
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -463,14 +431,6 @@ public class ElectionControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7")
-                                        .plan(
-                                                CandidaturePlanResponse.builder()
-                                                        .description("Description 1")
-                                                        .slogan("Slogan 1")
-                                                        .instagramLink("https://instagram.com/link1")
-                                                        .telegramLink("https://t.me/link1")
-                                                        .build()
-                                        )
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -508,14 +468,6 @@ public class ElectionControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("8dcf75a5-0636-425a-9ffd-b732d12ff197")
-                                        .plan(
-                                                CandidaturePlanResponse.builder()
-                                                        .description("Description 2")
-                                                        .slogan("Slogan 2")
-                                                        .instagramLink("https://instagram.com/link2")
-                                                        .telegramLink("https://t.me/link2")
-                                                        .build()
-                                        )
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()
@@ -576,14 +528,6 @@ public class ElectionControllerIT {
                         .candidature(
                                 CandidatureResponse.builder()
                                         .id("65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7")
-                                        .plan(
-                                                CandidaturePlanResponse.builder()
-                                                        .description("Description 1")
-                                                        .slogan("Slogan 1")
-                                                        .instagramLink("https://instagram.com/link1")
-                                                        .telegramLink("https://t.me/link1")
-                                                        .build()
-                                        )
                                         .approvedById(UserId.of("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc"))
                                         .user(
                                                 UserResponse.builder()

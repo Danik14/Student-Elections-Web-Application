@@ -2,6 +2,7 @@ package gigachads.noenemies.diploma.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import gigachads.noenemies.diploma.domain.model.CandidatureId;
+import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import lombok.*;
 
@@ -12,9 +13,6 @@ import lombok.*;
 public class CandidatureResponse {
     @NonNull
     private CandidatureId id;
-    @NonNull
-    private CandidaturePlanResponse plan;
-
     @JsonIgnoreProperties("photo")
     @NonNull
     private UserId approvedById;
@@ -30,6 +28,15 @@ public class CandidatureResponse {
 
         public CandidatureResponseBuilder id(String stringId){
             return id(CandidatureId.of(stringId));
+        }
+
+        public CandidatureResponseBuilder approvedById(UserId id){
+            this.approvedById = id;
+            return this;
+        }
+
+        public CandidatureResponseBuilder approvedById(String id){
+            return approvedById(UserId.of(id));
         }
     }
 }
