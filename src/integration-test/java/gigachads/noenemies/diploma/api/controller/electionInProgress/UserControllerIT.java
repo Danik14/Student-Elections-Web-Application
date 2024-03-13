@@ -2,7 +2,6 @@ package gigachads.noenemies.diploma.api.controller.electionInProgress;
 
 
 import gigachads.noenemies.diploma.TestHelper;
-import gigachads.noenemies.diploma.api.dto.CandidaturePlanResponse;
 import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
 import gigachads.noenemies.diploma.api.dto.UserResponse;
 import gigachads.noenemies.diploma.api.dto.VoteResponse;

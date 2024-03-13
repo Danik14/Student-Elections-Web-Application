@@ -6,6 +6,7 @@ import gigachads.noenemies.diploma.domain.model.*;
 import gigachads.noenemies.diploma.domain.service.CandidatureService;
 import gigachads.noenemies.diploma.exception.EntityNotFoundException;
 import gigachads.noenemies.diploma.exception.InvalidRoleException;
+import gigachads.noenemies.diploma.exception.StudentElectionsException;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureEntity;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidaturePlanEntity;
 import gigachads.noenemies.diploma.storage.jpa.entity.ElectionEntity;
@@ -42,6 +43,9 @@ public class CandidatureServiceImpl implements CandidatureService {
         UserEntity userEntity = findUserEntityById(userId);
         if (!userEntity.getRole().equals(UserRole.ACTIVE_STUDENT)){
             throw new InvalidRoleException(String.format("User must be %s to apply for candidature", UserRole.ACTIVE_STUDENT));
+        }
+        if(findInProgressElection() != null) {
+            throw new StudentElectionsException("You cannot apply for candidature if there is an ongoing election");
         }
         if (userRepository.updateUserRoleById(userId.getId(), UserRole.APPLIED_FOR_CANDIDATURE) != 1){
             log.error("Something went wrong when updating user role");

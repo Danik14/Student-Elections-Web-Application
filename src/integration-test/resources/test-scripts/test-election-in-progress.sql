@@ -8,10 +8,11 @@ truncate table users cascade;
 truncate table votes cascade;
 
 -- In progress scenario
+
 INSERT INTO users (created_at, updated_at, id, barcode, email, first_name, last_name, file_photo_name, role)
 VALUES
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '2004cc3b-a00b-649b-0000-000000000000', '211360', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'USER'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'ELECTION_OFFICIAL'),
 
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_CANDIDATE'),
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '', 'ACTIVE_CANDIDATE'),
@@ -24,13 +25,11 @@ VALUES
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'fa48d4ee-ccd9-4c84-b95a-86291c8662f6', '555555', 'test@example.com', 'test', 'testovich', '', 'ACTIVE_STUDENT');
 
 
--- Inserting data into elections table
 INSERT INTO elections (year, created_at, deadline, updated_at, id, description, status)
 VALUES
    (2023, '2023-01-20 14:00:00', '2023-03-31 23:59:59', '2023-01-20 14:00:00', 'b09903bf-03fb-4c44-a925-29db853b9477', 'Election 2023', 'COMPLETED'),
    (2024, '2024-01-20 14:00:00', '2024-03-31 23:59:59', '2024-01-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'Election 2024', 'IN_PROGRESS');
 
--- Inserting data into stages table
 INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description, status, number, is_votable)
 VALUES
 -- Election 2023 stage
@@ -43,7 +42,6 @@ VALUES
    ('2024-02-20 14:00:00', '2024-03-20 23:59:59', '2024-02-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2024 stage 3', 'IN_PROGRESS', 3, true);
 
 
--- Inserting data into candidatures table
 INSERT INTO candidatures (created_at, updated_at, approved_by_id, election_id, id, user_id)
 VALUES
 -- Election 2023 candidatures
@@ -60,7 +58,6 @@ VALUES
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1',
     '8dcf75a5-0636-425a-9ffd-b732d12ff197', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8');
 
--- Inserting data into candidature_plans table
 INSERT INTO candidature_plans (created_at, updated_at, id, candidature_id, description, instagram_link, slogan, telegram_link)
 VALUES
 -- Election 2023 candidature plans

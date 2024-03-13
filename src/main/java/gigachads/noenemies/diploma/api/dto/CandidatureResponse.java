@@ -2,7 +2,6 @@ package gigachads.noenemies.diploma.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import gigachads.noenemies.diploma.domain.model.CandidatureId;
-import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import lombok.*;
 
