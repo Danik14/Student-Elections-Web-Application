@@ -17,6 +17,13 @@ public interface ElectionRepository extends JpaRepository<ElectionEntity, UUID> 
     @Query("SELECT e FROM ElectionEntity e WHERE e.status = 'CREATED'")
     Optional<ElectionEntity> findCreatedElection();
 
+    @Query("SELECT COUNT(e) FROM ElectionEntity e WHERE e.status = 'CREATED'")
+    int countCreatedElections();
+
+    default boolean existsCreatedElection() {
+        return countCreatedElections() > 0;
+    }
+
     @Query("SELECT e FROM ElectionEntity e WHERE e.status = 'IN_PROGRESS'")
     Optional<ElectionEntity> findInProgressElection();
 

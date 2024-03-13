@@ -40,6 +40,20 @@ public class TestHelper {
             "stub"
     );
 
+    @Getter
+    private final Principal testActiveStudentOauth2TokenPrincipal = new OAuth2AuthenticationToken(
+            new DefaultOAuth2User(
+                    Stream.of("OIDC_USER), SCOPE_email, SCOPE_openid, SCOPE_profile").map(SimpleGrantedAuthority::new).collect(Collectors.toList()),
+                    Map.of("sub", "rvy4UCnbrRnIyYZYc4xIyogZJnr1mzmbe98A6nn1NCw",
+                            "preferred_username", "211362@astanait.edu.kz",
+                            "given_name", "Daniyar2",
+                            "family_name", "Chapagan2"),
+                    "sub"
+            ),
+            Stream.of("OIDC_USER), SCOPE_email, SCOPE_openid, SCOPE_profile").map(SimpleGrantedAuthority::new).collect(Collectors.toList()),
+            "stub"
+    );
+
     public Election createElection(ElectionCreate electionCreate) {
         return electionService.createElection(electionCreate);
     }

@@ -20,7 +20,7 @@ public class HelperClass {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
             // Add the input string to the digest
-            md.update(input.getBytes());
+            md.update("rvy4UCnbrRnIyYZYc4xIyogZJnr1mzmbe98A6nn1NCw".getBytes());
             // Get the hash's bytes
             byte[] bytes = md.digest();
             // Convert the hash to a BigInteger

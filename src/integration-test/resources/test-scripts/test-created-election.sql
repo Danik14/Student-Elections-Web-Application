@@ -11,8 +11,10 @@ truncate table votes cascade;
 
 INSERT INTO users (created_at, updated_at, id, barcode, email, first_name, last_name, file_photo_name, role)
 VALUES
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '2004cc3b-a00b-649b-0000-000000000000', '211360', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '2004cc3b-a00b-649b-0000-000000000000', '211360', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'ELECTION_OFFICIAL'),
+
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '869ffd74-b6f1-6a88-0000-000000000000', '211362', '211362@astanait.edu.kz', 'Daniyar2', 'Chapagan2', '', 'ACTIVE_STUDENT'),
 
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_STUDENT'),
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '', 'ACTIVE_STUDENT'),
@@ -27,4 +29,4 @@ VALUES
 
 INSERT INTO elections (year, created_at, deadline, updated_at, id, description, status)
 VALUES
-   (2025, '2025-01-20 14:00:00', '2025-03-31 23:59:59', '2025-01-20 14:00:00', 'b09903bf-03fb-4c44-a925-29db853b9477', 'Election 2025', 'CREATED'),
+   (2025, '2025-01-20 14:00:00', '2025-03-31 23:59:59', '2025-01-20 14:00:00', 'b09903bf-03fb-4c44-a925-29db853b9477', 'Election 2025', 'CREATED');

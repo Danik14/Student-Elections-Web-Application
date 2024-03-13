@@ -17,6 +17,7 @@ import gigachads.noenemies.diploma.storage.jpa.repository.ElectionRepository;
 import gigachads.noenemies.diploma.storage.jpa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,8 +45,8 @@ public class CandidatureServiceImpl implements CandidatureService {
         if (!userEntity.getRole().equals(UserRole.ACTIVE_STUDENT)){
             throw new InvalidRoleException(String.format("User must be %s to apply for candidature", UserRole.ACTIVE_STUDENT));
         }
-        if(findInProgressElection() != null) {
-            throw new StudentElectionsException("You cannot apply for candidature if there is an ongoing election");
+        if(!electionRepository.existsCreatedElection()) {
+            throw new StudentElectionsException(String.format("You cannot apply for candidature if there is no electio with status %s", ElectionStatus.CREATED));
         }
         if (userRepository.updateUserRoleById(userId.getId(), UserRole.APPLIED_FOR_CANDIDATURE) != 1){
             log.error("Something went wrong when updating user role");
