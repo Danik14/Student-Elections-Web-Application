@@ -17,7 +17,6 @@ import gigachads.noenemies.diploma.storage.jpa.repository.ElectionRepository;
 import gigachads.noenemies.diploma.storage.jpa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +32,11 @@ public class CandidatureServiceImpl implements CandidatureService {
     private final CandidatureMapper candidatureMapper;
     private final UserRepository userRepository;
     private final ElectionRepository electionRepository;
+
+    @Override
+    public Candidature findCandidatureById(CandidatureId candidatureId) {
+        return candidatureMapper.toDomain(findCandidatureEntityById(candidatureId));
+    }
 
     @Override
     public List<Candidature> findAllActiveCandidatures() {
@@ -57,7 +61,7 @@ public class CandidatureServiceImpl implements CandidatureService {
     public Candidature approveCandidature(UserId userId, UserId officialId) {
         CandidatureEntity candidatureEntity = candidatureRepository.save(CandidatureEntity.builder()
                 .election(findCreatedElection())
-                .user(findUserEntityById(userId))
+                .user(findUserEntityById(userId).toBuilder().role(UserRole.ACTIVE_CANDIDATE).build())
                 .approvedBy(findUserEntityById(officialId))
                 .build());
         CandidaturePlanEntity planEntity = candidaturePlanRepository.save(CandidaturePlanEntity.builder()

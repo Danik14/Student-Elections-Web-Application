@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import java.io.IOException;
 import java.util.Objects;
 
-import static gigachads.noenemies.diploma.HelperClass.generateUUIDFromString;
+import static gigachads.noenemies.diploma.HelperClass.convertToUUIDFromString;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,7 +27,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         OAuth2AuthenticatedPrincipal oidcUser = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
-        System.out.println(generateUUIDFromString(oidcUser.getName()));
+        System.out.println(convertToUUIDFromString(oidcUser.getName()));
         log.info("User authenticated: {}", oidcUser);
         userService.saveUser(parseUserInfo(oidcUser));
 
@@ -36,7 +36,7 @@ public class CustomAuthenticationSuccessHandler extends SavedRequestAwareAuthent
 
     private UserCreate parseUserInfo(OAuth2AuthenticatedPrincipal oidcUser) {
         return UserCreate.builder()
-                .id(Objects.requireNonNull(generateUUIDFromString(oidcUser.getName())).toString())
+                .id(Objects.requireNonNull(convertToUUIDFromString(oidcUser.getName())).toString())
                 .firstName(oidcUser.getAttribute("given_name"))
                 .lastName(oidcUser.getAttribute("family_name"))
                 .email(oidcUser.getAttribute("email"))

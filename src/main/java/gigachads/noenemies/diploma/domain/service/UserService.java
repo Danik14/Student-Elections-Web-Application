@@ -21,7 +21,7 @@ public interface UserService {
 
     User getUserByBarcode(String barcode);
 
-    User getUserById(UserId id);
+    User findUserById(UserId id);
 
     List<User> getAllCandidates();
 

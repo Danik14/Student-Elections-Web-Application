@@ -52,7 +52,7 @@ public class UserController {
     @GetMapping("/current")
     @ResponseStatus(HttpStatus.OK)
     public UserResponse getCurrentUser(Principal principal) {
-        return userMapper.toResponse(userService.getUserById(getUserIdByOauth2Principal(principal)));
+        return userMapper.toResponse(userService.findUserById(getUserIdByOauth2Principal(principal)));
     }
 
     @Operation(summary = "Get user by Id",
@@ -69,7 +69,7 @@ public class UserController {
     @GetMapping("/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public UserResponse getUserById(@PathVariable("userId") UserId userId) {
-        return userMapper.toResponse(userService.getUserById(userId));
+        return userMapper.toResponse(userService.findUserById(userId));
     }
 
     @Operation(summary = "Get student by barcode",

@@ -12,15 +12,15 @@ import java.util.UUID;
 @Slf4j
 public class HelperClass {
     public static UserId getUserIdByOauth2Principal(Principal principal){
-        return UserId.of(generateUUIDFromString(principal.getName()));
+        return UserId.of(convertToUUIDFromString(principal.getName()));
     }
 
-    public static UUID generateUUIDFromString(String input) {
+    public static UUID convertToUUIDFromString(String input) {
         try {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
             // Add the input string to the digest
-            md.update("rvy4UCnbrRnIyYZYc4xIyogZJnr1mzmbe98A6nn1NCw".getBytes());
+            md.update(input.getBytes());
             // Get the hash's bytes
             byte[] bytes = md.digest();
             // Convert the hash to a BigInteger

@@ -8,7 +8,6 @@ import gigachads.noenemies.diploma.api.dto.VoteResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.UserMapper;
 import gigachads.noenemies.diploma.domain.mapper.VoteMapper;
-import gigachads.noenemies.diploma.domain.model.Candidature;
 import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureService;
@@ -19,7 +18,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,9 +62,8 @@ public class CandidatureController {
             })
     @PostMapping("/apply")
     @ResponseStatus(HttpStatus.OK)
-    public String applyForCandidature(Principal principal) {
+    public void applyForCandidature(Principal principal) {
         candidatureService.applyForCandidature(getUserIdByOauth2Principal(principal));
-        return "Application was sent successfully";
     }
 
 
@@ -80,9 +77,9 @@ public class CandidatureController {
             })
     @PostMapping("/approve/{studentId}")
     @ResponseStatus(HttpStatus.OK)
-    public Candidature approveCandidature(Principal principal,
+    public CandidatureResponse approveCandidature(Principal principal,
                                           @PathVariable UserId studentId) {
-        return candidatureService.approveCandidature(studentId, getUserIdByOauth2Principal(principal));
+        return candidatureMapper.toResponse(candidatureService.approveCandidature(studentId, getUserIdByOauth2Principal(principal)));
     }
 
     @Operation(summary = "Vote for candidature on current stage",

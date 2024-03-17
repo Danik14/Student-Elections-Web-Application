@@ -15,6 +15,7 @@ VALUES
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'ELECTION_OFFICIAL'),
 
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '869ffd74-b6f1-6a88-0000-000000000000', '211362', '211362@astanait.edu.kz', 'Daniyar2', 'Chapagan2', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'd93b59d1-7233-4ad8-b997-0f19b0e3341b', '777777', '777777@astanait.edu.kz', 'Aivar', 'GigaBoneless', '', 'APPLIED_FOR_CANDIDATURE'),
 
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_STUDENT'),
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '', 'ACTIVE_STUDENT'),

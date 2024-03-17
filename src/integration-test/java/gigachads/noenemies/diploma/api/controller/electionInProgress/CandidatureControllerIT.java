@@ -4,10 +4,10 @@ import gigachads.noenemies.diploma.TestHelper;
 import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
 import gigachads.noenemies.diploma.api.dto.UserResponse;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
+import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ import java.util.List;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.mockMvc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @AutoConfigureMockMvc
 @ActiveProfiles("integration-test")
@@ -43,6 +44,7 @@ public class CandidatureControllerIT {
     }
 
     @Test
+    @Sql(scripts = "classpath:test-scripts/test-election-in-progress.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void test_getActiveCandidatures_success() {
         var actual = given()
                 .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
@@ -88,24 +90,43 @@ public class CandidatureControllerIT {
 
 
     @Test
-    @Disabled
     @Sql(scripts = "classpath:test-scripts/test-created-election.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void test_applyForCandidature_success() {
-        var actual = given()
+        given()
                 .auth().principal(testHelper.getTestActiveStudentOauth2TokenPrincipal())
                 .log().all()
-                .header("Accept", "application/json")
-                .when()
+            .when()
                 .post(BASE_RELATIVE_PATH + "/apply")
-                .then()
+            .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200);
+
+        assertEquals(
+                UserRole.APPLIED_FOR_CANDIDATURE,
+                testHelper.findUserById(UserId.of(testHelper.getTestActiveStudentId()))
+                        .getRole()
+        );
+    }
+
+    @Test
+    @Sql(scripts = "classpath:test-scripts/test-created-election.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    public void test_approveCandidature_success() {
+        var actual = given()
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
+                .log().all()
+                .header("Accept", "application/json")
+            .when()
+                .post(BASE_RELATIVE_PATH + "/approve/{studentId}", testHelper.getAppliedForCandidatureId())
+            .then()
                 .log().all()
                 .assertThat()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
                 .extract()
-                .as(String.class);
+                .as(CandidatureResponse.class);
 
-        var expected = "";
-        assertEquals(expected, actual);
+        assertNotNull(actual.getUser());
+        assertEquals(UserRole.ACTIVE_CANDIDATE, actual.getUser().getRole());
     }
 }
