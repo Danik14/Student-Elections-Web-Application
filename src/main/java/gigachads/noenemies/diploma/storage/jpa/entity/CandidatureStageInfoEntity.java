@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor
-public class CandidatureStagePlanEntity extends BaseEntity {
+public class CandidatureStageInfoEntity extends BaseEntity {
     @Column(name = "description", nullable = false)
     private String description;
 

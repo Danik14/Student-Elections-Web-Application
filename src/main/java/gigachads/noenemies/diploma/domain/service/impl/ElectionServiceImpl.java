@@ -27,7 +27,7 @@ public class ElectionServiceImpl implements ElectionService {
     private final ElectionRepository electionRepository;
     private final CandidatureRepository candidatureRepository;
     private final CandidatureStageRepository candidatureStageRepository;
-    private final CandidatureStagePlanRepository candidatureStagePlanRepository;
+    private final CandidatureStageInfoRepository candidatureStageInfoRepository;
     private final StageRepository stageRepository;
     private final UserRepository userRepository;
     private final ElectionMapper electionMapper;
@@ -96,7 +96,7 @@ public class ElectionServiceImpl implements ElectionService {
         CandidatureStageEntity candidatureStageEntity =  candidatureStageRepository.save(CandidatureStageEntity.builder()
                         .stage(stageEntity)
                         .candidature(candidatureEntity)
-                        .stagePlan(candidatureStagePlanRepository.save(CandidatureStagePlanEntity.builder()
+                        .stagePlan(candidatureStageInfoRepository.save(CandidatureStageInfoEntity.builder()
                                 .link1("")
                                 .link2("")
                                 .description("")

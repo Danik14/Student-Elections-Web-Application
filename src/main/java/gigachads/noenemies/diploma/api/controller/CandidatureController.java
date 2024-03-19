@@ -32,11 +32,7 @@ import static gigachads.noenemies.diploma.HelperClass.getUserIdByOauth2Principal
 @Validated
 public class CandidatureController {
     private final CandidatureService candidatureService;
-    private final VoteService voteService;
     private final CandidatureMapper candidatureMapper;
-    private final UserMapper userMapper;
-    private final VoteMapper voteMapper;
-
 
     @Operation(summary = "Get active candidatures",
             operationId = "getActiveCandidatures",
@@ -80,23 +76,6 @@ public class CandidatureController {
     public CandidatureResponse approveCandidature(Principal principal,
                                           @PathVariable UserId studentId) {
         return candidatureMapper.toResponse(candidatureService.approveCandidature(studentId, getUserIdByOauth2Principal(principal)));
-    }
-
-    @Operation(summary = "Vote for candidature on current stage",
-            operationId = "voteForCandidatureStage",
-            tags = {"CandidatureStage"},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Successfully voted for candidature on current stage",
-                            content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = VoteResponse.class))})
-            })
-    @GetMapping("/{candidatureStageId}/vote")
-    @ResponseStatus(HttpStatus.OK)
-    public VoteResponse voteForCandidatureStage(Principal principal,
-                                                @PathVariable CandidatureStageId candidatureStageId) {
-        return voteMapper.toResponse(
-                voteService.voteForCandidatureStage(getUserIdByOauth2Principal(principal), candidatureStageId)
-        );
     }
 
     @Operation(summary = "Update candidature plan",

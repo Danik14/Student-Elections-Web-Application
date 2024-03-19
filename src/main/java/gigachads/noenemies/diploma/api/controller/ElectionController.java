@@ -28,7 +28,6 @@ import static gigachads.noenemies.diploma.HelperClass.getUserIdByOauth2Principal
 @RequiredArgsConstructor
 public class ElectionController {
     private final ElectionService electionService;
-    private final CandidatureStageService candidatureStageService;
     private final ElectionMapper electionMapper;
     private final CandidatureMapper candidatureMapper;
 
@@ -62,71 +61,10 @@ public class ElectionController {
         return electionMapper.toResponse(electionService.getCurrentElection());
     }
 
-//    @Operation(summary = "Get election by Id",
-//            operationId = "getElectionById",
-//            tags = {"Election"},
-//            responses = {
-//                    @ApiResponse(responseCode = "200", description = "Found election",
-//                            content = {@Content(mediaType = "application/json",
-//                                    schema = @Schema(implementation = ElectionResponse.class))})
-//            })
-//    @GetMapping("/{electionId}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public ElectionResponse getElectionById(@PathVariable ElectionId electionId) {
-//        return electionMapper.toResponse(electionService.getElectionById(electionId));
-//    }
-
-    @Operation(summary = "Get candidature stages info by election id",
-            operationId = "getCandidatureStagesByElectionId",
-            tags = {"CandidatureStage"},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
-                            content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = CandidatureStageResponse.class))})
-            })
-    @GetMapping("/{electionId}/candidature-stage")
-    @ResponseStatus(HttpStatus.OK)
-    public List<CandidatureStageResponse> getCandidatureStagesByElectionId(@PathVariable ElectionId electionId) {
-        return candidatureMapper
-                .toCandidatureStageResponse(candidatureStageService.findCandidatureStagesByElectionId(electionId));
-    }
-
     @GetMapping("/{electionId}")
     @ResponseStatus(HttpStatus.OK)
     public ElectionResponse getElectionById(@PathVariable("electionId") ElectionId electionId) {
         return electionMapper.toResponse(electionService.getElectionById(electionId));
-    }
-
-    @Operation(summary = "Get current candidature stages info",
-            operationId = "getCurrentElectionCurrentCandidatureStages",
-            tags = {"CandidatureStage"},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
-                            content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = CandidatureStageResponse.class))})
-            })
-    @GetMapping("/current/candidature-stage/current")
-    @ResponseStatus(HttpStatus.OK)
-    public List<CandidatureStageResponse> getCurrentElectionCurrentCandidatureStages() {
-        return candidatureMapper
-                .toCandidatureStageResponse(candidatureStageService.findCurrentElectionCandidatureStagesByStatus(StageStatus.IN_PROGRESS));
-    }
-
-    @Operation(summary = "Get current election's candidature stage info by id",
-            operationId = "getCurrentElectionCandidatureStageById",
-            tags = {"CandidatureStage"},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stage",
-                            content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = CandidatureStageResponse.class))})
-            })
-    @GetMapping("/candidature-stage/{candidatureStageId}")
-    @ResponseStatus(HttpStatus.OK)
-    public CandidatureStageResponse geCandidatureStageById(
-            @PathVariable CandidatureStageId candidatureStageId
-            ) {
-        return candidatureMapper
-                .toCandidatureStageResponse(candidatureStageService.findCandidatureStageById(candidatureStageId));
     }
 
     @Operation(summary = "Create a new Election",
