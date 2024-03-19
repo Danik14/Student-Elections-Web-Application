@@ -17,5 +17,7 @@ public interface CandidatureService {
 
     Candidature approveCandidature(UserId userId, UserId officialId);
 
+    CandidaturePlan findCandidaturePlanByCandidatureId(CandidatureId candidatureId);
+
     CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, UserId studentId);
 }

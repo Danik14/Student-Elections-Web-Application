@@ -1,13 +1,11 @@
 package gigachads.noenemies.diploma.api.controller;
 
 
-import gigachads.noenemies.diploma.api.dto.CandidaturePlanResponse;
-import gigachads.noenemies.diploma.api.dto.CandidaturePlanUpdate;
-import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
-import gigachads.noenemies.diploma.api.dto.VoteResponse;
+import gigachads.noenemies.diploma.api.dto.*;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.UserMapper;
 import gigachads.noenemies.diploma.domain.mapper.VoteMapper;
+import gigachads.noenemies.diploma.domain.model.CandidatureId;
 import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureService;
@@ -54,7 +52,7 @@ public class CandidatureController {
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully applied for candidature",
                             content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = String.class))})
+                                    schema = @Schema)})
             })
     @PostMapping("/apply")
     @ResponseStatus(HttpStatus.OK)
@@ -69,13 +67,28 @@ public class CandidatureController {
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully approved candidature",
                             content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = String.class))})
+                                    schema = @Schema(implementation = CandidatureResponse.class))})
             })
     @PostMapping("/approve/{studentId}")
     @ResponseStatus(HttpStatus.OK)
     public CandidatureResponse approveCandidature(Principal principal,
                                           @PathVariable UserId studentId) {
         return candidatureMapper.toResponse(candidatureService.approveCandidature(studentId, getUserIdByOauth2Principal(principal)));
+    }
+
+    @Operation(summary = "Get candidature plan",
+            operationId = "getCandidaturePlanByCandidatureId",
+            tags = {"Candidature"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully found candidature plan",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidaturePlanResponse.class))})
+            })
+    @GetMapping("/{candidatureId}/plan")
+    @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
+    public CandidaturePlanResponse getCandidaturePlanByCandidatureId(CandidatureId candidatureId) {
+        return candidatureMapper.toCandidaturePlanResponse(candidatureService.findCandidaturePlanByCandidatureId(candidatureId));
     }
 
     @Operation(summary = "Update candidature plan",
@@ -88,10 +101,10 @@ public class CandidatureController {
             })
     @PatchMapping("/plan")
     @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
     public CandidaturePlanResponse updateCandidaturePlan(Principal principal,
                                         @RequestBody CandidaturePlanUpdate update) {
-        UserId studentId = UserId.of(principal.getName());
-
-        return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, studentId));
+        UserId candidateId = UserId.of(principal.getName());
+        return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, candidateId));
     }
 }

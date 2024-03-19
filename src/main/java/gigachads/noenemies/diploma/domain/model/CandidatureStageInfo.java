@@ -6,7 +6,7 @@ import lombok.NonNull;
 
 @Getter
 @Builder(toBuilder = true)
-public class CandidatureStagePlan {
+public class CandidatureStageInfo {
     @NonNull
     private String description;
     @NonNull

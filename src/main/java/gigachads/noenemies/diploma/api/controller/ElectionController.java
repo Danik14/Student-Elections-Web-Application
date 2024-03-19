@@ -93,6 +93,7 @@ public class ElectionController {
             })
     @PutMapping("/{electionId}/initiate")
     @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
     public List<CandidatureStageResponse> initiateElectionById(Principal principal, @PathVariable ElectionId electionId) {
         return candidatureMapper.toCandidatureStageResponse(electionService.initiateElection(getUserIdByOauth2Principal(principal), electionId));
     }

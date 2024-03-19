@@ -6,7 +6,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CandidatureStagePlanResponse {
+public class CandidatureStageInfoResponse {
     @NonNull
     private String description;
     @NonNull

@@ -15,7 +15,7 @@ public class CandidatureStageResponse {
     @NonNull
     private Integer votesCount;
     @NonNull
-    private CandidatureStagePlanResponse stagePlan;
+    private CandidatureStageInfoResponse stagePlan;
     @NonNull
     private StageResponse stage;
 

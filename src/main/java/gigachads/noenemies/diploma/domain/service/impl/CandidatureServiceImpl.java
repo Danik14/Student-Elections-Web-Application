@@ -77,6 +77,11 @@ public class CandidatureServiceImpl implements CandidatureService {
     }
 
     @Override
+    public CandidaturePlan findCandidaturePlanByCandidatureId(CandidatureId candidatureId) {
+        return candidatureMapper.toCandidaturePlanDomain(findCandidaturePlanEntityByCandidatureId(candidatureId));
+    }
+
+    @Override
     public CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, UserId userId) {
         if (findUserEntityById(userId).getRole() != UserRole.ACTIVE_CANDIDATE) {
             throw new InvalidRoleException(String.format("User must be %s to update his/her candidature plan", UserRole.ACTIVE_CANDIDATE));
@@ -115,7 +120,12 @@ public class CandidatureServiceImpl implements CandidatureService {
 
     private CandidaturePlanEntity findCandidaturePlanEntityByUserId(UserId userId) {
         return candidaturePlanRepository.findByCandidature_User_Id(userId.getId())
-                .orElseThrow(() -> new EntityNotFoundException("CandidaturePlan not found with for user id" + userId));
+                .orElseThrow(() -> new EntityNotFoundException("CandidaturePlan not found with for user id " + userId));
+    }
+
+    private CandidaturePlanEntity findCandidaturePlanEntityByCandidatureId(CandidatureId candidatureId) {
+        return candidaturePlanRepository.findByCandidature_Id(candidatureId.getId())
+                .orElseThrow(() -> new EntityNotFoundException("CandidaturePlan not found with for candidature id " + candidatureId));
     }
 
     private CandidaturePlanEntity getCandidaturePlanEntityById(CandidaturePlanId id) {

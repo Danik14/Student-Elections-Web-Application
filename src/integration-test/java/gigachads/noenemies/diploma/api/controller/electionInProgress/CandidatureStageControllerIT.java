@@ -80,7 +80,7 @@ public class CandidatureStageControllerIT {
                 )
                 .votesCount(3)
                 .stagePlan(
-                        CandidatureStagePlanResponse.builder()
+                        CandidatureStageInfoResponse.builder()
                                 .description("some description user1 stage3")
                                 .link1("http://localhost:8000/123")
                                 .link2("http://localhost:8000/123")
@@ -137,7 +137,7 @@ public class CandidatureStageControllerIT {
                         )
                         .votesCount(2)
                         .stagePlan(
-                                CandidatureStagePlanResponse.builder()
+                                CandidatureStageInfoResponse.builder()
                                         .description("some description gigabyte stage1")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
@@ -175,7 +175,7 @@ public class CandidatureStageControllerIT {
                         )
                         .votesCount(2)
                         .stagePlan(
-                                CandidatureStagePlanResponse.builder()
+                                CandidatureStageInfoResponse.builder()
                                         .description("some description gigabyte stage2")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
@@ -213,7 +213,7 @@ public class CandidatureStageControllerIT {
                         )
                         .votesCount(3)
                         .stagePlan(
-                                CandidatureStagePlanResponse.builder()
+                                CandidatureStageInfoResponse.builder()
                                         .description("some description kamchik stage1")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
@@ -250,7 +250,7 @@ public class CandidatureStageControllerIT {
                         )
                         .votesCount(3)
                         .stagePlan(
-                                CandidatureStagePlanResponse.builder()
+                                CandidatureStageInfoResponse.builder()
                                         .description("some description kamchik stage2")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
@@ -308,7 +308,7 @@ public class CandidatureStageControllerIT {
                         )
                         .votesCount(3)
                         .stagePlan(
-                                CandidatureStagePlanResponse.builder()
+                                CandidatureStageInfoResponse.builder()
                                         .description("some description user1 stage3")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
@@ -345,7 +345,7 @@ public class CandidatureStageControllerIT {
                         )
                         .votesCount(2)
                         .stagePlan(
-                                CandidatureStagePlanResponse.builder()
+                                CandidatureStageInfoResponse.builder()
                                         .description("some description user2 stage3")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")

@@ -1,6 +1,7 @@
 package gigachads.noenemies.diploma.api.controller;
 
 
+import gigachads.noenemies.diploma.api.dto.CandidaturePlanResponse;
 import gigachads.noenemies.diploma.api.dto.CandidatureStageResponse;
 import gigachads.noenemies.diploma.api.dto.VoteResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
@@ -66,7 +67,7 @@ public class CandidatureStageController {
                 .toCandidatureStageResponse(candidatureStageService.findCandidatureStagesByElectionId(electionId));
     }
 
-    @Operation(summary = "Get current candidature stages info",
+    @Operation(summary = "Get current candidature stages",
             operationId = "getCurrentElectionCurrentCandidatureStages",
             tags = {"CandidatureStage"},
             responses = {
@@ -81,6 +82,20 @@ public class CandidatureStageController {
                 .toCandidatureStageResponse(candidatureStageService.findCurrentElectionCandidatureStagesByStatus(StageStatus.IN_PROGRESS));
     }
 
+//    @Operation(summary = "Get candidature stage info by candidatureStageId",
+//            operationId = "getCurrentElectionCurrentCandidatureStages",
+//            tags = {"CandidatureStage"},
+//            responses = {
+//                    @ApiResponse(responseCode = "200", description = "Successfully found candidature stages",
+//                            content = {@Content(mediaType = "application/json",
+//                                    schema = @Schema(implementation = CandidatureStageResponse.class))})
+//            })
+//    @GetMapping("/candidature-stage/{candidatureStageId}/info")
+//    @ResponseStatus(HttpStatus.OK)
+//    public CandidaturePlanResponse getCandidatureStageInfoByCandidatureStageId(@PathVariable CandidatureStageId candidatureStageId) {
+//        return null;
+//    }
+
     @Operation(summary = "Vote for candidature on current stage",
             operationId = "voteForCandidatureStage",
             tags = {"CandidatureStage"},
@@ -91,6 +106,7 @@ public class CandidatureStageController {
             })
     @GetMapping("/candidature-stage/{candidatureStageId}/vote")
     @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
     public VoteResponse voteForCandidatureStage(Principal principal,
                                                 @PathVariable CandidatureStageId candidatureStageId) {
         return voteMapper.toResponse(

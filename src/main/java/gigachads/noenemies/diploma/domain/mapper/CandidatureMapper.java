@@ -1,14 +1,14 @@
 package gigachads.noenemies.diploma.domain.mapper;
 
-import gigachads.noenemies.diploma.api.dto.CandidaturePlanResponse;
-import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
-import gigachads.noenemies.diploma.api.dto.CandidatureStageResponse;
+import gigachads.noenemies.diploma.api.dto.*;
 import gigachads.noenemies.diploma.domain.model.Candidature;
 import gigachads.noenemies.diploma.domain.model.CandidaturePlan;
 import gigachads.noenemies.diploma.domain.model.CandidatureStage;
+import gigachads.noenemies.diploma.domain.model.CandidatureStageInfo;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureEntity;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidaturePlanEntity;
 import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureStageEntity;
+import gigachads.noenemies.diploma.storage.jpa.entity.CandidatureStageInfoEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -39,9 +39,16 @@ public interface CandidatureMapper {
 
     List<CandidatureStageResponse> toCandidatureStageResponse(List<CandidatureStage> candidatureStages);
 
-    CandidaturePlan toCandidaturePlanDomain(CandidaturePlanEntity candidaturePlanEntity);
+    CandidaturePlan toCandidaturePlanDomain(CandidaturePlanEntity entity);
 
     CandidaturePlanResponse toCandidaturePlanResponse(CandidaturePlan candidaturePlan);
+
+    CandidatureStageInfo toCandidatureStageInfoDomain(CandidatureStageInfoEntity entity);
+
+    CandidatureStageInfoResponse toCandidatureStageInfoResponse(CandidatureStageInfoResponse candidatureStageInfoResponse);
+
+    CandidatureStageInfoEntity toCandidatureStageInfoEntity(CandidatureStageInfoUpdate update);
+
 
 //    Vote voteEntityToDomain (VoteEntity entity);
 
