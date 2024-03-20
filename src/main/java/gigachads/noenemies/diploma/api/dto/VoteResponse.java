@@ -19,4 +19,16 @@ public class VoteResponse {
     @NonNull
     @JsonIgnoreProperties({"approvedBy", "plan"})
     private CandidatureResponse candidature;
+
+
+    public static class VoteResponseBuilder {
+        public VoteResponseBuilder id(VoteId id){
+            this.id = id;
+            return this;
+        }
+
+        public VoteResponseBuilder id(String id) {
+            return id(VoteId.of(id));
+        }
+    }
 }

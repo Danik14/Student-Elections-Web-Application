@@ -14,6 +14,8 @@ VALUES
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '2004cc3b-a00b-649b-0000-000000000000', '211360', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'ELECTION_OFFICIAL'),
 
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '869ffd74-b6f1-6a88-0000-000000000000', '211362', '211362@astanait.edu.kz', 'Daniyar2', 'Chapagan2', '', 'ACTIVE_STUDENT'),
+
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_CANDIDATE'),
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '', 'ACTIVE_CANDIDATE'),
 
@@ -53,8 +55,10 @@ VALUES
     'c858dc55-ba61-4fb8-ae5d-8d03e589be54', '9a9c8cea-b3ce-484c-bbf5-01da56eaa632'),
 
 -- Election 2024 candidatures
+-- user1
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1',
    '65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be'),
+-- user2
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1',
     '8dcf75a5-0636-425a-9ffd-b732d12ff197', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8');
 

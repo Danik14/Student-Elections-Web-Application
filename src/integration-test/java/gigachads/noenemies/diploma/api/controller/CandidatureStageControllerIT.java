@@ -4,6 +4,7 @@ import gigachads.noenemies.diploma.TestHelper;
 import gigachads.noenemies.diploma.api.dto.*;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
 import gigachads.noenemies.diploma.domain.model.StageStatus;
+import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import io.restassured.http.ContentType;
@@ -24,6 +25,7 @@ import java.util.List;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.mockMvc;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @AutoConfigureMockMvc
 @ActiveProfiles("integration-test")
@@ -303,8 +305,6 @@ public class CandidatureStageControllerIT {
         assertEquals(expected, actual);
     }
 
-//    70192ac1-7e41-4386-bb46-2f7f15d9e933
-
     @Test
     @Sql(scripts = "classpath:test-scripts/test-election-in-progress.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     void test_getCandidatureStageInfoByCandidatureStageId_success() {
@@ -326,6 +326,52 @@ public class CandidatureStageControllerIT {
                 .description("some description kamchik stage1")
                 .link1("http://localhost:8000/123")
                 .link2("http://localhost:8000/123")
+                .build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @Sql(scripts = "classpath:test-scripts/test-election-in-progress.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    void test_voteForCandidatureStage_success() {
+        var actual = given()
+                .auth().principal(testHelper.getTestActiveStudentOauth2TokenPrincipal())
+                .log().all()
+                .header("Accept", "application/json")
+                .when()
+                .get(BASE_RELATIVE_PATH + "/candidature-stage/{candidatureStageId}/vote", "1efe9085-27b5-4b1c-9997-6c0144aaa8fa")
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .extract()
+                .as(VoteResponse.class);
+
+        assertNotNull(actual.getId());
+        var expected = VoteResponse.builder()
+                .id(actual.getId())
+                .elector(UserResponse.builder()
+                        .id("869ffd74-b6f1-6a88-0000-000000000000")
+                        .role(UserRole.ACTIVE_STUDENT)
+                        .barcode("211362")
+                        .email("211362@astanait.edu.kz")
+                        .firstName("Daniyar2")
+                        .lastName("Chapagan2")
+                        .photo(null)
+                        .build())
+                .candidature(CandidatureResponse.builder()
+                        .id("65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7")
+                        .user(UserResponse.builder()
+                                .id("6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be")
+                                .role(UserRole.ACTIVE_CANDIDATE)
+                                .barcode("123456")
+                                .email("user1@example.com")
+                                .firstName("Candidate1")
+                                .lastName("1")
+                                .photo(null)
+                                .build())
+                        .approvedById("0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc")
+                        .build())
                 .build();
         assertEquals(expected, actual);
     }
