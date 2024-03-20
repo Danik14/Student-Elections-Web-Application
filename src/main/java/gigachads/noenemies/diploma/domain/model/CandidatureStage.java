@@ -11,7 +11,7 @@ public class CandidatureStage {
     @NonNull
     private CandidatureStageId id;
     @NonNull
-    private CandidatureStageInfo stagePlan;
+    private CandidatureStageInfo stageInfo;
     @ToString.Exclude
     @NonNull
     private Candidature candidature;

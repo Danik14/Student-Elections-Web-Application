@@ -31,5 +31,5 @@ public class CandidatureStageEntity extends BaseEntity {
     private List<VoteEntity> votes;
 
     @OneToOne(mappedBy = "candidatureStage")
-    private CandidatureStageInfoEntity stagePlan;
+    private CandidatureStageInfoEntity stageInfo;
 }

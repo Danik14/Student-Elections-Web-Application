@@ -35,6 +35,7 @@ public interface CandidatureMapper {
 
     List<CandidatureStage> toCandidatureStageDomain(List<CandidatureStageEntity> entities);
 
+    @Mapping(target = "stageId", source = "stage.id")
     CandidatureStageResponse toCandidatureStageResponse(CandidatureStage candidatureStage);
 
     List<CandidatureStageResponse> toCandidatureStageResponse(List<CandidatureStage> candidatureStages);

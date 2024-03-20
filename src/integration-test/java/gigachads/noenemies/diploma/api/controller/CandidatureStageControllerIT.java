@@ -79,23 +79,14 @@ public class CandidatureStageControllerIT {
                                 .build()
                 )
                 .votesCount(3)
-                .stagePlan(
+                .stageInfo(
                         CandidatureStageInfoResponse.builder()
                                 .description("some description user1 stage3")
                                 .link1("http://localhost:8000/123")
                                 .link2("http://localhost:8000/123")
                                 .build()
                 )
-                .stage(
-                        StageResponse.builder()
-                                .id("de9d9185-6d2e-4613-af3b-4d1733d0d9ea")
-                                .description("2024 stage 3")
-                                .status(StageStatus.valueOf("IN_PROGRESS"))
-                                .votable(true)
-                                .number(3)
-                                .deadline(testHelper.toDefaultTime("2024-03-20T23:59:59"))
-                                .build()
-                )
+                .stageId("de9d9185-6d2e-4613-af3b-4d1733d0d9ea")
                 .build();
         assertEquals(expected, actual);
     }
@@ -136,23 +127,14 @@ public class CandidatureStageControllerIT {
                                         .build()
                         )
                         .votesCount(2)
-                        .stagePlan(
+                        .stageInfo(
                                 CandidatureStageInfoResponse.builder()
                                         .description("some description gigabyte stage1")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
                                         .build()
                         )
-                        .stage(
-                                StageResponse.builder()
-                                        .id("0552f1d3-e597-4e51-afcc-4b5d0fa94454")
-                                        .description("2023 stage 1")
-                                        .status(StageStatus.valueOf("COMPLETED"))
-                                        .votable(true)
-                                        .number(1)
-                                        .deadline(LocalDateTime.parse("2023-02-20T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
-                                        .build()
-                        )
+                        .stageId("0552f1d3-e597-4e51-afcc-4b5d0fa94454")
                         .build(),
 
                 CandidatureStageResponse.builder()
@@ -174,23 +156,14 @@ public class CandidatureStageControllerIT {
                                         .build()
                         )
                         .votesCount(2)
-                        .stagePlan(
+                        .stageInfo(
                                 CandidatureStageInfoResponse.builder()
                                         .description("some description gigabyte stage2")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
                                         .build()
                         )
-                        .stage(
-                                StageResponse.builder()
-                                        .id("04cdaca4-a321-4968-93c2-068b7f3c9894")
-                                        .description("2023 stage 2")
-                                        .status(StageStatus.valueOf("COMPLETED"))
-                                        .votable(true)
-                                        .number(2)
-                                        .deadline(LocalDateTime.parse("2023-03-20T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
-                                        .build()
-                        )
+                        .stageId("04cdaca4-a321-4968-93c2-068b7f3c9894")
                         .build(),
 
                 CandidatureStageResponse.builder()
@@ -212,23 +185,14 @@ public class CandidatureStageControllerIT {
                                         .build()
                         )
                         .votesCount(3)
-                        .stagePlan(
+                        .stageInfo(
                                 CandidatureStageInfoResponse.builder()
                                         .description("some description kamchik stage1")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
                                         .build()
                         )
-                        .stage(
-                                StageResponse.builder()
-                                        .id("0552f1d3-e597-4e51-afcc-4b5d0fa94454")
-                                        .description("2023 stage 1")
-                                        .status(StageStatus.valueOf("COMPLETED"))
-                                        .votable(true)
-                                        .number(1)
-                                        .deadline(LocalDateTime.parse("2023-02-20T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
-                                        .build()
-                        )
+                        .stageId("0552f1d3-e597-4e51-afcc-4b5d0fa94454")
                         .build(),
                 CandidatureStageResponse.builder()
                         .id("60576319-9fca-4179-bfd8-94bb9e59fa03")
@@ -249,23 +213,14 @@ public class CandidatureStageControllerIT {
                                         .build()
                         )
                         .votesCount(3)
-                        .stagePlan(
+                        .stageInfo(
                                 CandidatureStageInfoResponse.builder()
                                         .description("some description kamchik stage2")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
                                         .build()
                         )
-                        .stage(
-                                StageResponse.builder()
-                                        .id("04cdaca4-a321-4968-93c2-068b7f3c9894")
-                                        .description("2023 stage 2")
-                                        .status(StageStatus.valueOf("COMPLETED"))
-                                        .votable(true)
-                                        .number(2)
-                                        .deadline(LocalDateTime.parse("2023-03-20T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
-                                        .build()
-                        )
+                        .stageId("04cdaca4-a321-4968-93c2-068b7f3c9894")
                         .build()
         );
         assertEquals(expected, actual);
@@ -307,23 +262,14 @@ public class CandidatureStageControllerIT {
                                         .build()
                         )
                         .votesCount(3)
-                        .stagePlan(
+                        .stageInfo(
                                 CandidatureStageInfoResponse.builder()
                                         .description("some description user1 stage3")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
                                         .build()
                         )
-                        .stage(
-                                StageResponse.builder()
-                                        .id("de9d9185-6d2e-4613-af3b-4d1733d0d9ea")
-                                        .description("2024 stage 3")
-                                        .status(StageStatus.valueOf("IN_PROGRESS"))
-                                        .votable(true)
-                                        .number(3)
-                                        .deadline(LocalDateTime.parse("2024-03-20T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
-                                        .build()
-                        )
+                        .stageId("de9d9185-6d2e-4613-af3b-4d1733d0d9ea")
                         .build(),
                 CandidatureStageResponse.builder()
                         .id("01d2835e-ff45-4847-9a82-61bf83634b28")
@@ -344,23 +290,14 @@ public class CandidatureStageControllerIT {
                                         .build()
                         )
                         .votesCount(2)
-                        .stagePlan(
+                        .stageInfo(
                                 CandidatureStageInfoResponse.builder()
                                         .description("some description user2 stage3")
                                         .link1("http://localhost:8000/123")
                                         .link2("http://localhost:8000/123")
                                         .build()
                         )
-                        .stage(
-                                StageResponse.builder()
-                                        .id("de9d9185-6d2e-4613-af3b-4d1733d0d9ea")
-                                        .description("2024 stage 3")
-                                        .status(StageStatus.valueOf("IN_PROGRESS"))
-                                        .votable(true)
-                                        .number(3)
-                                        .deadline(LocalDateTime.parse("2024-03-20T23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")))
-                                        .build()
-                        )
+                        .stageId("de9d9185-6d2e-4613-af3b-4d1733d0d9ea")
                         .build()
         );
         assertEquals(expected, actual);

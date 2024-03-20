@@ -1,6 +1,7 @@
 package gigachads.noenemies.diploma.api.dto;
 
 import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
+import gigachads.noenemies.diploma.domain.model.StageId;
 import lombok.*;
 
 @Data
@@ -15,9 +16,9 @@ public class CandidatureStageResponse {
     @NonNull
     private Integer votesCount;
     @NonNull
-    private CandidatureStageInfoResponse stagePlan;
+    private CandidatureStageInfoResponse stageInfo;
     @NonNull
-    private StageResponse stage;
+    private StageId stageId;
 
     public static class CandidatureStageResponseBuilder {
         public CandidatureStageResponseBuilder id(CandidatureStageId id){
@@ -27,6 +28,15 @@ public class CandidatureStageResponse {
 
         public CandidatureStageResponseBuilder id(String stringId){
             return id(CandidatureStageId.of(stringId));
+        }
+
+        public CandidatureStageResponseBuilder stageId(StageId id){
+            this.stageId = id;
+            return this;
+        }
+
+        public CandidatureStageResponseBuilder stageId(String stringId){
+            return stageId(StageId.of(stringId));
         }
     }
 }

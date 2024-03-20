@@ -96,7 +96,7 @@ public class ElectionServiceImpl implements ElectionService {
         CandidatureStageEntity candidatureStageEntity =  candidatureStageRepository.save(CandidatureStageEntity.builder()
                         .stage(stageEntity)
                         .candidature(candidatureEntity)
-                        .stagePlan(candidatureStageInfoRepository.save(CandidatureStageInfoEntity.builder()
+                        .stageInfo(candidatureStageInfoRepository.save(CandidatureStageInfoEntity.builder()
                                 .link1("")
                                 .link2("")
                                 .description("")
