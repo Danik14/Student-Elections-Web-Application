@@ -1,9 +1,14 @@
-package gigachads.noenemies.diploma.api.controller.electionInProgress;
+package gigachads.noenemies.diploma.api.controller;
 
 import gigachads.noenemies.diploma.TestHelper;
-import gigachads.noenemies.diploma.api.dto.*;
+import gigachads.noenemies.diploma.api.dto.ElectionCreate;
+import gigachads.noenemies.diploma.api.dto.ElectionResponse;
+import gigachads.noenemies.diploma.api.dto.StageResponse;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
-import gigachads.noenemies.diploma.domain.model.*;
+import gigachads.noenemies.diploma.domain.model.ElectionId;
+import gigachads.noenemies.diploma.domain.model.ElectionStatus;
+import gigachads.noenemies.diploma.domain.model.StageId;
+import gigachads.noenemies.diploma.domain.model.StageStatus;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

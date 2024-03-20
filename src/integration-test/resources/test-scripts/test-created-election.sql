@@ -1,5 +1,5 @@
 truncate table candidature_plans cascade;
-truncate table candidature_stage_plans cascade;
+truncate table candidature_stage_info cascade;
 truncate table candidature_stages cascade;
 truncate table candidatures cascade;
 truncate table elections cascade;

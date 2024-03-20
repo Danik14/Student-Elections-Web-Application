@@ -1,4 +1,4 @@
-package gigachads.noenemies.diploma.api.controller.electionInProgress;
+package gigachads.noenemies.diploma.api.controller;
 
 
 import gigachads.noenemies.diploma.TestHelper;

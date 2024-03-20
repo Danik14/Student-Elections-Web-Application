@@ -1,15 +1,13 @@
 package gigachads.noenemies.diploma.api.controller;
 
 
-import gigachads.noenemies.diploma.api.dto.*;
+import gigachads.noenemies.diploma.api.dto.CandidaturePlanResponse;
+import gigachads.noenemies.diploma.api.dto.CandidaturePlanUpdate;
+import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
-import gigachads.noenemies.diploma.domain.mapper.UserMapper;
-import gigachads.noenemies.diploma.domain.mapper.VoteMapper;
 import gigachads.noenemies.diploma.domain.model.CandidatureId;
-import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureService;
-import gigachads.noenemies.diploma.domain.service.VoteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

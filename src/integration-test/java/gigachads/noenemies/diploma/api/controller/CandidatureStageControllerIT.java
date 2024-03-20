@@ -1,4 +1,4 @@
-package gigachads.noenemies.diploma.api.controller.electionInProgress;
+package gigachads.noenemies.diploma.api.controller;
 
 import gigachads.noenemies.diploma.TestHelper;
 import gigachads.noenemies.diploma.api.dto.*;
@@ -363,6 +363,33 @@ public class CandidatureStageControllerIT {
                         )
                         .build()
         );
+        assertEquals(expected, actual);
+    }
+
+//    70192ac1-7e41-4386-bb46-2f7f15d9e933
+
+    @Test
+    @Sql(scripts = "classpath:test-scripts/test-election-in-progress.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    void test_getCandidatureStageInfoByCandidatureStageId_success() {
+        var actual = given()
+                .auth().principal(testHelper.getTestSuperAdminOauth2TokenPrincipal())
+                .log().all()
+                .header("Accept", "application/json")
+                .when()
+                .get(BASE_RELATIVE_PATH + "/candidature-stage/{candidatureStageId}/info", "70192ac1-7e41-4386-bb46-2f7f15d9e933")
+                .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .extract()
+                .as(CandidatureStageInfoResponse.class);
+
+        var expected = CandidatureStageInfoResponse.builder()
+                .description("some description kamchik stage1")
+                .link1("http://localhost:8000/123")
+                .link2("http://localhost:8000/123")
+                .build();
         assertEquals(expected, actual);
     }
 }

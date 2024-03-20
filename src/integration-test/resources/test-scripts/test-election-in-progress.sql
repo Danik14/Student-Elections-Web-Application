@@ -1,5 +1,5 @@
 truncate table candidature_plans cascade;
-truncate table candidature_stage_plans cascade;
+truncate table candidature_stage_info cascade;
 truncate table candidature_stages cascade;
 truncate table candidatures cascade;
 truncate table elections cascade;
@@ -96,10 +96,10 @@ VALUES
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '8dcf75a5-0636-425a-9ffd-b732d12ff197', '01d2835e-ff45-4847-9a82-61bf83634b28', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea');
 
 
-INSERT INTO candidature_stage_plans (created_at, updated_at, id, candidature_stage_id, link1, link2, description)
+INSERT INTO candidature_stage_info (created_at, updated_at, id, candidature_stage_id, link1, link2, description)
 VALUES
--- Election 2023 candidature stage plans
--- gigabyte candidature stage plans
+-- Election 2023 candidature stage info
+-- gigabyte candidature stage info
     ('2023-02-20 14:00:00', '2023-02-20 14:00:00', '5224f402-5bcb-483e-87dd-f62e3c936949', '646aa141-5b08-4ae7-a6e2-c7e02b2c9d0d',
     'http://localhost:8000/123', 'http://localhost:8000/123', 'some description gigabyte stage1'),
     ('2023-02-20 14:00:00', '2023-02-20 14:00:00', '3decea58-4ff2-43d4-a9f9-43ad1e73375d', '52538b9b-d7a8-4b1e-8135-81aba2be894e',
@@ -112,7 +112,7 @@ VALUES
     'http://localhost:8000/123', 'http://localhost:8000/123', 'some description kamchik stage2'),
 
 -- Election 2024 candidature stages
---- user1 candidature stage plans
+--- user1 candidature stage info
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', 'ceede86d-b5c6-4f6d-9a9f-b51a6979db8d', 'b62443c7-8d37-4ef1-a8d1-d0d3f6908412',
     'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user1 stage1'),
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '5068432f-4195-45ea-b4fb-be1bdfecb2c4', 'e2df0d5d-eb3f-4b2e-84a8-f962c0ae10a0',
@@ -120,7 +120,7 @@ VALUES
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '1aae27e3-158e-4c5d-80be-1c6ea245b8a4', '1efe9085-27b5-4b1c-9997-6c0144aaa8fa',
     'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user1 stage3'),
 
---- user2 candidature stage plans
+--- user2 candidature stage info
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '43c239f5-8982-4857-be1b-1a557f64b542', '16d28a8c-1251-4c0e-88fe-60ba89abb080',
     'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user2 stage1'),
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '0766fec7-22ef-4e37-9b67-d6efef5e3f98', '223bf42e-b931-4926-af13-050817d160e1',

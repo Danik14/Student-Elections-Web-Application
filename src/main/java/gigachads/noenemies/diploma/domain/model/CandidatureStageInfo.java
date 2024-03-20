@@ -8,6 +8,8 @@ import lombok.NonNull;
 @Builder(toBuilder = true)
 public class CandidatureStageInfo {
     @NonNull
+    private CandidatureStageInfoId id;
+    @NonNull
     private String description;
     @NonNull
     private String link1;

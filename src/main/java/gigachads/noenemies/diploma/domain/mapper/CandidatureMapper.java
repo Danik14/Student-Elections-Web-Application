@@ -45,7 +45,7 @@ public interface CandidatureMapper {
 
     CandidatureStageInfo toCandidatureStageInfoDomain(CandidatureStageInfoEntity entity);
 
-    CandidatureStageInfoResponse toCandidatureStageInfoResponse(CandidatureStageInfoResponse candidatureStageInfoResponse);
+    CandidatureStageInfoResponse toCandidatureStageInfoResponse(CandidatureStageInfo candidatureStageInfo);
 
     CandidatureStageInfoEntity toCandidatureStageInfoEntity(CandidatureStageInfoUpdate update);
 

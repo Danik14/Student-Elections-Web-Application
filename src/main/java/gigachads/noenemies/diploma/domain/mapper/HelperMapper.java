@@ -21,6 +21,8 @@ public interface HelperMapper {
         return value.getId();
     }
 
+    default UUID map(CandidatureStageInfoId value) { return  value.getId();}
+
     default UUID map(CandidatureId value){
         return value.getId();
     }
@@ -43,6 +45,10 @@ public interface HelperMapper {
 
     default CandidatureStageId mapToCandidatureStageId(UUID value) {
         return CandidatureStageId.of(value);
+    }
+
+    default CandidatureStageInfoId mapToCandidatureStageInfoId(UUID value) {
+        return CandidatureStageInfoId.of(value);
     }
 
     default CandidatureId mapToCandidatureId(UUID value) {

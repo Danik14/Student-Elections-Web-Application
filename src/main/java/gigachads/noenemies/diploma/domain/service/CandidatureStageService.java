@@ -1,9 +1,7 @@
 package gigachads.noenemies.diploma.domain.service;
 
-import gigachads.noenemies.diploma.domain.model.CandidatureStage;
-import gigachads.noenemies.diploma.domain.model.CandidatureStageId;
-import gigachads.noenemies.diploma.domain.model.ElectionId;
-import gigachads.noenemies.diploma.domain.model.StageStatus;
+import gigachads.noenemies.diploma.api.dto.CandidatureStageInfoUpdate;
+import gigachads.noenemies.diploma.domain.model.*;
 
 import java.util.List;
 
@@ -15,4 +13,10 @@ public interface CandidatureStageService {
     List<CandidatureStage> findCurrentElectionCandidatureStagesByStatus(StageStatus stageStatus);
 
     CandidatureStage findCandidatureStageById(CandidatureStageId candidatureStageId);
+
+    CandidatureStageInfo findCandidatureStageInfoById(CandidatureStageInfoId id);
+
+    CandidatureStageInfo findInfoByCandidatureStageId(CandidatureStageId candidatureStageId);
+
+    CandidatureStageInfo updateCandidatureStageInfo(CandidatureStageInfoId id, CandidatureStageInfoUpdate update);
 }

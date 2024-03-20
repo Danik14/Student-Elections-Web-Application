@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 
 @Entity
 @ToString
-@Table(name = "candidature_stage_plans")
+@Table(name = "candidature_stage_info")
 @Getter
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor
