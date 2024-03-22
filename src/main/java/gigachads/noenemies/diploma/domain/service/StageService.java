@@ -17,4 +17,6 @@ public interface StageService {
     Stage findCurrentStageByElectionId(ElectionId electionId);
 
     Stage findCurrentElectionCurrentStage();
+
+    Stage finishStageById(StageId stageId);
 }

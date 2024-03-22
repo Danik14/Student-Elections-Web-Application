@@ -4,6 +4,7 @@ import gigachads.noenemies.diploma.api.dto.StageCreate;
 import gigachads.noenemies.diploma.api.dto.StageResponse;
 import gigachads.noenemies.diploma.domain.mapper.StageMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
+import gigachads.noenemies.diploma.domain.model.StageId;
 import gigachads.noenemies.diploma.domain.service.StageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -78,5 +79,22 @@ public class StageController {
             @PathVariable ElectionId electionId,
             @RequestBody StageCreate create) {
         return stageMapper.toResponse(stageService.createElectionStage(electionId, create));
+    }
+
+    @Operation(summary = "Finish election's stage",
+            operationId = "finishElectionStage",
+            tags = {"Stage"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Finished election stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = StageResponse.class))})
+            })
+    @PutMapping("/{electionId}/stage/{stageId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public StageResponse finishElectionStage(
+            @PathVariable ElectionId electionId,
+            @PathVariable StageId stageId
+    ) {
+        return stageMapper.toResponse(stageService.finishStageById(stageId));
     }
 }

@@ -105,4 +105,22 @@ public class CandidatureController {
         UserId candidateId = UserId.of(principal.getName());
         return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, candidateId));
     }
+
+    @Operation(summary = "Deactivate candidature by id",
+            operationId = "deactivateCandidature",
+            tags = {"Candidature"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully deactivated candidature",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidatureResponse.class))})
+            })
+    @PatchMapping("/{candidatureId}/deactivate")
+    @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
+    public CandidatureResponse deactivateCandidature(
+            @PathVariable CandidatureId candidatureId) {
+        return candidatureMapper.toResponse(candidatureService.deactivateCandidature(candidatureId));
+    }
+
+
 }

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public enum UserRole {
     USER(Collections.emptySet()),
+    EX_CANDIDATE(Collections.emptySet()),
     ACTIVE_STUDENT(mergePermissions(
             USER,
             UserPermission.STUDENT_READ,

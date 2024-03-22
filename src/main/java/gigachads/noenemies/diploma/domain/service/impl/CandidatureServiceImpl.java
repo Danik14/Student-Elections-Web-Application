@@ -105,6 +105,18 @@ public class CandidatureServiceImpl implements CandidatureService {
         return candidatureMapper.toCandidaturePlanDomain(candidaturePlanRepository.save(planEntityBuilder.build()));
     }
 
+    @Override
+    public Candidature deactivateCandidature(CandidatureId candidatureId) {
+        userRepository.save(findCandidatureEntityById(candidatureId)
+                .getUser()
+                .toBuilder()
+                .role(UserRole.EX_CANDIDATE)
+                .build()
+        );
+
+        return candidatureMapper.toDomain(findCandidatureEntityById(candidatureId));
+    }
+
 
     private UserEntity findUserEntityById(UserId id) {
         return userRepository.findById(id.getId())

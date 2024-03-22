@@ -20,4 +20,6 @@ public interface CandidatureService {
     CandidaturePlan findCandidaturePlanByCandidatureId(CandidatureId candidatureId);
 
     CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, UserId studentId);
+
+    Candidature deactivateCandidature(CandidatureId candidatureId);
 }

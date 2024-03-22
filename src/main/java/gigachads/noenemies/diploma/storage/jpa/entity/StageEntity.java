@@ -2,7 +2,10 @@ package gigachads.noenemies.diploma.storage.jpa.entity;
 
 import gigachads.noenemies.diploma.domain.model.StageStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
@@ -12,8 +15,7 @@ import java.util.List;
 @ToString
 @Table(name = "stages")
 @Getter
-@Setter
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class StageEntity extends BaseEntity{

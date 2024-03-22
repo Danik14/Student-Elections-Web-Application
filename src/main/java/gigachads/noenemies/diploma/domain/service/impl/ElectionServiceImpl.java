@@ -45,7 +45,7 @@ public class ElectionServiceImpl implements ElectionService {
 
     @Override
     public Election getElectionById(ElectionId id) {
-        return electionMapper.toDomain(getElectionEntityById(id));
+        return electionMapper.toDomain(findElectionEntityById(id));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ElectionServiceImpl implements ElectionService {
 
     @Override
     public List<CandidatureStage> initiateElection(UserId officialId, ElectionId electionId) {
-        ElectionEntity electionEntity = getElectionEntityById(electionId);
+        ElectionEntity electionEntity = findElectionEntityById(electionId);
         if (findInProgressElection().isPresent()) {
             throw new StudentElectionsException("An election in progress already exists");
         }
@@ -84,7 +84,17 @@ public class ElectionServiceImpl implements ElectionService {
         return candidatureMapper.toCandidatureStageDomain(result);
     }
 
-    private ElectionEntity getElectionEntityById(ElectionId id) {
+    @Override
+    // TODO: create logic for winner
+    public Election finishElectionById(ElectionId electionId) {
+        var electionEntity = findElectionEntityById(electionId).toBuilder();
+
+        return electionMapper.toDomain(electionRepository.save(electionEntity
+                .status(ElectionStatus.COMPLETED)
+                .build()));
+    }
+
+    private ElectionEntity findElectionEntityById(ElectionId id) {
         return electionRepository.findById(id.getId())
                 .orElseThrow(() ->
                         new EntityNotUpdatedException("Election not found with id: " + id.getAsString()

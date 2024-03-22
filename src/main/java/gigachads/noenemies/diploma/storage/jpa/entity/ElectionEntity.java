@@ -17,7 +17,7 @@ import java.util.List;
 @ToString
 @Table(name = "elections")
 @Getter
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class ElectionEntity extends BaseEntity {

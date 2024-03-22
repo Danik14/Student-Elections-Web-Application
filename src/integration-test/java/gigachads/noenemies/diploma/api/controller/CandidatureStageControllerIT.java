@@ -3,8 +3,6 @@ package gigachads.noenemies.diploma.api.controller;
 import gigachads.noenemies.diploma.TestHelper;
 import gigachads.noenemies.diploma.api.dto.*;
 import gigachads.noenemies.diploma.containers.ContainerHolder;
-import gigachads.noenemies.diploma.domain.model.StageStatus;
-import gigachads.noenemies.diploma.domain.model.User;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.model.UserRole;
 import io.restassured.http.ContentType;
@@ -18,8 +16,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;

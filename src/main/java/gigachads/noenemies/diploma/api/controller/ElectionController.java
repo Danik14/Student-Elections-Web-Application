@@ -76,13 +76,13 @@ public class ElectionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ElectionResponse createNewElection(
-                                           @RequestBody ElectionCreate request) {
+            @RequestBody ElectionCreate request) {
         return electionMapper.toResponse(electionService.createElection(request));
     }
 
     @Operation(summary = "Initiate election by Id",
             operationId = "initiateElectionById",
-            tags = {"CandidatureStage"},
+            tags = {"Election"},
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully initiated election",
                             content = {@Content(mediaType = "application/json",
@@ -91,7 +91,25 @@ public class ElectionController {
     @PutMapping("/{electionId}/initiate")
     @ResponseStatus(HttpStatus.OK)
     // TODO: IT
-    public List<CandidatureStageResponse> initiateElectionById(Principal principal, @PathVariable ElectionId electionId) {
+    public List<CandidatureStageResponse> initiateElectionById(
+            Principal principal,
+            @PathVariable ElectionId electionId) {
         return candidatureMapper.toCandidatureStageResponse(electionService.initiateElection(getUserIdByOauth2Principal(principal), electionId));
+    }
+
+    @Operation(summary = "Finish election by Id",
+            operationId = "finishElectionById",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully finished election",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ElectionResponse.class))})
+            })
+    @PutMapping("/{electionId}/finish")
+    @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
+    public ElectionResponse finishElectionById(
+            @PathVariable ElectionId electionId) {
+        return electionMapper.toResponse(electionService.finishElectionById(electionId));
     }
 }

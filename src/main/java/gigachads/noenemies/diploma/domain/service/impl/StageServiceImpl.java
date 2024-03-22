@@ -34,13 +34,12 @@ public class StageServiceImpl implements StageService {
         ElectionEntity electionEntity = electionRepository.findById(electionId.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Election not found with id: " + electionId));
 
-        StageEntity stageEntity = stageMapper.toEntity(create);
-        stageEntity.setElection(electionEntity);
-        stageEntity.setCandidatureStages(new ArrayList<>());
-        System.out.println(stageEntity);
-        stageEntity = stageRepository.save(stageEntity);
+        var stageEntity = stageMapper.toEntity(create).toBuilder();
 
-        return stageMapper.toDomain(stageEntity);
+        return stageMapper.toDomain(stageRepository.save(stageEntity
+                .election(electionEntity)
+                .candidatureStages(new ArrayList<>())
+                .build()));
     }
 
     @Override
@@ -56,6 +55,17 @@ public class StageServiceImpl implements StageService {
     @Override
     public Stage findCurrentElectionCurrentStage() {
         return findCurrentStageByElectionId(ElectionId.of(findCurrentElectionEntity().getId()));
+    }
+
+    @Override
+    public Stage finishStageById(StageId stageId) {
+       var stageEntity = findEntityById(stageId).toBuilder();
+
+       return stageMapper.toDomain(stageRepository.save(
+               stageEntity
+                       .status(StageStatus.COMPLETED)
+                       .build())
+       );
     }
 
     private ElectionEntity findCurrentElectionEntity() {
