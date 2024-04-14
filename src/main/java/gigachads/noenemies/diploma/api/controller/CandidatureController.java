@@ -85,7 +85,7 @@ public class CandidatureController {
     @GetMapping("/{candidatureId}/plan")
     @ResponseStatus(HttpStatus.OK)
     // TODO: IT
-    public CandidaturePlanResponse getCandidaturePlanByCandidatureId(CandidatureId candidatureId) {
+    public CandidaturePlanResponse getCandidaturePlanByCandidatureId(@PathVariable CandidatureId candidatureId) {
         return candidatureMapper.toCandidaturePlanResponse(candidatureService.findCandidaturePlanByCandidatureId(candidatureId));
     }
 
