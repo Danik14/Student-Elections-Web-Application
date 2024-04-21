@@ -38,12 +38,12 @@ public class CandidatureController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = CandidatureResponse.class))})
             })
-    @PostMapping("/approve/{studentId}")
+    @GetMapping("/{userId}")
     @ResponseStatus(HttpStatus.OK)
     // TODO: IT
     public CandidatureResponse getCandidatureByUserId(Principal principal,
-                                                  @PathVariable UserId studentId) {
-        return candidatureMapper.toResponse(candidatureService.findCandidatureByUserId(studentId));
+                                                  @PathVariable UserId userId) {
+        return candidatureMapper.toResponse(candidatureService.findCandidatureByUserId(userId));
     }
 
     @Operation(summary = "Get active candidatures",
