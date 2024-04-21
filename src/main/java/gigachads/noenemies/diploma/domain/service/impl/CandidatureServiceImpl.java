@@ -39,6 +39,11 @@ public class CandidatureServiceImpl implements CandidatureService {
     }
 
     @Override
+    public Candidature findCandidatureByUserId(UserId userId) {
+        return candidatureMapper.toDomain(findCandidatureEntityByUserId(userId));
+    }
+
+    @Override
     public List<Candidature> findAllActiveCandidatures() {
         return candidatureMapper.toDomain(candidatureRepository.findCandidaturesByUserRole(UserRole.ACTIVE_CANDIDATE));
     }
@@ -128,6 +133,11 @@ public class CandidatureServiceImpl implements CandidatureService {
     private CandidatureEntity findCandidatureEntityById(CandidatureId candidatureId) {
         return candidatureRepository.findById(candidatureId.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Candidature not found with id " + candidatureId));
+    }
+
+    private CandidatureEntity findCandidatureEntityByUserId(UserId userId) {
+        return candidatureRepository.findByUser_Id(userId.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Candidature not found with user id" + userId));
     }
 
     private CandidaturePlanEntity findCandidaturePlanEntityByUserId(UserId userId) {

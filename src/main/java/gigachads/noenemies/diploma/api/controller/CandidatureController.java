@@ -30,6 +30,22 @@ public class CandidatureController {
     private final CandidatureService candidatureService;
     private final CandidatureMapper candidatureMapper;
 
+    @Operation(summary = "Get candidature by user id",
+            operationId = "getCandidatureByUserId",
+            tags = {"Candidature"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully found candidature",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidatureResponse.class))})
+            })
+    @PostMapping("/approve/{studentId}")
+    @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
+    public CandidatureResponse getCandidatureByUserId(Principal principal,
+                                                  @PathVariable UserId studentId) {
+        return candidatureMapper.toResponse(candidatureService.findCandidatureByUserId(studentId));
+    }
+
     @Operation(summary = "Get active candidatures",
             operationId = "getActiveCandidatures",
             tags = {"Candidature"},
@@ -121,6 +137,4 @@ public class CandidatureController {
             @PathVariable CandidatureId candidatureId) {
         return candidatureMapper.toResponse(candidatureService.deactivateCandidature(candidatureId));
     }
-
-
 }
