@@ -130,37 +130,9 @@ public class UserController {
             return userService.findAllByRoleAndPage(pageable, UserRole.valueOf(userRole)).map(userMapper::toResponse);
         }
     }
-//
-//    @Operation(summary = "Get all candidates",
-//            operationId = "getAllCandidates",
-//            tags = {"User"},
-//            responses = {
-//                    @ApiResponse(responseCode = "200", description = "List of all candidates",
-//                            content = {@Content(mediaType = "application/json",
-//                                    schema = @Schema(implementation = UserResponse.class))})
-//                    })
-//    @GetMapping("/candidates")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<UserResponse> getAllCandidates() {
-//        return userMapper.toResponse(userService.getAllCandidates());
-//    }
-
-//    @Operation(summary = "Get all active candidates",
-//            operationId = "getAllActiveCandidates",
-//            tags = {"User"},
-//            responses = {
-//                    @ApiResponse(responseCode = "200", description = "List of all current candidates",
-//                            content = {@Content(mediaType = "application/json",
-//                                    schema = @Schema(implementation = UserResponse.class))})
-//            })
-//    @GetMapping("/candidates/active")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<UserResponse> getAllActiveCandidates() {
-//        return userMapper.toResponse(userService.getAllActiveCandidates());
-//    }
 
     @Operation(summary = "Upload user photo",
-            operationId = "uploadCandidatureImage",
+            operationId = "uploadUserImage",
             tags = {"User"},
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successfully uploaded photo",

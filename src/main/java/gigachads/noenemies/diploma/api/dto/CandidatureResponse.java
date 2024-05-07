@@ -15,8 +15,8 @@ public class CandidatureResponse {
     @JsonIgnoreProperties("photo")
     @NonNull
     private UserId approvedById;
-//    @JsonIgnoreProperties("photo")
     @NonNull
+    @JsonIgnoreProperties("photo")
     private UserResponse user;
 
     public static class CandidatureResponseBuilder {

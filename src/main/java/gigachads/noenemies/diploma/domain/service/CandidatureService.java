@@ -11,6 +11,8 @@ import java.util.List;
 public interface CandidatureService {
     Candidature findCandidatureById(CandidatureId candidatureId);
 
+    Candidature findCandidatureByUserId(UserId userId);
+
     List<Candidature> findAllActiveCandidatures();
 
     void applyForCandidature(UserId userId);
