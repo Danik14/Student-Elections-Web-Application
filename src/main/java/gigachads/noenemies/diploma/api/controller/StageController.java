@@ -23,6 +23,20 @@ public class StageController {
     private final StageService stageService;
     private final StageMapper stageMapper;
 
+    @Operation(summary = "Get stage by id",
+            operationId = "getStageById",
+            tags = {"Stage"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully found election stage by id",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = StageResponse.class))})
+            })
+    @GetMapping("/stage/{stageId}")
+    @ResponseStatus(HttpStatus.OK)
+    public StageResponse getStageById(@PathVariable StageId stageId) {
+        return stageMapper.toResponse(stageService.findStageById(stageId));
+    }
+
     @Operation(summary = "Get stages by election id",
             operationId = "getStagesByElectionId",
             tags = {"Stage"},
@@ -89,10 +103,9 @@ public class StageController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = StageResponse.class))})
             })
-    @PutMapping("/{electionId}/stage/{stageId}")
+    @PutMapping("/stage/{stageId}")
     @ResponseStatus(HttpStatus.CREATED)
     public StageResponse finishElectionStage(
-            @PathVariable ElectionId electionId,
             @PathVariable StageId stageId
     ) {
         return stageMapper.toResponse(stageService.finishStageById(stageId));
