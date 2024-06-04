@@ -1,10 +1,7 @@
 package gigachads.noenemies.diploma.domain.service;
 
 import gigachads.noenemies.diploma.api.dto.CandidaturePlanUpdate;
-import gigachads.noenemies.diploma.domain.model.Candidature;
-import gigachads.noenemies.diploma.domain.model.CandidatureId;
-import gigachads.noenemies.diploma.domain.model.CandidaturePlan;
-import gigachads.noenemies.diploma.domain.model.UserId;
+import gigachads.noenemies.diploma.domain.model.*;
 
 import java.util.List;
 
@@ -17,7 +14,7 @@ public interface CandidatureService {
 
     void applyForCandidature(UserId userId);
 
-    Candidature approveCandidature(UserId userId, UserId officialId);
+    Candidature approveCandidature(UserId userId, UserId officialId, ElectionId electionId);
 
     CandidaturePlan findCandidaturePlanByCandidatureId(CandidatureId candidatureId);
 

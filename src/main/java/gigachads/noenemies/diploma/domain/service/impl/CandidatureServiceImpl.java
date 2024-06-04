@@ -63,9 +63,9 @@ public class CandidatureServiceImpl implements CandidatureService {
     }
 
     @Override
-    public Candidature approveCandidature(UserId userId, UserId officialId) {
+    public Candidature approveCandidature(UserId userId, UserId officialId, ElectionId electionId) {
         CandidatureEntity candidatureEntity = candidatureRepository.save(CandidatureEntity.builder()
-                .election(findCreatedElection())
+                .election(findElectionById(electionId))
                 .user(findUserEntityById(userId).toBuilder().role(UserRole.ACTIVE_CANDIDATE).build())
                 .approvedBy(findUserEntityById(officialId))
                 .build());
@@ -166,6 +166,13 @@ public class CandidatureServiceImpl implements CandidatureService {
         return electionRepository.findCreatedElection()
                 .orElseThrow(() ->
                         new EntityNotFoundException("No Election with status created")
+                );
+    }
+
+    private ElectionEntity findElectionById(ElectionId electionId) {
+        return electionRepository.findById(electionId.getAsUUID())
+                .orElseThrow(() ->
+                        new EntityNotFoundException("No Election with id " + electionId)
                 );
     }
 

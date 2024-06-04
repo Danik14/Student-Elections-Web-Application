@@ -6,6 +6,7 @@ import gigachads.noenemies.diploma.api.dto.CandidaturePlanUpdate;
 import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.model.CandidatureId;
+import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -99,11 +100,12 @@ public class CandidatureController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = CandidatureResponse.class))})
             })
-    @PostMapping("/approve/{studentId}")
+    @PostMapping("/approve/{studentId}/{electionId}")
     @ResponseStatus(HttpStatus.OK)
     public CandidatureResponse approveCandidature(Principal principal,
-                                          @PathVariable UserId studentId) {
-        return candidatureMapper.toResponse(candidatureService.approveCandidature(studentId, getUserIdByOauth2Principal(principal)));
+                                                  @PathVariable UserId studentId,
+                                                  @PathVariable ElectionId electionId) {
+        return candidatureMapper.toResponse(candidatureService.approveCandidature(studentId, getUserIdByOauth2Principal(principal), electionId));
     }
 
     @Operation(summary = "Get candidature plan",
