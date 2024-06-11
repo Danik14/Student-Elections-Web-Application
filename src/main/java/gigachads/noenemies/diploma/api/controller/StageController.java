@@ -2,6 +2,7 @@ package gigachads.noenemies.diploma.api.controller;
 
 import gigachads.noenemies.diploma.api.dto.StageCreate;
 import gigachads.noenemies.diploma.api.dto.StageResponse;
+import gigachads.noenemies.diploma.api.dto.StageUpdate;
 import gigachads.noenemies.diploma.domain.mapper.StageMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.StageId;
@@ -93,6 +94,22 @@ public class StageController {
             @PathVariable ElectionId electionId,
             @RequestBody StageCreate create) {
         return stageMapper.toResponse(stageService.createElectionStage(electionId, create));
+    }
+
+    @Operation(summary = "Update election's stage",
+            operationId = "updateElectionStage",
+            tags = {"Stage"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Updated election stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = StageResponse.class))})
+            })
+    @PatchMapping("/stage/{stageId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public StageResponse updateElectionStage(
+            @PathVariable StageId stageId,
+            @RequestBody StageUpdate stageUpdate) {
+        return stageMapper.toResponse(stageService.updateElectionStage(stageId, stageUpdate));
     }
 
     @Operation(summary = "Finish election's stage",

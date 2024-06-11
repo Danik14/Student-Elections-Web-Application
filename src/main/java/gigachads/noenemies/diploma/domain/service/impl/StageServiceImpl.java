@@ -1,6 +1,7 @@
 package gigachads.noenemies.diploma.domain.service.impl;
 
 import gigachads.noenemies.diploma.api.dto.StageCreate;
+import gigachads.noenemies.diploma.api.dto.StageUpdate;
 import gigachads.noenemies.diploma.domain.mapper.StageMapper;
 import gigachads.noenemies.diploma.domain.model.*;
 import gigachads.noenemies.diploma.domain.service.StageService;
@@ -40,6 +41,25 @@ public class StageServiceImpl implements StageService {
                 .election(electionEntity)
                 .candidatureStages(new ArrayList<>())
                 .build()));
+    }
+
+    @Override
+    public Stage updateElectionStage(StageId stageId, StageUpdate update) {
+        var entity = findEntityById(stageId).toBuilder();
+
+        if (update.getDescription() != null){
+            entity.description(update.getDescription());
+        }
+
+        if (update.getDeadline() != null){
+            entity.deadline(update.getDeadline());
+        }
+
+        if (update.getVotable() != null){
+            entity.votable(update.getVotable());
+        }
+
+        return stageMapper.toDomain(stageRepository.save(entity.build()));
     }
 
     @Override
