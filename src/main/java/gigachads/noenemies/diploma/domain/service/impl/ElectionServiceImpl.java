@@ -1,6 +1,7 @@
 package gigachads.noenemies.diploma.domain.service.impl;
 
 import gigachads.noenemies.diploma.api.dto.ElectionCreate;
+import gigachads.noenemies.diploma.api.dto.ElectionUpdate;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.*;
@@ -36,6 +37,21 @@ public class ElectionServiceImpl implements ElectionService {
     @Override
     public Election createElection(ElectionCreate create) {
        return electionMapper.toDomain(electionRepository.save(electionMapper.toEntity(create)));
+    }
+
+    @Override
+    public Election updateElection(ElectionId electionId, ElectionUpdate update) {
+        var entity = findElectionEntityById(electionId).toBuilder();
+
+        if (update.getDescription() != null){
+            entity.description(update.getDescription());
+        }
+
+        if (update.getDeadline() != null){
+            entity.deadline(update.getDeadline());
+        }
+
+        return electionMapper.toDomain(electionRepository.save(entity.build()));
     }
 
     @Override
