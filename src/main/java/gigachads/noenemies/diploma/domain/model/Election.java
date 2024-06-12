@@ -6,6 +6,7 @@ import lombok.NonNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Builder(toBuilder = true)
@@ -22,7 +23,8 @@ public class Election {
     private final LocalDateTime createdAt;
     @NonNull
     private final LocalDateTime deadline;
-
     @NonNull
     private final List<Stage> stages;
+//     TODO: make safe wrapper...
+//    private final CandidatureId winnerId;
 }

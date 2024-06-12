@@ -60,6 +60,14 @@ public class ElectionController {
         return electionMapper.toResponse(electionService.getCurrentElection());
     }
 
+    @Operation(summary = "Get election by its id",
+            operationId = "getElectionById",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Found election",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ElectionResponse.class))})
+            })
     @GetMapping("/{electionId}")
     @ResponseStatus(HttpStatus.OK)
     public ElectionResponse getElectionById(@PathVariable("electionId") ElectionId electionId) {

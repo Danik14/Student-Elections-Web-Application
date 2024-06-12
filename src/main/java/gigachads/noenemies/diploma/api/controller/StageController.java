@@ -25,7 +25,7 @@ public class StageController {
     private final StageService stageService;
     private final StageMapper stageMapper;
 
-    @Operation(summary = "Get stage by id",
+    @Operation(summary = "Get election stage by id",
             operationId = "getStageById",
             tags = {"Stage"},
             responses = {
@@ -39,7 +39,7 @@ public class StageController {
         return stageMapper.toResponse(stageService.findStageById(stageId));
     }
 
-    @Operation(summary = "Get stages by election id",
+    @Operation(summary = "Get election stages by election id",
             operationId = "getStagesByElectionId",
             tags = {"Stage"},
             responses = {
@@ -53,7 +53,7 @@ public class StageController {
         return stageMapper.toResponse(stageService.findStagesByElectionId(electionId));
     }
 
-    @Operation(summary = "Get stages by election id",
+    @Operation(summary = "Get election stages by election id",
             operationId = "getStagesByElectionId",
             tags = {"Stage"},
             responses = {
@@ -129,9 +129,9 @@ public class StageController {
         return stageMapper.toResponse(stageService.finishStageById(stageId));
     }
 
-    @Operation(summary = "Delete stage by Id",
+    @Operation(summary = "Delete election stage by Id",
             operationId = "deleteStageById",
-            tags = {"Election"},
+            tags = {"Stage"},
             responses = {
                     @ApiResponse(responseCode = "204", description = "Successfully deleted stage",
                             content = {@Content(mediaType = "application/json",
