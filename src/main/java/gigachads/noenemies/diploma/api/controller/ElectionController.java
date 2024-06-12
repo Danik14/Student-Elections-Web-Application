@@ -138,7 +138,7 @@ public class ElectionController {
             responses = {
                     @ApiResponse(responseCode = "204", description = "Successfully deleted election",
                             content = {@Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = ElectionResponse.class))})
+                                    schema = @Schema())})
             })
     @DeleteMapping("/{electionId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
