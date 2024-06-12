@@ -140,6 +140,22 @@ public class ElectionController {
         return electionMapper.toResponse(electionService.finishElectionById(electionId));
     }
 
+    @Operation(summary = "Get winner of election by election id",
+            operationId = "getElectionWinner",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully found election's winner",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ElectionResponse.class))})
+            })
+    @GetMapping("/{electionId}/winner")
+    @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
+    public ElectionResponse getElectionWinner(
+            @PathVariable ElectionId electionId) {
+        return electionMapper.toResponse(electionService.finishElectionById(electionId));
+    }
+
     @Operation(summary = "Delete election by Id",
             operationId = "deleteElectionById",
             tags = {"Election"},

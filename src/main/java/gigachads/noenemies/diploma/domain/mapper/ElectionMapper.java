@@ -12,7 +12,7 @@ import org.mapstruct.MappingConstants;
 import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
-        uses = HelperMapper.class,
+        uses = {HelperMapper.class, StageMapper.class},
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface ElectionMapper {
     Election toDomain(ElectionEntity entity);

@@ -7,6 +7,7 @@ import gigachads.noenemies.diploma.domain.model.Stage;
 import gigachads.noenemies.diploma.storage.jpa.entity.StageEntity;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface StageMapper {
 
+    @Mapping(target = "electionId", source = "election.id")
     Stage toDomain(StageEntity entity);
 
     List<Stage> toDomain(List<StageEntity> entity);

@@ -77,6 +77,20 @@ public class CandidatureController {
         return candidatureMapper.toResponse(candidatureService.findAllActiveCandidatures());
     }
 
+    @Operation(summary = "Get candidatures by election id",
+            operationId = "getCandidaturesByElectionId",
+            tags = {"Candidature"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully found candidatures",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidatureResponse.class))})
+            })
+    @GetMapping("/election/{electionId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CandidatureResponse> getCandidaturesByElectionId(@PathVariable ElectionId electionId) {
+        return candidatureMapper.toResponse(candidatureService.findCandidaturesByElectionId(electionId));
+    }
+
     @Operation(summary = "Apply for a candidature",
             operationId = "applyForCandidature",
             tags = {"Candidature"},

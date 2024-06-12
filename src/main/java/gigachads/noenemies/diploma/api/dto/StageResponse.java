@@ -1,6 +1,7 @@
 package gigachads.noenemies.diploma.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.StageId;
 import gigachads.noenemies.diploma.domain.model.StageStatus;
 import lombok.*;
@@ -14,6 +15,8 @@ import java.time.LocalDateTime;
 public class StageResponse {
     @NonNull
     private StageId id;
+    @NonNull
+    private ElectionId electionId;
     @NonNull
     private String description;
     @NonNull

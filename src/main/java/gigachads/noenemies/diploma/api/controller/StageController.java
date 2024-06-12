@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/election/")
+@RequestMapping("/api/v1/election")
 @RequiredArgsConstructor
 public class StageController {
     private final StageService stageService;
@@ -97,7 +97,7 @@ public class StageController {
         return stageMapper.toResponse(stageService.createElectionStage(electionId, create));
     }
 
-    @Operation(summary = "Update election's stage",
+    @Operation(summary = "Update election stage",
             operationId = "updateElectionStage",
             tags = {"Stage"},
             responses = {
@@ -153,7 +153,7 @@ public class StageController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema())})
             })
-    @DeleteMapping("/{stageId}")
+    @DeleteMapping("/stage/{stageId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     // TODO: IT
     public void deleteElectionById(
