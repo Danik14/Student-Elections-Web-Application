@@ -12,6 +12,8 @@ public class Stage {
     @NonNull
     private final StageId id;
     @NonNull
+    private final ElectionId electionId;
+    @NonNull
     private final String description;
     @NonNull
     private final StageStatus status;
