@@ -12,6 +12,8 @@ public interface CandidatureService {
 
     List<Candidature> findAllActiveCandidatures();
 
+    List<Candidature> findCandidaturesByElectionId(ElectionId electionId);
+
     void applyForCandidature(UserId userId);
 
     Candidature approveCandidature(UserId userId, UserId officialId, ElectionId electionId);

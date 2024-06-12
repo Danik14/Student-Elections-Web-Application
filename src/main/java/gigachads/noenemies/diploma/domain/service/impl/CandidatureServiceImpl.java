@@ -49,6 +49,11 @@ public class CandidatureServiceImpl implements CandidatureService {
     }
 
     @Override
+    public List<Candidature> findCandidaturesByElectionId(ElectionId electionId) {
+        return candidatureMapper.toDomain(candidatureRepository.findByElectionId(electionId.getId()));
+    }
+
+    @Override
     public void applyForCandidature(UserId userId) {
         UserEntity userEntity = findUserEntityById(userId);
         if (!userEntity.getRole().equals(UserRole.ACTIVE_STUDENT)){

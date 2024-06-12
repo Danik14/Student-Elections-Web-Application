@@ -97,7 +97,7 @@ public class StageController {
         return stageMapper.toResponse(stageService.createElectionStage(electionId, create));
     }
 
-    @Operation(summary = "Update election's stage",
+    @Operation(summary = "Update election stage",
             operationId = "updateElectionStage",
             tags = {"Stage"},
             responses = {
