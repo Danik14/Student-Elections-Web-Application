@@ -110,6 +110,15 @@ public class ElectionServiceImpl implements ElectionService {
                 .build()));
     }
 
+    @Override
+    public void deleteElectionById(ElectionId electionId) {
+        if (electionRepository.existsById(electionId.getAsUUID())){
+            electionRepository.deleteById(electionId.getAsUUID());
+        } else {
+            throw new EntityNotUpdatedException("Election not found with id: " + electionId);
+        }
+    }
+
     private ElectionEntity findElectionEntityById(ElectionId id) {
         return electionRepository.findById(id.getId())
                 .orElseThrow(() ->

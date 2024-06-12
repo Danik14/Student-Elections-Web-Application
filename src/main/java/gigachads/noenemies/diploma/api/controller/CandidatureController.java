@@ -39,7 +39,7 @@ public class CandidatureController {
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema(implementation = CandidatureResponse.class))})
             })
-    @GetMapping("/{userId}")
+    @GetMapping("/user/{userId}")
     @ResponseStatus(HttpStatus.OK)
     // TODO: IT
     public CandidatureResponse getCandidatureByUserId(Principal principal,

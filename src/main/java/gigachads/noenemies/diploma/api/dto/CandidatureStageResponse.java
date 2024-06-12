@@ -21,21 +21,21 @@ public class CandidatureStageResponse {
     private StageId stageId;
 
     public static class CandidatureStageResponseBuilder {
-        public CandidatureStageResponseBuilder id(CandidatureStageId id){
+        public CandidatureStageResponseBuilder id(CandidatureStageId id) {
             this.id = id;
             return this;
         }
 
-        public CandidatureStageResponseBuilder id(String stringId){
+        public CandidatureStageResponseBuilder id(String stringId) {
             return id(CandidatureStageId.of(stringId));
         }
 
-        public CandidatureStageResponseBuilder stageId(StageId id){
+        public CandidatureStageResponseBuilder stageId(StageId id) {
             this.stageId = id;
             return this;
         }
 
-        public CandidatureStageResponseBuilder stageId(String stringId){
+        public CandidatureStageResponseBuilder stageId(String stringId) {
             return stageId(StageId.of(stringId));
         }
     }

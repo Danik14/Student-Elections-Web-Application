@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.api.controller;
 
+import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.api.dto.StageCreate;
 import gigachads.noenemies.diploma.api.dto.StageResponse;
 import gigachads.noenemies.diploma.api.dto.StageUpdate;
@@ -24,7 +25,7 @@ public class StageController {
     private final StageService stageService;
     private final StageMapper stageMapper;
 
-    @Operation(summary = "Get stage by id",
+    @Operation(summary = "Get election stage by id",
             operationId = "getStageById",
             tags = {"Stage"},
             responses = {
@@ -38,7 +39,7 @@ public class StageController {
         return stageMapper.toResponse(stageService.findStageById(stageId));
     }
 
-    @Operation(summary = "Get stages by election id",
+    @Operation(summary = "Get election stages by election id",
             operationId = "getStagesByElectionId",
             tags = {"Stage"},
             responses = {
@@ -52,7 +53,7 @@ public class StageController {
         return stageMapper.toResponse(stageService.findStagesByElectionId(electionId));
     }
 
-    @Operation(summary = "Get stages by election id",
+    @Operation(summary = "Get election stages by election id",
             operationId = "getStagesByElectionId",
             tags = {"Stage"},
             responses = {
@@ -112,7 +113,23 @@ public class StageController {
         return stageMapper.toResponse(stageService.updateElectionStage(stageId, stageUpdate));
     }
 
-    @Operation(summary = "Finish election's stage",
+    @Operation(summary = "Initiate election stage",
+            operationId = "initiateElectionStage",
+            tags = {"Stage"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Initiated election stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = StageResponse.class))})
+            })
+    @PutMapping("/stage/{stageId}/initiate")
+    @ResponseStatus(HttpStatus.OK)
+    public StageResponse initiateElectionStage(
+            @PathVariable StageId stageId
+    ) {
+        return stageMapper.toResponse(stageService.initiateStageById(stageId));
+    }
+
+    @Operation(summary = "Finish election stage",
             operationId = "finishElectionStage",
             tags = {"Stage"},
             responses = {
@@ -126,5 +143,21 @@ public class StageController {
             @PathVariable StageId stageId
     ) {
         return stageMapper.toResponse(stageService.finishStageById(stageId));
+    }
+
+    @Operation(summary = "Delete election stage by Id",
+            operationId = "deleteStageById",
+            tags = {"Stage"},
+            responses = {
+                    @ApiResponse(responseCode = "204", description = "Successfully deleted stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema())})
+            })
+    @DeleteMapping("/{stageId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    // TODO: IT
+    public void deleteElectionById(
+            @PathVariable StageId stageId) {
+        stageService.deleteStageById(stageId);
     }
 }

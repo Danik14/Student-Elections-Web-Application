@@ -78,6 +78,15 @@ public class StageServiceImpl implements StageService {
     }
 
     @Override
+    public Stage initiateStageById(StageId stageId) {;
+        return stageMapper.toDomain(stageRepository.save(findEntityById(stageId)
+                .toBuilder()
+                .status(StageStatus.IN_PROGRESS)
+                .build())
+        );
+    }
+
+    @Override
     public Stage finishStageById(StageId stageId) {
        var stageEntity = findEntityById(stageId).toBuilder();
 
@@ -86,6 +95,15 @@ public class StageServiceImpl implements StageService {
                        .status(StageStatus.COMPLETED)
                        .build())
        );
+    }
+
+    @Override
+    public void deleteStageById(StageId stageId) {
+        if (stageRepository.existsById(stageId.getId())){
+            stageRepository.deleteById(stageId.getId());
+        } else {
+            throw new EntityNotFoundException("No stage found with id " + stageId);
+        }
     }
 
     private ElectionEntity findCurrentElectionEntity() {
