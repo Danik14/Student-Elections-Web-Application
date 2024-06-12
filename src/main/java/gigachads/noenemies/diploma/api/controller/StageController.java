@@ -149,7 +149,7 @@ public class StageController {
             operationId = "deleteStageById",
             tags = {"Stage"},
             responses = {
-                    @ApiResponse(responseCode = "204", description = "Successfully deleted stage",
+                    @ApiResponse(responseCode = "204", description = "Successfully deleted election stage",
                             content = {@Content(mediaType = "application/json",
                                     schema = @Schema())})
             })
