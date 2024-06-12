@@ -3,6 +3,7 @@ package gigachads.noenemies.diploma.api.controller;
 import gigachads.noenemies.diploma.api.dto.CandidatureStageResponse;
 import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
+import gigachads.noenemies.diploma.api.dto.ElectionUpdate;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.mapper.ElectionMapper;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
@@ -78,6 +79,23 @@ public class ElectionController {
     public ElectionResponse createNewElection(
             @RequestBody ElectionCreate request) {
         return electionMapper.toResponse(electionService.createElection(request));
+    }
+
+    @Operation(summary = "Update Election",
+            operationId = "updateElection",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Election updated successfully",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ElectionResponse.class))}),
+                    @ApiResponse(responseCode = "400", description = "Invalid request body",
+                            content = @Content)})
+    @PutMapping("/{electionId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ElectionResponse updateElection(
+            @PathVariable ElectionId electionId,
+            @RequestBody ElectionUpdate update) {
+        return electionMapper.toResponse(electionService.updateElection(electionId, update));
     }
 
     @Operation(summary = "Initiate election by Id",
