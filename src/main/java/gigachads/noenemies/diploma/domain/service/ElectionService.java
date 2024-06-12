@@ -23,4 +23,6 @@ public interface ElectionService {
         List<CandidatureStage> initiateElection(UserId officialId, ElectionId electionId);
 
         Election finishElectionById(ElectionId electionId);
+
+        void deleteElectionById(ElectionId electionId);
 }

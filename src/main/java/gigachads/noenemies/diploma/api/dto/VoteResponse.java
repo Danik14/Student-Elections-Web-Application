@@ -22,7 +22,7 @@ public class VoteResponse {
 
 
     public static class VoteResponseBuilder {
-        public VoteResponseBuilder id(VoteId id){
+        public VoteResponseBuilder id(VoteId id) {
             this.id = id;
             return this;
         }

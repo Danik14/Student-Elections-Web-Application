@@ -20,21 +20,21 @@ public class CandidatureResponse {
     private UserResponse user;
 
     public static class CandidatureResponseBuilder {
-        public CandidatureResponseBuilder id(CandidatureId id){
+        public CandidatureResponseBuilder id(CandidatureId id) {
             this.id = id;
             return this;
         }
 
-        public CandidatureResponseBuilder id(String stringId){
+        public CandidatureResponseBuilder id(String stringId) {
             return id(CandidatureId.of(stringId));
         }
 
-        public CandidatureResponseBuilder approvedById(UserId id){
+        public CandidatureResponseBuilder approvedById(UserId id) {
             this.approvedById = id;
             return this;
         }
 
-        public CandidatureResponseBuilder approvedById(String id){
+        public CandidatureResponseBuilder approvedById(String id) {
             return approvedById(UserId.of(id));
         }
     }

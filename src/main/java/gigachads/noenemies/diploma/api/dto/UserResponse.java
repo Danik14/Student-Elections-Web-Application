@@ -24,12 +24,12 @@ public class UserResponse {
     private UserRole role;
 
     public static class UserResponseBuilder {
-        public UserResponseBuilder id(UserId id){
+        public UserResponseBuilder id(UserId id) {
             this.id = id;
             return this;
         }
 
-        public UserResponseBuilder id(String stringId){
+        public UserResponseBuilder id(String stringId) {
             return id(UserId.of(stringId));
         }
     }

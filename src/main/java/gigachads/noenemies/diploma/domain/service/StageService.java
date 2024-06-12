@@ -22,4 +22,6 @@ public interface StageService {
     Stage findCurrentElectionCurrentStage();
 
     Stage finishStageById(StageId stageId);
+
+    void deleteStageById(StageId stageId);
 }

@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.api.controller;
 
+import com.azure.core.annotation.Delete;
 import gigachads.noenemies.diploma.api.dto.CandidatureStageResponse;
 import gigachads.noenemies.diploma.api.dto.ElectionCreate;
 import gigachads.noenemies.diploma.api.dto.ElectionResponse;
@@ -129,5 +130,21 @@ public class ElectionController {
     public ElectionResponse finishElectionById(
             @PathVariable ElectionId electionId) {
         return electionMapper.toResponse(electionService.finishElectionById(electionId));
+    }
+
+    @Operation(summary = "Delete election by Id",
+            operationId = "deleteElectionById",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "204", description = "Successfully deleted election",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = ElectionResponse.class))})
+            })
+    @DeleteMapping("/{electionId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    // TODO: IT
+    public void deleteElectionById(
+            @PathVariable ElectionId electionId) {
+        electionService.deleteElectionById(electionId);
     }
 }

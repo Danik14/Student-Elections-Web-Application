@@ -26,12 +26,12 @@ public class StageResponse {
     private LocalDateTime deadline;
 
     public static class StageResponseBuilder {
-        public StageResponseBuilder id(StageId id){
+        public StageResponseBuilder id(StageId id) {
             this.id = id;
             return this;
         }
 
-        public StageResponseBuilder id(String stringId){
+        public StageResponseBuilder id(String stringId) {
             return id(StageId.of(stringId));
         }
     }

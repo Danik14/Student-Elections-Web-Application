@@ -1,5 +1,6 @@
 package gigachads.noenemies.diploma.api.controller;
 
+import gigachads.noenemies.diploma.api.dto.ElectionResponse;
 import gigachads.noenemies.diploma.api.dto.StageCreate;
 import gigachads.noenemies.diploma.api.dto.StageResponse;
 import gigachads.noenemies.diploma.api.dto.StageUpdate;
@@ -126,5 +127,21 @@ public class StageController {
             @PathVariable StageId stageId
     ) {
         return stageMapper.toResponse(stageService.finishStageById(stageId));
+    }
+
+    @Operation(summary = "Delete stage by Id",
+            operationId = "deleteStageById",
+            tags = {"Election"},
+            responses = {
+                    @ApiResponse(responseCode = "204", description = "Successfully deleted stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema())})
+            })
+    @DeleteMapping("/{stageId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    // TODO: IT
+    public void deleteElectionById(
+            @PathVariable StageId stageId) {
+        stageService.deleteStageById(stageId);
     }
 }

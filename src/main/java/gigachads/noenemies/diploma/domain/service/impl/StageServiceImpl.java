@@ -88,6 +88,15 @@ public class StageServiceImpl implements StageService {
        );
     }
 
+    @Override
+    public void deleteStageById(StageId stageId) {
+        if (stageRepository.existsById(stageId.getId())){
+            stageRepository.deleteById(stageId.getId());
+        } else {
+            throw new EntityNotFoundException("No stage found with id " + stageId);
+        }
+    }
+
     private ElectionEntity findCurrentElectionEntity() {
         return electionRepository.findInProgressElection().orElseThrow(
                 () -> new EntityNotFoundException("No election found with status " + ElectionStatus.IN_PROGRESS)
