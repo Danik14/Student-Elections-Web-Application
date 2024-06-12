@@ -46,5 +46,5 @@ springdoc:
     operationsSorter: method
     path: /api-docs/ui
 
-users.profile.photo-image-directory: static/profile/photos/
+users.profile.photo-image-directory: resources/static/profile/photos/
 logging.level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG

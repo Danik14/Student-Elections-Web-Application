@@ -141,10 +141,10 @@ public class UserController {
             })
     @PostMapping("/photo")
     @ResponseStatus(HttpStatus.CREATED)
-    public User uploadUserImage(
+    public UserResponse uploadUserImage(
             Principal principal,
             @RequestParam("photo") MultipartFile photo
     ) {
-        return userService.saveProfilePhoto(getUserIdByOauth2Principal(principal), photo);
+        return userMapper.toResponse(userService.saveProfilePhoto(getUserIdByOauth2Principal(principal), photo));
     }
 }
