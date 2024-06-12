@@ -113,7 +113,23 @@ public class StageController {
         return stageMapper.toResponse(stageService.updateElectionStage(stageId, stageUpdate));
     }
 
-    @Operation(summary = "Finish election's stage",
+    @Operation(summary = "Initiate election stage",
+            operationId = "initiateElectionStage",
+            tags = {"Stage"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Initiated election stage",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = StageResponse.class))})
+            })
+    @PutMapping("/stage/{stageId}/initiate")
+    @ResponseStatus(HttpStatus.OK)
+    public StageResponse initiateElectionStage(
+            @PathVariable StageId stageId
+    ) {
+        return stageMapper.toResponse(stageService.initiateStageById(stageId));
+    }
+
+    @Operation(summary = "Finish election stage",
             operationId = "finishElectionStage",
             tags = {"Stage"},
             responses = {

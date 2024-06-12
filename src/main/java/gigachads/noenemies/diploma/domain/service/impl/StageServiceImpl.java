@@ -78,6 +78,15 @@ public class StageServiceImpl implements StageService {
     }
 
     @Override
+    public Stage initiateStageById(StageId stageId) {;
+        return stageMapper.toDomain(stageRepository.save(findEntityById(stageId)
+                .toBuilder()
+                .status(StageStatus.IN_PROGRESS)
+                .build())
+        );
+    }
+
+    @Override
     public Stage finishStageById(StageId stageId) {
        var stageEntity = findEntityById(stageId).toBuilder();
 
