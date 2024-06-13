@@ -6,6 +6,7 @@ import gigachads.noenemies.diploma.api.dto.CandidaturePlanUpdate;
 import gigachads.noenemies.diploma.api.dto.CandidatureResponse;
 import gigachads.noenemies.diploma.domain.mapper.CandidatureMapper;
 import gigachads.noenemies.diploma.domain.model.CandidatureId;
+import gigachads.noenemies.diploma.domain.model.CandidaturePlanId;
 import gigachads.noenemies.diploma.domain.model.ElectionId;
 import gigachads.noenemies.diploma.domain.model.UserId;
 import gigachads.noenemies.diploma.domain.service.CandidatureService;
@@ -168,6 +169,22 @@ public class CandidatureController {
     public CandidaturePlanResponse updateCandidaturePlanByCandidatureId(@PathVariable CandidatureId candidatureId,
                                                          @RequestBody CandidaturePlanUpdate update) {
         return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, candidatureId));
+    }
+
+    @Operation(summary = "Update candidature plan by id",
+            operationId = "updateCandidaturePlanById",
+            tags = {"Candidature"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully updated candidature plan",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidaturePlanResponse.class))})
+            })
+    @PatchMapping("/plan/{candidaturePlanId}")
+    @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
+    public CandidaturePlanResponse updateCandidaturePlanById(@PathVariable CandidaturePlanId candidaturePlanId,
+                                                                        @RequestBody CandidaturePlanUpdate update) {
+        return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, candidaturePlanId));
     }
 
     @Operation(summary = "Deactivate candidature by id",

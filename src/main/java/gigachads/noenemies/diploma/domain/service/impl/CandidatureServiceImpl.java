@@ -121,6 +121,26 @@ public class CandidatureServiceImpl implements CandidatureService {
     }
 
     @Override
+    public CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, CandidaturePlanId candidaturePlanId) {
+        var planEntityBuilder = findCandidaturePlanById(candidaturePlanId).toBuilder();
+
+        if (update.getDescription() != null) {
+            planEntityBuilder.description(update.getDescription());
+        }
+        if (update.getSlogan() != null) {
+            planEntityBuilder.slogan(update.getSlogan());
+        }
+        if (update.getInstagramLink() != null) {
+            planEntityBuilder.instagramLink(update.getInstagramLink().toString());
+        }
+        if (update.getTelegramLink() != null) {
+            planEntityBuilder.telegramLink(update.getTelegramLink().toString());
+        }
+
+        return candidatureMapper.toCandidaturePlanDomain(candidaturePlanRepository.save(planEntityBuilder.build()));
+    }
+
+    @Override
     public Candidature deactivateCandidature(CandidatureId candidatureId) {
         userRepository.save(findCandidatureEntityById(candidatureId)
                 .getUser()
@@ -148,6 +168,11 @@ public class CandidatureServiceImpl implements CandidatureService {
     private CandidatureEntity findCandidatureEntityByUserId(UserId userId) {
         return candidatureRepository.findByUser_Id(userId.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Candidature not found with user id" + userId));
+    }
+
+    private CandidaturePlanEntity findCandidaturePlanById(CandidaturePlanId candidaturePlanId) {
+        return candidaturePlanRepository.findById(candidaturePlanId.getId())
+                .orElseThrow(() -> new EntityNotFoundException("CandidaturePlan not found with id " + candidaturePlanId));
     }
 
     private CandidaturePlanEntity findCandidaturePlanEntityByUserId(UserId userId) {

@@ -24,5 +24,7 @@ public interface CandidatureService {
 
     CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, CandidatureId candidatureId);
 
+    CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, CandidaturePlanId candidaturePlanId);
+
     Candidature deactivateCandidature(CandidatureId candidatureId);
 }
