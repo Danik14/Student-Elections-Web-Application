@@ -17,7 +17,7 @@ import org.mapstruct.MappingConstants;
 import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
-        uses = {HelperMapper.class, UserMapper.class},
+        uses = {HelperMapper.class, UserMapper.class, StageMapper.class},
         injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface CandidatureMapper {
     Candidature toDomain(CandidatureEntity entity);
