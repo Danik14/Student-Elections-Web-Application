@@ -154,6 +154,22 @@ public class CandidatureController {
         return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, candidateId));
     }
 
+    @Operation(summary = "Update candidature plan by candidature id",
+            operationId = "updateCandidaturePlanByCandidatureId",
+            tags = {"Candidature"},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully updated candidature plan",
+                            content = {@Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = CandidaturePlanResponse.class))})
+            })
+    @PatchMapping("/{candidatureId}/plan")
+    @ResponseStatus(HttpStatus.OK)
+    // TODO: IT
+    public CandidaturePlanResponse updateCandidaturePlanByCandidatureId(@PathVariable CandidatureId candidatureId,
+                                                         @RequestBody CandidaturePlanUpdate update) {
+        return candidatureMapper.toCandidaturePlanResponse(candidatureService.updateCandidaturePlan(update, candidatureId));
+    }
+
     @Operation(summary = "Deactivate candidature by id",
             operationId = "deactivateCandidature",
             tags = {"Candidature"},

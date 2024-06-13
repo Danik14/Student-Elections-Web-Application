@@ -116,6 +116,11 @@ public class CandidatureServiceImpl implements CandidatureService {
     }
 
     @Override
+    public CandidaturePlan updateCandidaturePlan(CandidaturePlanUpdate update, CandidatureId candidatureId) {
+        return updateCandidaturePlan(update, UserId.of(findCandidatureEntityById(candidatureId).getUser().getId()));
+    }
+
+    @Override
     public Candidature deactivateCandidature(CandidatureId candidatureId) {
         userRepository.save(findCandidatureEntityById(candidatureId)
                 .getUser()
