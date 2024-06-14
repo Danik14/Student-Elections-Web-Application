@@ -5,10 +5,10 @@ VALUES
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'ELECTION_OFFICIAL'),
 
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', 'Votevich', '', 'ACTIVE_CANDIDATE'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', 'Candidatov2', '', 'ACTIVE_CANDIDATE'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0263d88a-c968-4cde-b166-0cc166737c2e', '746453', 'user3@example.com', 'Candidate3', 'Candidatov3', '', 'ACTIVE_CANDIDATE'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '99cae575-ac15-4576-a608-0c4f6ad64abb', '725353', 'user4@example.com', 'Candidate4', 'Candidatov4', '', 'ACTIVE_CANDIDATE'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '7cd78ab6-7e15-4a06-aca7-8e4f332f37e4', '846452', 'user5@example.com', 'Candidate5', 'Candidatov5', '', 'ACTIVE_CANDIDATE'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', 'Candidatov2', 'user2.jpeg', 'ACTIVE_CANDIDATE'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0263d88a-c968-4cde-b166-0cc166737c2e', '746453', 'user3@example.com', 'Candidate3', 'Candidatov3', 'user3.jpeg', 'ACTIVE_CANDIDATE'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '99cae575-ac15-4576-a608-0c4f6ad64abb', '725353', 'user4@example.com', 'Candidate4', 'Candidatov4', 'user4.jpeg', 'ACTIVE_CANDIDATE'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '7cd78ab6-7e15-4a06-aca7-8e4f332f37e4', '846452', 'user5@example.com', 'Candidate5', 'Candidatov5', 'user5.jpeg', 'ACTIVE_CANDIDATE'),
 
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '30a567a9-37bb-4fc0-8659-ba7543403c6d', '111111', 'gigabyte@example.com', 'Maxat', 'Issaliyev', '', 'ACTIVE_STUDENT'),
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '9a9c8cea-b3ce-484c-bbf5-01da56eaa632', '222222', 'kamchick@example.com', 'Kamal', 'Kamalovich', '', 'ACTIVE_STUDENT'),
