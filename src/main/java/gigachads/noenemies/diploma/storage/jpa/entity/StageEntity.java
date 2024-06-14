@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StageEntity extends BaseEntity{
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)

@@ -4,22 +4,22 @@ VALUES
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '2004cc3b-a00b-649b-0000-000000000000', '211360', '211360@astanait.edu.kz', 'Daniyar', 'Chapagan', '', 'SUPER_ADMIN'),
    ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '0e35ae6f-3ebb-4f3a-98b3-4c20b619cffc', '', 'eva@example.com', 'Eva', 'Mutsuraeva', '', 'ELECTION_OFFICIAL'),
 
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', '1', '', 'ACTIVE_CANDIDATE'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', '2', '', 'ACTIVE_CANDIDATE'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '6218ecf0-a1ae-43cb-b2bc-ec06dc83e5be', '123456', 'user1@example.com', 'Candidate1', 'Votevich', '', 'ACTIVE_CANDIDATE'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'ed28793a-14a3-48cb-a3d7-24ac1804bea8', '654321', 'user2@example.com', 'Candidate2', 'Candidatov', '', 'ACTIVE_CANDIDATE'),
 
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '30a567a9-37bb-4fc0-8659-ba7543403c6d', '111111', 'gigabyte@example.com', 'gigabyte', 'jinsovich', '', 'ACTIVE_STUDENT'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '9a9c8cea-b3ce-484c-bbf5-01da56eaa632', '222222', 'kamchick@example.com', 'kamchick', 'kamchickovich', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '30a567a9-37bb-4fc0-8659-ba7543403c6d', '111111', 'gigabyte@example.com', 'Maxat', 'Issaliyev', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', '9a9c8cea-b3ce-484c-bbf5-01da56eaa632', '222222', 'kamchick@example.com', 'Kamal', 'Kamalovich', '', 'ACTIVE_STUDENT'),
 
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'df5e8505-8a34-48fc-b3e5-56eb4463dc93', '333333', 'zestuar@example.com', 'aituar', 'zestovich', '', 'ACTIVE_STUDENT'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'eb77f9b4-1553-4b65-9213-c657ed0ad641', '444444', 'skinhead@example.com', 'skinhead', 'skinheadov', '', 'ACTIVE_STUDENT'),
-   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'fa48d4ee-ccd9-4c84-b95a-86291c8662f6', '555555', 'test@example.com', 'test', 'testovich', '', 'ACTIVE_STUDENT');
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'df5e8505-8a34-48fc-b3e5-56eb4463dc93', '333333', 'zestuar@example.com', 'Student', 'Studentski', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'eb77f9b4-1553-4b65-9213-c657ed0ad641', '444444', 'skinhead@example.com', 'Test', 'Testovich', '', 'ACTIVE_STUDENT'),
+   ('2023-08-30 14:00:00', '2023-08-30 14:00:00', 'fa48d4ee-ccd9-4c84-b95a-86291c8662f6', '555555', 'test@example.com', 'Adi', 'Adiev', '', 'ACTIVE_STUDENT');
 
 
 -- Inserting data into elections table
 INSERT INTO elections (year, created_at, deadline, updated_at, id, description, status)
 VALUES
    (2023, '2023-01-20 14:00:00', '2023-03-31 23:59:59', '2023-01-20 14:00:00', 'b09903bf-03fb-4c44-a925-29db853b9477', 'Election 2023', 'COMPLETED'),
-   (2024, '2024-01-20 14:00:00', '2024-03-31 23:59:59', '2024-01-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'Election 2024', 'IN_PROGRESS');
+   (2024, '2024-01-20 14:00:00', '2024-03-31 23:59:59', '2024-01-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'Election 2024 - We are excited to announce that student elections at our university will be held soon! This is your chance to elect your peers to various leadership positions within the student government.', 'IN_PROGRESS');
 
 -- Inserting data into stages table
 INSERT INTO stages (created_at, deadline, updated_at, election_id, id, description, status, number, is_votable)
@@ -31,7 +31,7 @@ VALUES
 -- Election 2024 stage
    ('2024-02-20 14:00:00', '2024-01-20 23:59:59', '2024-02-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'be316cf6-e4b7-415e-b21d-37fcf32815ab', '2024 stage 1', 'COMPLETED', 1, true),
    ('2024-02-20 14:00:00', '2024-02-20 23:59:59', '2024-02-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', '9dbc17ae-c522-48a7-b9f9-531d8b8a528f', '2024 stage 2', 'COMPLETED', 2, true),
-   ('2024-02-20 14:00:00', '2024-03-20 23:59:59', '2024-02-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2024 stage 3', 'IN_PROGRESS', 3, true);
+   ('2024-02-20 14:00:00', '2024-03-20 23:59:59', '2024-02-20 14:00:00', '9f5eb7fe-5531-4d59-b644-3b93c9abd8d1', 'de9d9185-6d2e-4613-af3b-4d1733d0d9ea', '2024 stage - Campaign Promotion is a crucial stage in the student election process where candidates actively reach out to the student body to share their platforms, visions, and plans. During this period, candidates engage in various activities to promote their candidacy, such as distributing flyers, putting up posters, and utilizing social media to reach a wider audience. They might hold rallies, participate in debates, and organize meet-and-greet events to connect with students directly and discuss important issues.', 'IN_PROGRESS', 3, true);
 
 -- Inserting data into candidatures table
 INSERT INTO candidatures (created_at, updated_at, approved_by_id, election_id, id, user_id)
@@ -60,10 +60,10 @@ VALUES
     'https://instagram.com/link2', 'Slogan 2023 2', 'https://t.me/link2'),
 
 -- Election 2024 candidature plans
-   ('2024-02-20 14:00:00', '2024-02-20 14:00:00', 'adeacd03-fdb0-40cf-ab75-d2aea6ce1b45', '65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7', 'Description 1',
-   'https://instagram.com/link1', 'Slogan 1', 'https://t.me/link1'),
-   ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '1cb23d0e-1b43-4f71-81b9-33f5db18687d', '8dcf75a5-0636-425a-9ffd-b732d12ff197', 'Description 2',
-   'https://instagram.com/link2', 'Slogan 2', 'https://t.me/link2');
+   ('2024-02-20 14:00:00', '2024-02-20 14:00:00', 'adeacd03-fdb0-40cf-ab75-d2aea6ce1b45', '65e52afe-a8d5-4ab1-a576-3ad0fdb6e7c7', 'I want to become a president of Our University as I am very great person',
+   'https://instagram.com/link1', 'Slogan 1 - Empowering Voices, Creating Change – Vote Candidate1 for a Brighter Tomorrow!', 'https://t.me/link1'),
+   ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '1cb23d0e-1b43-4f71-81b9-33f5db18687d', '8dcf75a5-0636-425a-9ffd-b732d12ff197', 'With the Great Power comes Great Responsibility, and I am the chosen to take it',
+   'https://instagram.com/link2', 'Slogan 2 - United for Progress – Elect Alibek for a Stronger Community!', 'https://t.me/link2');
 
 
 INSERT INTO candidature_stages (created_at, updated_at, candidature_id, id, stage_id)
@@ -111,7 +111,7 @@ VALUES
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '5068432f-4195-45ea-b4fb-be1bdfecb2c4', 'e2df0d5d-eb3f-4b2e-84a8-f962c0ae10a0',
     'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user1 stage2'),
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '1aae27e3-158e-4c5d-80be-1c6ea245b8a4', '1efe9085-27b5-4b1c-9997-6c0144aaa8fa',
-    'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user1 stage3'),
+    'http://localhost:8000/123', 'http://localhost:8000/123', 'My candidature aims to foster academic excellence by implementing peer tutoring programs, extending library hours, and organizing academic workshops and seminars. To enhance student welfare, they plan to increase mental health resources, improve awareness of financial aid, and advocate for better campus safety measures. On campus life, [Candidate''s Name] will support extracurricular activities, promote sustainability initiatives, and organize inclusive events. They are committed to ensuring student representation by holding open forums, ensuring transparent governance, and actively advocating for student interests in university administration meetings.'),
 
 --- user2 candidature stage info
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '43c239f5-8982-4857-be1b-1a557f64b542', '16d28a8c-1251-4c0e-88fe-60ba89abb080',
@@ -119,7 +119,7 @@ VALUES
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '0766fec7-22ef-4e37-9b67-d6efef5e3f98', '223bf42e-b931-4926-af13-050817d160e1',
     'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user2 stage2'),
    ('2024-02-20 14:00:00', '2024-02-20 14:00:00', '53d8bb5d-3abf-419e-b01c-982f71b81afe', '01d2835e-ff45-4847-9a82-61bf83634b28',
-    'http://localhost:8000/123', 'http://localhost:8000/123', 'some description user2 stage3');
+    'http://localhost:8000/123', 'http://localhost:8000/123', 'I plan to engage the community by launching volunteer initiatives, promoting cultural diversity through events, and improving sports and recreational activities. Empowering students is a key focus, with plans for leadership training workshops, regular surveys to gather feedback, and fostering a collaborative relationship between students and university administration to address needs effectively.');
 
 
 INSERT INTO votes (created_at, updated_at, candidature_stage_id, elector_id, id)
